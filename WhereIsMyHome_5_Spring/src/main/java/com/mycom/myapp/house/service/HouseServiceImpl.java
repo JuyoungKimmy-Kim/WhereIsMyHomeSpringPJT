@@ -2,43 +2,41 @@ package com.mycom.myapp.house.service;
 
 import java.util.List;
 
-import com.mycom.myapp.code.dto.DongDto;
-import com.mycom.myapp.code.dto.GugunDto;
-import com.mycom.myapp.code.dto.SidoDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mycom.myapp.house.dao.HouseDao;
 import com.mycom.myapp.house.dto.HouseDto;
 
-
+@Service
 public class HouseServiceImpl implements HouseService {
 
-	@Override
-	public List<SidoDto> getSido() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<GugunDto> getGugun(String sido_code) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<DongDto> getDong(String gugun_code) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<HouseDto> getSearchByDong(String dong_name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<HouseDto> getSearchByApt(String apt_name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	@Autowired
+	HouseDao dao;
 	
-	
+	@Override
+	public List<HouseDto> getSearchByDong(String dongName) {
+		System.out.println("House Service Impl - getSearchByDong");
+		List<HouseDto> list=null;
+		
+		try {
+			list=dao.getSearchByDong(dongName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<HouseDto> getSearchByApt(String aptName) {
+		System.out.println("House Service Impl - getSearchByApt");
+		List<HouseDto> list=null;
+		
+		try {
+			list=dao.getSearchByApt(aptName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

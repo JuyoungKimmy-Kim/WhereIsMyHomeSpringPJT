@@ -10,6 +10,10 @@
 	<mappers>
 		<mapper resource="mapper/login_query.xml"></mapper>
 		<mapper resource="mapper/user_query.xml"></mapper>
+		<mapper resource="mapper/sido_query.xml"></mapper>
+ 		<mapper resource="mapper/gugun_query.xml"></mapper> 
+		<mapper resource="mapper/dong_query.xml"></mapper>
+		<mapper resource="mapper/house_query.xml"></mapper>
 	</mappers>
 	
 	

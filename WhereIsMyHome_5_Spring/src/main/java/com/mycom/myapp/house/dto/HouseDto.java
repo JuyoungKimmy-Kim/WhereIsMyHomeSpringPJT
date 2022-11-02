@@ -12,7 +12,7 @@ public class HouseDto {
 	
 	private String no;
 	private String dong;
-	private String AptName;
+	private String aptName;
 	private String code;
 	
 	private String buildYear;
@@ -29,7 +29,6 @@ public class HouseDto {
 	private String floor;
 	private String type;
 	private String rentMoney;
-	private String house_no;
-
+	private String houseNo;
 }
 
