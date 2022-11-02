@@ -48,7 +48,16 @@
         <iframe src="/header.html"></iframe>
 
 		<main> 
+		<!-- 	
+  		<form class="main-form" method="POST" action="/findHouses">			 
+          <div class="main-form-input">
+              <Input name="dong" placeholder="동 검색"/> 
+              <Input name="aptName" placeholder="아파트 검색"/>
+          </div>
+          <button class="btn btn-light" id="searchBtn"> 🔍  </button>
 
+		  </form>
+ 		-->
 
 		<div class="main-bottom">
 			<div class="row col-md-12 justify-content-center mb-2">
@@ -91,10 +100,57 @@
 				<!-- <% } %> -->
 
 			</div>
+
+
 		</div>
+
+
 		</main>
+
+
 		<section>
 
+			<!-- 지도 -->
+			<!-- 
+			<div id="map">
+
+				<div class="list-group">
+
+					<a href="#" class="list-group-item list-group-item-action active"
+						aria-current="true">
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="list-group-title">아파트별 정보</h5>
+						</div>
+					</a> <a href="#" class="list-group-item list-group-item-action">
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">그린코아아파트</h5>
+						</div>
+						<p class="mb-1">거래금액: 100,000원</p>
+						<p class="mb-1">면적: 90.83</p> <small class="text-muted">2022.09.05</small>
+					</a> <a href="#" class="list-group-item list-group-item-action">
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">신호일천푸른마을아파트</h5>
+						</div>
+						<p class="mb-1">거래금액: 300,000원</p>
+						<p class="mb-1">면적: 81.33</p> <small class="text-muted">2022.09.07</small>
+					</a> <a href="#" class="list-group-item list-group-item-action">
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">아이유쉘아파트</h5>
+						</div>
+						<p class="mb-1">거래금액: 500,000원</p>
+						<p class="mb-1">면적: 102.83</p> <small class="text-muted">2022.09.08</small>
+					</a> <a href="#" class="list-group-item list-group-item-action">
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">윌더하임</h5>
+						</div>
+						<p class="mb-1">거래금액: 550,000원</p>
+						<p class="mb-1">면적: 999.99</p> <small class="text-muted">2022.09.03</small>
+					</a>
+				</div>
+
+			</div>
+			
+			 -->
 			<div class="map_wrap">
 				<div id="map"
 					style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
@@ -145,8 +201,14 @@
 						<a href="aptlist_apt.jsp">🔍</a>
 					</button>
 				</div>
+
+
 			</div>
+
+
 		</div>
+
+
 
 		<section id="section-aptlist">
 
@@ -168,6 +230,8 @@
 	</div>
 
 
+
+
 	<script>
 	let DongData = null;
 	let AptData = null;
@@ -178,22 +242,19 @@
     var ret = [];
     var ans = 9999999;
 	
-    
-    var SIDO;
-    var GUGUN;
-    var DONG;
 	
     window.onload = function() {
     	
     	// aptlist_apt 페이지 로드하자마자 병원 정보 가져오기
      
     	/* <% if( userDto != null && userDto.getUserClsf().equals("001")) %> */
-  		//getHospital(); 
+  		getHospital(); 
   	
       	
 		let keyword = sessionStorage.getItem("keyword");
-		
-		sido();
+		//console.log(keyword);
+     	 // 브라우저가 열리면 시도정보 얻기.
+        sido();
      
         // 리스트 버튼 (검색버튼) 클릭 
         document.querySelector("#list-btn").addEventListener("click", function (e) {
@@ -201,15 +262,10 @@
       		// db에서 동별, 아파트별 검색
       		// ㅁㅁ시 ㅁㅁ구 ㅁㅁ동 검색 -> 해당 "동"의 코드에 해당하는 아파트 이름, 거래가격, 위치 등 다 불러오기
       		let dong = document.querySelector("#dong");
-		
-      		//console.log(dong[dong.selectedIndex].innerHTML);
+      		console.log(dong[dong.selectedIndex].innerHTML);
       		let regcode = dong[dong.selectedIndex].innerHTML;
-      		DONG=regcode;
       		
-      		console.log (SIDO);
-      		console.log (GUGUN);
-      		console.log (DONG);
-      		//console.log(document.querySelector("#searchInput").value)
+      		console.log(document.querySelector("#searchInput").value)
       		
       		let inputValue = document.querySelector("#searchInput").value;
       		if( inputValue != "" ){
@@ -223,10 +279,21 @@
       		
       		// 아파트별은 검색어 입력으로 찾기.
       		
+    		
+      	 
+      		
+      		
         });
-  
-  		/////////////////  19세 이상 코로나 검색   //////////////////////////// 
 
+        
+        
+  		/////////////////  19세 이상 코로나 검색   //////////////////////////// 
+  		
+  		
+        
+    
+        
+  
     };	
 	
     
@@ -257,9 +324,11 @@
 				    
 					transform(data, hospitalValue);	
 			}
+		  
 
         });
-    		
+    	
+    	
     }
     
     function transform(data, hospitalValue){
@@ -327,11 +396,8 @@
     // 시도가 바뀌면 구군정보 얻기.
     document.querySelector("#sido").addEventListener("change", function () {
       if (this[this.selectedIndex].value) {
-        let sidoCode = this[this.selectedIndex].value; // 앞에있는 두자리가 시.도  (11:서울)
-        SIDO=sidoCode;
-        console.log(SIDO);
-        
-		gugun(sidoCode);
+        let regcode = this[this.selectedIndex].value; // 앞에있는 두자리가 시.도  (11:서울)
+		gugun(regcode);
       } else {
         initOption("gugun");
         initOption("dong");
@@ -341,9 +407,8 @@
     // 구군이 바뀌면 동정보 얻기.
     document.querySelector("#gugun").addEventListener("change", function () {
       if (this[this.selectedIndex].value) {
-        let gugunCode = this[this.selectedIndex].value; // 나머지 세자리는 구군 앞에 두자리는 시도 
-        GUGUN=gugunCode;
-        dong(gugunCode);
+        let regcode = this[this.selectedIndex].value; // 나머지 세자리는 구군 앞에 두자리는 시도 
+        dong(regcode);
       } else {
         initOption("dong");
       }
@@ -351,7 +416,8 @@
     
     
     async function sido() {
-		let url = '/address';
+		let url = '/house/sido';
+  			//let urlParams = `?limit=${LIST_ROW_COUNT}&offset=${OFFSET}`; // jsp EL표기법과 javascript es6 literal template와 충돌.
 		let fetchOptions = {
   					method: 'GET',
   			}
@@ -369,8 +435,9 @@
   			}
     }
     
-    async function gugun(sidoCode) {
-		let url = '/address/' +sidoCode;
+    async function gugun(regcode) {
+		let url = '/house/gugun?sido_code=' + regcode;
+  			//let urlParams = `?limit=${LIST_ROW_COUNT}&offset=${OFFSET}`; // jsp EL표기법과 javascript es6 literal template와 충돌.
 		let fetchOptions = {
   					method: 'GET',
   			}
@@ -378,18 +445,19 @@
   			try {
   				let response = await fetch( url , fetchOptions );
   				let data = await response.json();
-  				//console.log( data )
+  				console.log( data )
   				
   				addOption("gugun", data)
   				
   			} catch( error ) {
   				console.log(error);
-  				alertify.error('구군 조회 과정에서 문제가 생겼습니다.');
+  				alertify.error('시도 조회 과정에서 문제가 생겼습니다.');
   			}
     }
     
-    async function dong(gugunCode) {
-		let url = '/address/'+SIDO+'/'+gugunCode;
+    async function dong(regcode) {
+		let url = '/house/dong?gugun_code=' + regcode;
+  			//let urlParams = `?limit=${LIST_ROW_COUNT}&offset=${OFFSET}`; // jsp EL표기법과 javascript es6 literal template와 충돌.
 		let fetchOptions = {
   					method: 'GET',
   			}
@@ -403,7 +471,7 @@
   				
   			} catch( error ) {
   				console.log(error);
-  				alertify.error('동 조회 과정에서 문제가 생겼습니다.');
+  				alertify.error('시도 조회 과정에서 문제가 생겼습니다.');
   			}
     }
     
@@ -420,6 +488,8 @@
             opt += `<option value="">시도선택</option>`;
             
             data.forEach(function (regcode) {
+            
+            	
             	opt += ` <option value=` + regcode.code + `>` + regcode.name + `</option> `;
             });
             break;
@@ -428,6 +498,8 @@
             opt += `<option value="">구군선택</option>`;
             
             data.forEach(function (regcode) {
+            
+            	
             	opt += ` <option value=` + regcode.code + `>` + regcode.name + `</option> `;
             });
             break;
@@ -435,6 +507,8 @@
           case "dong":
             opt += `<option value="">동선택</option>`;
             data.forEach(function (regcode) {
+            	
+            	
             	opt += ` <option value=` + regcode.code + `>` + regcode.name + `</option> `;
             });
         }
@@ -446,7 +520,8 @@
     // 동 별 검색
     async function searchByDong(regcode) {
     	
-    	let url = '/houses/'+regcode;
+    	let url = '/house/search?dong_name=' + regcode;
+			//let urlParams = `?limit=${LIST_ROW_COUNT}&offset=${OFFSET}`; // jsp EL표기법과 javascript es6 literal template와 충돌.
 		let fetchOptions = {
 					method: 'GET',
 			}
@@ -472,7 +547,8 @@
     // 아파트 별 검색
     async function searchByApt(regcode) {
     	
-    	let url = '/house/'+ regcode;
+    	let url = '/house/searchApt?apt_name=' + regcode;
+			//let urlParams = `?limit=${LIST_ROW_COUNT}&offset=${OFFSET}`; // jsp EL표기법과 javascript es6 literal template와 충돌.
 		let fetchOptions = {
 					method: 'GET',
 			}
@@ -495,10 +571,11 @@
     	
     }
     
+    
 
+    
+    
     function makeList(data) {
-    	
-    	//console.log(data);
         document.querySelector("table").setAttribute("style", "display:  ;");
         let tbody = document.querySelector("#aptlist");
 
@@ -513,8 +590,7 @@
           tr.setAttribute("data-lng", apt.lng);
           
 		  let nameTd = document.createElement("td");
-		  
-		  nameTd.appendChild(document.createTextNode(apt.aptName));
+		  nameTd.appendChild(document.createTextNode(apt.AptName));
           tr.appendChild(nameTd);
         
           // 동 주소
@@ -754,7 +830,7 @@
 		            itemEl.onmouseout =  function () {
 		                infowindow.close();
 		            };
-		        })(marker, places[i].aptName);
+		        })(marker, places[i].AptName);
 
 		        fragment.appendChild(itemEl);
 		    }
@@ -775,7 +851,7 @@
 		    var el = document.createElement('li'),
 		    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
 		                '<div class="info">' +
-		                '   <h5>' + places.aptName + '</h5>';
+		                '   <h5>' + places.AptName + '</h5>';
 
 		    if (places.dong) {
 		        itemStr += '    <span>' + places.dealAmount + ' 만원</span>' +
