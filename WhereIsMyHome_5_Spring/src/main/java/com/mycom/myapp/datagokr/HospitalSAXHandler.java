@@ -1,10 +1,12 @@
-package datagokr;
+package com.mycom.myapp.datagokr;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
+
+import com.mycom.myapp.hospital.dto.Hospital;
 
 public class HospitalSAXHandler extends DefaultHandler {
     private List<Hospital> hospitalList = new ArrayList<> ();

@@ -1,4 +1,4 @@
-package datagokr;
+package com.mycom.myapp.hospital.dto;
 
 public class Hospital {
 	private String hospitalNm;

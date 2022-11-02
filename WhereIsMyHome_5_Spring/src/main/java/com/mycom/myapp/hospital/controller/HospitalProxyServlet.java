@@ -1,4 +1,4 @@
-package datagokr;
+package com.mycom.myapp.hospital.controller;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -19,6 +19,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import com.google.gson.Gson;
+import com.mycom.myapp.datagokr.HospitalSAXHandler;
+import com.mycom.myapp.hospital.dto.Hospital;
 
 @WebServlet("/hospital")
 public class HospitalProxyServlet extends HttpServlet {
