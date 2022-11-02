@@ -11,9 +11,5 @@ import com.mycom.myapp.event.dto.EventDto;
 @RestController
 public class EventController {
 
-	@GetMapping("/events")
-	public Map<List<EventDto>> list(){
-		
-	}
 	
 }
