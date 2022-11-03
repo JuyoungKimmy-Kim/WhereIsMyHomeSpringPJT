@@ -48,15 +48,10 @@
             </div>
             
             <div class="col-12">
-        
-		 	<div class="form-check form-check-inline">
-			  <input class="form-check-input" type="radio" name="userClsf" id="inlineRadio1" value="">
-			  <label class="form-check-label" for="inlineRadio1"> <!-- <%= codeList.get(0).getCodeName() %> --></label>
-			</div>
-			<div class="form-check form-check-inline">
-			  <input class="form-check-input" type="radio" name="userClsf" id="inlineRadio2" value="">
-			  <label class="form-check-label" for="inlineRadio2"> <!-- <%= codeList.get(1).getCodeName() %> --></label>
-			</div>
+			<div id="userclsf">
+				
+			</div> 
+			
 			<br>
             
             <div class="col-12">
@@ -67,7 +62,9 @@
     
     <script>
     window.onload = function() {
-    	   document.querySelector("#btnRegister").onclick = function(e) {
+    	getCodeclsf();
+    	
+    	document.querySelector("#btnRegister").onclick = function(e) {
     			
     		   e.preventDefault();
 
@@ -176,13 +173,13 @@
                 body: urlParams
             }
 
-            let response = await fetch( "/user/userRegist", fetchOptions );
+            let response = await fetch( "/users", fetchOptions );
             let data = await response.json(); // json => javascript object <= JSON.parse()
 
             if( data.result == "success" ){ // register.jsp => login.jsp로 페이지 이동 ( 새로운 페이지(html....) 요청)
             	
             	alertify.alert("Welcome!", "회원가입을 축하합니다! 로그인 페이지로 go!", function(){
-                	window.location.href = "/jsp/index.jsp";
+                	window.location.href = "/index.html";
           		  });
             	
             }else if( data.result == "fail" ){
@@ -191,6 +188,33 @@
             //fetch(url, option)
         };
         
+        // 공통코드 처리
+        async function getCodeclsf(){
+        	let response = await fetch("/codes");
+			let data = await response.json();
+			
+			showClsf(data);
+        }
+        
+        function showClsf(list){
+        	let clsfHtml = ``;
+        	
+        	var cnt = 1;
+        	list.forEach(el=>{
+        		let codeName = el.codeName;
+        		let code = el.code;
+        		clsfHtml += 
+        			`<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="userClsf" id="inlineRadio${cnt}" value="${code}">
+			  <label class="form-check-label" for="inlineRadio${cnt}"> ${codeName}</label>
+			</div>`;
+			
+				cnt++;
+        	});
+        	
+        	document.querySelector("#userclsf").innerHTML = clsfHtml;
+        }
+        // 공통코드 처리 끝
     
     </script>
     
