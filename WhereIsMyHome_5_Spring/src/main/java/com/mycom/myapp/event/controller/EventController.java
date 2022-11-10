@@ -1,10 +1,15 @@
 package com.mycom.myapp.event.controller;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
+import java.util.List;
+import java.util.Map;
 
-@WebServlet("/event/*")
-public class EventController extends HttpServlet {
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mycom.myapp.event.dto.EventDto;
+
+@RestController
+public class EventController {
 
 	
 }

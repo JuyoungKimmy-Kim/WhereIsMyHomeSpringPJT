@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import com.google.gson.Gson;
 import com.mycom.myapp.datagokr.HospitalSAXHandler;
 import com.mycom.myapp.hospital.dto.Hospital;
 
@@ -112,12 +111,12 @@ public class HospitalProxyServlet extends HttpServlet {
 	    	List<Hospital> hospitalList = handler.getHospitalList();
 	    	
 	    	// java List => json
-	        Gson gson = new Gson();
-	        String jsonStr = gson.toJson(hospitalList); // json
-	        // xml -> json
-	        System.out.println(jsonStr);
-	        response.setContentType("application/json; charset=utf-8");
-	        response.getWriter().append(jsonStr);
+//	        Gson gson = new Gson();
+//	        String jsonStr = gson.toJson(hospitalList); // json
+//	        // xml -> json
+//	        System.out.println(jsonStr);
+//	        response.setContentType("application/json; charset=utf-8");
+//	        response.getWriter().append(jsonStr);
 	    } catch(Exception e) {
 	    	e.printStackTrace();
 	    }
