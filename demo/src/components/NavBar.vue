@@ -26,6 +26,9 @@
               <li><router-link to="/map">지도</router-link></li>
               <li><router-link to="/registproperty">매물 등록</router-link></li>
               <li><router-link to = "/mypage">마이 페이지</router-link></li>
+              <li><router-link to = "/leftsidebar">Side Bar</router-link></li>
+              <li><router-link to = "/homecontent">Home Content</router-link></li>
+              <li><router-link to = "/userprofile">User Profile</router-link></li>
               <li class="d-none d-xl-none d-block d-lg-block">
                 <a href="login.html">Login</a>
               </li>

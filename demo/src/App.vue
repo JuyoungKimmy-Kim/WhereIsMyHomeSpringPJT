@@ -21,6 +21,7 @@
 import NavBar from '@/components/NavBar.vue';
 import AOS from 'aos';
 
+
 export default {
   data() {
     return {
@@ -61,6 +62,18 @@ export default {
                 "./js/range.js",
                 "./js/color-switcher.js",
                 "./js/script.js",
+                "./js/rangeSlider.js",
+                "./js/bootstrap.min.js,",
+                "./js/light.js",
+                "./js/popup.js",
+                "./js/searched.js",
+                "./js/leaflet.js",
+                "./js/leaflet-gesture-handling.min.js",
+                "./js/leaflet-providers.js",
+                "./js/leaflet.markercluster.js",
+                "./js/color-switcher.js",
+                "./js/inner.js",
+
             ];
 
             for (let i = 0, len = scripts.length; i < len; i++) {
