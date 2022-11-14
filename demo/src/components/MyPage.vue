@@ -1,13 +1,15 @@
 <template>
-  <h4> 마이 페이지</h4>
+  <router-view></router-view>
 </template>
 
 <script>
 export default {
-
+  components:{
+    
+  }
 }
 </script>
 
 <style>
-
+    
 </style>

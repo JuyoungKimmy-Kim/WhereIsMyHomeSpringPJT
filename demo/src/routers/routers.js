@@ -28,15 +28,16 @@ export default new VueRouter({
             components : {
                 default : MyPage,
                 Footer
-            }
+            },
+            children:[
+                {
+                    path : 'registproperty',
+                    components: {
+                        default : RegistProperty
+                    }
+                }
+            ]
         },
-        {
-            path : '/registproperty',
-            components :{
-                default : RegistProperty,
-                Footer
-            }
-        }
     ]
 
 });

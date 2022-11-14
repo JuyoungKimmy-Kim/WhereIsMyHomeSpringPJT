@@ -48,11 +48,11 @@
                                                         <option value="3">Houston</option>
                                                     </select>
                                                 </div>
-                                                <div class="dropdown-filter" @click="test"><span>Advanced Search</span></div>
+                                                <div class="dropdown-filter" @click="toggleAdvenced"><span>Advanced Search</span></div>
                                                 <div class="col-xl-2 col-lg-2 col-md-4 pl-0">
                                                     <a class="btn btn-yellow" href="#">Search Now</a>
                                                 </div>
-                                                <div class="explore__form-checkbox-list full-filter">
+                                                <div :class="exploreFormCheckboxList">
                                                     <div class="row">
                                                         <div class="col-lg-4 col-md-6 py-1 pr-30 pl-0">
                                                             <!-- Form Property Status -->
@@ -366,21 +366,87 @@
 
 
 <script>
-// import JavaScript from "./JavaScript.vue"
 export default {
+    data() {
+        return {
+            exploreFormCheckboxList: "explore__form-checkbox-list full-filter",
+        }
+    },
    methods:{
-        test(){
-            let t = document.querySelector(".explore__form-checkbox-list").classList;
-            if(t.contains('filter-block')){
-                t.remove('filter-block');
+        toggleAdvenced(){
+            if(this.exploreFormCheckboxList.indexOf("filter-block") != -1){
+                this.exploreFormCheckboxList = "explore__form-checkbox-list full-filter";
             }else{
-                t.add("filter-block");
-            }  
+                this.exploreFormCheckboxList = "explore__form-checkbox-list full-filter filter-block";
+            }
+        }
+   },
+   mounted() {
+        let scripts = [
+                "./js/jquery-3.5.1.min.js",
+                "./js/rangeSlider.js",
+                "./js/tether.min.js",
+                "./js/moment.js",
+                "./js/bootstrap.min.js",
+                "./js/mmenu.min.js",
+                "./js/mmenu.js",
+                "./js/slick.min.js",
+                "./js/fitvids.js",
+                "./js/jquery.waypoints.min.js",
+                "./js/jquery.counterup.min.js",
+                "./js/imagesloaded.pkgd.min.js",
+                "./js/isotope.pkgd.min.js",
+                "./js/smooth-scroll.min.js",
+                "./js/lightcase.js",
+                "./js/search.js",
+                "./js/owl.carousel.js",
+                "./js/jquery.magnific-popup.min.js",
+                "./js/ajaxchimp.min.js",
+                "./js/newsletter.js",
+                "./js/jquery.form.js",
+                "./js/jquery.validate.min.js",
+                "./js/searched.js",
+                "./js/forms-2.js",
+                "./js/range.js",
+                "./js/color-switcher.js",
+                "./revolution/js/jquery.themepunch.tools.min.js",
+                "./revolution/js/jquery.themepunch.revolution.min.js",
+                "./js/script.js",
+            ];
+
+        let scriptCount = document.getElementById("scriptForm").childElementCount;
+        for(let i = 0; i < scriptCount; i++){
+            let scriptNode = document.getElementById("myScript");
+            scriptNode.parentNode.removeChild(scriptNode);
+        }
+
+        for (let i = 0, len = scripts.length; i < len; i++) {
+            let script = document.createElement('script');
+            script.setAttribute('src', scripts[i]);
+            script.setAttribute('id', 'myScript');
+            script.defer = true;
+            document.getElementById('scriptForm').appendChild(script);
         }
    },
 }
 </script>
 
 <style>
-
+    @import "../../public/font/flaticon.css";
+    @import "../../public/css/fontawesome-all.min.css";
+    @import "../../public/css/fontawesome-5-all.min.css";
+    @import "../../public/css/font-awesome.min.css";
+    @import "../../public/css/search-form.css";
+    @import "../../public/css/search.css";
+    @import "../../public/css/animate.css";
+    @import "../../public/css/aos.css";
+    @import "../../public/css/aos2.css";
+    @import "../../public/css/magnific-popup.css";
+    @import "../../public/css/lightcase.css";
+    @import "../../public/css/owl.carousel.min.css";
+    @import "../../public/css/bootstrap.min.css";
+    @import "../../public/css/menu.css";
+    @import "../../public/css/slick.css";
+    @import "../../public/css/styles.css";
+    @import "../../public/css/colors/dark-gray.css";
 </style>

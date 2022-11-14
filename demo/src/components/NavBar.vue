@@ -24,7 +24,7 @@
           <nav id="navigation" class="style-1">
             <ul id="responsive">
               <li><router-link to="/map">지도</router-link></li>
-              <li><router-link to="/registproperty">매물 등록</router-link></li>
+              <li><router-link to="/mypage/registproperty">매물 등록</router-link></li>
               <li><router-link to = "/mypage">마이 페이지</router-link></li>
               <li class="d-none d-xl-none d-block d-lg-block">
                 <a href="login.html">Login</a>
@@ -57,7 +57,7 @@
         <div class="right-side d-none d-none d-lg-none d-xl-flex">
           <!-- Header Widget -->
           <div class="header-widget">
-            <router-link to="/registproperty" class="button border"
+            <router-link to="/mypage/registproperty" class="button border"
               >매물 등록<i class="fas fa-laptop-house ml-2"></i
             ></router-link>
           </div>
@@ -67,11 +67,11 @@
 
         <!-- Right Side Content / End -->
         <div class="header-user-menu user-menu add">
-          <div class="header-user-name">
+          <div class="header-user-name" @click="headerUserNameClicked">
             <span><img src="images/testimonials/ts-1.jpg" alt="" /></span>Hi,
             Mary!
           </div>
-          <ul>
+          <ul :class="headerUserMenuUl">
             <li><router-link to="/mypage"> 프로필 수정</router-link></li>
             <li><a href="add-property.html"> 매물 등록</a></li>
             <li><a href="change-password.html"> 비밀번호 변경</a></li>
@@ -98,9 +98,32 @@
 <script>
 import RegisterForm from "@/components/RegisterForm.vue";
 export default {
+  data() {
+    return {
+      headerUserMenuUl: "",
+      headeruserNameDiv: "header-user-name",
+    }
+  },
   components: {
     RegisterForm,
   },
+  methods:{
+    headerUserNameClicked(){
+      if(this.headerUserMenuUl == ""){
+        this.headerUserMenuUl = "hu-menu-vis";
+      }else{
+        this.headerUserMenuUl = "";
+      }
+
+      if(this.headeruserNameDiv.indexOf("hu-menu-visdec") == -1){
+        this.headeruserNameDiv = "header-user-name hu-menu-visdec";
+      }else{
+        this.headeruserNameDiv = "header-user-name";
+      }
+
+
+    }
+  }
 };
 </script>
 

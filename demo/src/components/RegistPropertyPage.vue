@@ -447,10 +447,74 @@
 
 <script>
 export default {
+    mounted() {
+        let scripts = [
+        "./js/jquery-3.5.1.min.js",
+        "./js/jquery-ui.js",
+        "./js/bootstrap.min.js",
+        "./js/popper.min.js",
+        "./js/tether.min.js",
+        "./js/moment.js",
+        "./js/mmenu.min.js",
+        "./js/mmenu.js",
+        "./js/swiper.min.js",
+        "./js/swiper.js",
+        "./js/slick.min.js",
+        "./js/slick2.js",
+        "./js/fitvids.js",
+        "./js/jquery.waypoints.min.js",
+        "./js/jquery.counterup.min.js",
+        "./js/imagesloaded.pkgd.min.js",
+        "./js/isotope.pkgd.min.js",
+        "./js/smooth-scroll.min.js",
+        "./js/lightcase.js",
+        "./js/search.js",
+        "./js/owl.carousel.js",
+        "./js/jquery.magnific-popup.min.js",
+        "./js/ajaxchimp.min.js",
+        "./js/newsletter.js",
+        "./js/jquery.form.js",
+        "./js/jquery.validate.min.js",
+        "./js/searched.js",
+        "./js/dashbord-mobile-menu.js",
+        "./js/forms-2.js",
+        "./js/color-switcher.js",
+        "./js/dropzone.js",
+        "./js/script.js"
+        ];
 
+        let scriptCount = document.getElementById("scriptForm").childElementCount;
+        for(let i = 0; i < scriptCount; i++){
+            let scriptNode = document.getElementById("myScript");
+            scriptNode.parentNode.removeChild(scriptNode);
+        }
+
+        for (let i = 0, len = scripts.length; i < len; i++) {
+            let script = document.createElement('script');
+            script.setAttribute('src', scripts[i]);
+            script.setAttribute('id', 'myScript');
+            script.defer = true;
+            document.getElementById('scriptForm').appendChild(script);
+        }
+   },
 }
+
 </script>
 
 <style>
-
+    @import "../../public/css/fontawesome-all.min.css";
+    @import "../../public/css/fontawesome.min.css";
+    @import "../../public/css/search.css";
+    @import "../../public/css/dashbord-mobile-menu.css";
+    @import "../../public/css/animate.css";
+    @import "../../public/css/swiper.min.css";
+    @import "../../public/css/magnific-popup.css";
+    @import "../../public/css/lightcase.css";
+    @import "../../public/css/owl-carousel.css";
+    @import "../../public/css/owl.carousel.min.css";
+    @import "../../public/css/bootstrap.min.css";
+    @import "../../public/css/menu.css";
+    @import "../../public/css/slick.css";
+    @import "../../public/css/styles.css";
+    @import "../../public/css/colors/dark-gray.css";
 </style>
