@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import router from "./routers/routers.js"
+// import 'bootstrap'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
 // AOS
 import AOS from 'aos';

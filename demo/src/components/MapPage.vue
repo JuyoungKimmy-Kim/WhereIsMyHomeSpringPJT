@@ -19,8 +19,7 @@ export default {
       const script = document.createElement("script");
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
-      script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=741cfff0b0e1d74a405abcb9f34aee54";
+      script.src="//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=741cfff0b0e1d74a405abcb9f34aee54";
       document.head.appendChild(script);
     }
   },
@@ -43,8 +42,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #map {
-  width: 2000;
-  height: 800px;
+  width: 100%;
+  height: 100%;
+  position:absolute;
+  left:0;
+  top:125px;
+  margin:0;
+  padding:0;
 }
 
 </style>
