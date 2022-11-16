@@ -1,18 +1,22 @@
 <template>
-    <section class="pt-5 mt-5">
+<div>
+    <header-page></header-page>
+
+    <div class="card card-body sticky blur shadow-blur mx-3 mx-md-6 mt-n6">
+        <section>
         <div class="container">
-            <div class="row justify-content-center">
-            <div class="col-lg-10">
+            <h4 class="row justify-content-center">사용자 관리</h4>
+            <div class="row justify-content-center pb-5">
+            <div class="col-lg-11">
                 <div class="card">
-                <div class="table-responsive">
+                <div class="table-responsive" style="overflow-x: hidden">
                     <table class="table align-items-center mb-0">
                     <thead>
                         <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Technology</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
-                        <th class="text-secondary opacity-7"></th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">유저</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">관리</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">가입일자</th>
+                        <th class="text-secondary text-xxs opacity-7"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,16 +36,17 @@
                             <p class="text-xs font-weight-bold mb-0">Manager</p>
                             <p class="text-xs text-secondary mb-0">Organization</p>
                         </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm badge-success">Online</span>
-                        </td>
                         <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
                         </td>
                         <td class="align-middle">
-                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                            Edit
-                            </a>
+                            <div class="btn-group dropdown">
+                                <a class="text-secondary font-weight-bold text-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</a>
+                                <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                                </ul>
+                            </div>
                         </td>
                         </tr>
 
@@ -61,16 +66,18 @@
                             <p class="text-xs font-weight-bold mb-0">Programator</p>
                             <p class="text-xs text-secondary mb-0">Developer</p>
                         </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm badge-secondary">Offline</span>
-                        </td>
                         <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
                         </td>
+
                         <td class="align-middle">
-                            <a href="#!" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                            Edit
-                            </a>
+                            <div class="btn-group dropdown">
+                                <a class="text-secondary font-weight-bold text-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</a>
+                                <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                                </ul>
+                            </div>
                         </td>
                         </tr>
 
@@ -90,16 +97,17 @@
                             <p class="text-xs font-weight-bold mb-0">Executive</p>
                             <p class="text-xs text-secondary mb-0">Projects</p>
                         </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm badge-success">Online</span>
-                        </td>
                         <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
                         </td>
                         <td class="align-middle">
-                            <a href="#!" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                            Edit
-                            </a>
+                            <div class="btn-group dropdown">
+                                <a class="text-secondary font-weight-bold text-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</a>
+                                <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                                </ul>
+                            </div>
                         </td>
                         </tr>
 
@@ -119,16 +127,17 @@
                             <p class="text-xs font-weight-bold mb-0">Programator</p>
                             <p class="text-xs text-secondary mb-0">Developer</p>
                         </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm badge-success">Online</span>
-                        </td>
                         <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
                         </td>
                         <td class="align-middle">
-                            <a href="#!" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                            Edit
-                            </a>
+                            <div class="btn-group dropdown">
+                                <a class="text-secondary font-weight-bold text-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</a>
+                                <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                                </ul>
+                            </div>
                         </td>
                         </tr>
 
@@ -148,16 +157,17 @@
                             <p class="text-xs font-weight-bold mb-0">Manager</p>
                             <p class="text-xs text-secondary mb-0">Executive</p>
                         </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm badge-secondary">Offline</span>
-                        </td>
                         <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
                         </td>
                         <td class="align-middle">
-                            <a href="#!" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                            Edit
-                            </a>
+                            <div class="btn-group dropdown">
+                                <a class="text-secondary font-weight-bold text-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</a>
+                                <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                                </ul>
+                            </div>
                         </td>
                         </tr>
 
@@ -177,16 +187,17 @@
                             <p class="text-xs font-weight-bold mb-0">Programtor</p>
                             <p class="text-xs text-secondary mb-0">Developer</p>
                         </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm badge-secondary">Offline</span>
-                        </td>
                         <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
                         </td>
                         <td class="align-middle">
-                            <a href="#!" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                            Edit
-                            </a>
+                            <div class="btn-group dropdown">
+                                <a class="text-secondary font-weight-bold text-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</a>
+                                <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                                </ul>
+                            </div>
                         </td>
                         </tr>
                     </tbody>
@@ -197,11 +208,16 @@
             </div>
         </div>
     </section>
+    </div>
+</div>
 </template>
 
 <script>
+import HeaderPage from '@/components/HeaderPage.vue'
 export default {
-
+    components:{
+        HeaderPage
+    }
 }
 </script>
 

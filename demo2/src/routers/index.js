@@ -4,9 +4,10 @@ Vue.use(VueRouter);
 
 import Footer from "@/components/FooterPage.vue";
 import MainPage from "@/components/MainPage.vue";
-import Map from "@/components/MapPage.vue";
+import Map from "@/components/map/MapPage.vue";
 import Contact from "@/components/ContactUs.vue";
-import Notice from "@/components/NoticePage.vue";
+import Board from "@/components/board/BoardMain.vue";
+import UserManage from "@/components/board/UserManage.vue";
 
 export default new VueRouter({
     routes : [
@@ -24,9 +25,16 @@ export default new VueRouter({
             }
         },
         {
-            path:'/notice',
+            path:'/boards',
             components: {
-                default: Notice,
+                default: Board,
+                Footer
+            }
+        },
+        {
+            path:'/manage',
+            components: {
+                default: UserManage,
                 Footer
             }
         },

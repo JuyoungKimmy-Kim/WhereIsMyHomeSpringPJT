@@ -46,7 +46,7 @@
 export default {
     methods: {
         showRegister(){
-            this.$emit("show-register");
+            this.$emit("show-join");
         }
     },
 }

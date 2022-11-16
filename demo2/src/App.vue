@@ -5,8 +5,8 @@
     <router-view name="Footer"></router-view>
 
     
-    <login-modal @show-register="showRegister"></login-modal>
-    <register-modal></register-modal>
+    <login-modal @show-join="showJoinModal"></login-modal>
+    <join-modal></join-modal>
   </div>
 </template>
 
@@ -15,28 +15,28 @@ import NavBar from "@/components/NavBar.vue"
 
 import { Modal } from "bootstrap";
 import LoginModal from "@/components/modal/LoginModal.vue"
-import RegisterModal from "@/components/modal/RegisterModal.vue"
+import JoinModal from "@/components/modal/JoinModal.vue"
 
 export default {
   data() {
     return {
       loginModal: null,
-      registerModal: null,
+      joinModal: null,
     }
   },
-  components: { LoginModal, RegisterModal, NavBar },
+  components: { LoginModal, JoinModal, NavBar },
   methods: {
     showLogin(){
       this.loginModal.show();
     },
-    showRegister(){
+    showJoinModal(){
       this.loginModal.hide();
-      this.registerModal.show();
+      this.joinModal.show();
     }
   },
   mounted() {
       this.loginModal = new Modal(document.getElementById("loginModal"));
-      this.registerModal = new Modal(document.getElementById("registerModal"));
+      this.joinModal = new Modal(document.getElementById("joinModal"));
   },
 }
 </script>
