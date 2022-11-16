@@ -5,8 +5,8 @@
       <nav class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
         <div class="container-fluid px-0">
           <router-link to="/" class="nav-link ps-2 d-flex cursor-pointer align-items-center" rel="tooltip" data-placement="bottom">
-            <i class="material-icons me-2">home</i>
-            JYMS
+            <!--<i class="material-icons me-2">home</i>-->
+            <img id="logoImg" src="../../src/assets/img/logo.png" width="100px" height="50px"/>
           </router-link>
           <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon mt-2">
@@ -60,6 +60,7 @@
                   <i class="material-icons opacity-6 me-2 text-md">people</i>
                   로그인
                 </a>
+                
               </li>
               <li class="nav-item dropdown">
                   <a class="nav-link ps-2 d-flex cursor-pointer align-items-center dropdown-toggle" id="dropdownUserMenu" data-bs-toggle="dropdown" aria-expanded="false" 
@@ -132,4 +133,6 @@ export default{
 <style scoped>
 #topThreeDiv {height:0px;}
 .navbar .container-fluid{min-height: 44.39px;}
+
+
 </style>
