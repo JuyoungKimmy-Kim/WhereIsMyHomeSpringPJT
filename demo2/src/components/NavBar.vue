@@ -6,7 +6,7 @@
         <div class="container-fluid px-0">
           <router-link to="/" class="nav-link ps-2 d-flex cursor-pointer align-items-center" rel="tooltip" data-placement="bottom">
             <i class="material-icons me-2">home</i>
-            whereIsmyHome
+            JYMS
           </router-link>
           <button
             class="navbar-toggler shadow-none ms-2"
@@ -39,17 +39,18 @@
               </li>
               <li class="nav-item">
                 <router-link
-                  to="/register"
+                  to="/notice"
                   class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-                  >Register</router-link
                 >
+                  <i class="material-icons opacity-6 me-2 text-md">library_books</i>
+                  Notice
+                </router-link>
               </li>
               <li class="nav-item">
-                <router-link
-                  to="/login"
-                  class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-                  >Login</router-link
-                >
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" v-show="$store.state.login.isLogin"  @click="showLogin">
+                  <i class="material-icons opacity-6 me-2 text-md">people</i>
+                  Login
+                </a>
               </li>
               <li class="nav-item">
                 <router-link
@@ -59,13 +60,6 @@
                   <i class="material-icons opacity-6 me-2 text-md">contact_mail</i>
                   Contact
                 </router-link>
-              </li>
-              <li class="nav-item">
-                <router-link
-                  to="/search"
-                  class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-                  >Search</router-link
-                >
               </li>
             </ul>
           </div>
@@ -78,7 +72,11 @@
 
 <script>
 export default{
-
+  methods: {
+    showLogin(){
+      this.$emit("show-login");
+    }
+  },
 }
 </script>
 

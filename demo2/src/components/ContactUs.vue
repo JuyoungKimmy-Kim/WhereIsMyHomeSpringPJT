@@ -10,7 +10,7 @@
           <div class="col-xl-5 col-lg-6 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
             <div class="card d-flex blur justify-content-center shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                <div class="bg-gradient-primary shadow-primary border-radius-lg p-3">
+                <div class="bg-gradient-info shadow-primary border-radius-lg p-3">
                   <h3 class="text-white text-primary mb-0">Contact</h3>
                 </div>
               </div>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12 text-center">
-                        <button type="submit" class="btn bg-gradient-primary mt-3 mb-0">작성하기</button>
+                        <button type="submit" class="btn bg-gradient-info mt-3 mb-0">작성하기</button>
                       </div>
                     </div>
                   </div>
