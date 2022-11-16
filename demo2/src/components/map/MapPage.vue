@@ -92,6 +92,7 @@ export default {
                 // 정상적으로 검색이 완료됐으면
                 // 검색 목록과 마커를 표출합니다
                 this.kakao.placeList = data;
+                console.log(data);
                 this.displayPlaces(data);
 
             } else if (status === kakao.maps.services.Status.ZERO_RESULT) {

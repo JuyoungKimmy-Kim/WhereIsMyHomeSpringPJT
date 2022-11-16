@@ -9,7 +9,7 @@
 
             <!-- 관리자에게만 보여야함 v-show or v-if -->
             <div class="row justify-content-md-end">
-                <button type="button" class="btn bg-gradient-success w-auto me-2"  @click="showInsertModal">글 쓰기</button>
+                <button type="button" class="btn bg-gradient-success w-auto btn-sm me-2"  @click="showInsertModal">글 쓰기</button>
             </div>
 
             <div class="row justify-content-center pb-5">
