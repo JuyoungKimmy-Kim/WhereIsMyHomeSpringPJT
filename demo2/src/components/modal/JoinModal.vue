@@ -1,5 +1,5 @@
 <template>
-<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalForm" aria-hidden="true">
+<div class="modal fade" id="joinModal" tabindex="-1"  aria-hidden="true">
 <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
     <div class="modal-content">
     <div class="modal-body p-0">
@@ -14,7 +14,7 @@
                 <form role="form text-start">
                 <div class="input-group input-group-static mb-4">
                     <label>이름</label>
-                    <input type="text" class="form-control" placeholder="홍길동">
+                    <input type="text" class="form-control in" placeholder="홍길동">
                 </div>
                 <div class="input-group input-group-static mb-4">
                     <label>이메일</label>
