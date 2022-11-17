@@ -6,7 +6,7 @@
         <div class="container-fluid px-0">
           <router-link to="/" class="nav-link ps-2 d-flex cursor-pointer align-items-center" rel="tooltip" data-placement="bottom">
             <!--<i class="material-icons me-2">home</i>-->
-            <img id="logoImg" src="../../src/assets/img/logo.png" width="100px" height="50px"/>
+            <img id="logoImg" src="@/assets/img/logo.png" width="100px" height="50px"/>
           </router-link>
           <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon mt-2">
@@ -18,8 +18,18 @@
 
           <!-- map이면 표시 -->
           <div id="multiSelect" class="w-100" v-if="$store.state.isMapView">
-              <multiselect v-model="value" :maxHeight="300" :limit="4" :options="options" :multiple="true" group-values="libs" group-label="language" :group-select="true" placeholder="검색어를 입력하세요." track-by="name" label="name">
-                  <span slot="noResult">시/도/구/군/동 목록을 불러오는데 실패하였습니다.</span>
+              <multiselect 
+                v-model="value" 
+                :maxHeight="300" 
+                :limit="4" 
+                :options="filteredOptions" 
+                :multiple="true" 
+                group-values="libs"
+                group-label="language" 
+                placeholder="검색어를 입력하세요."
+                track-by="category" 
+                label="name">
+                  <span slot="noResult">검색하신 내용이 존재하지 않습니다.</span>
               </multiselect>
           </div>
           
@@ -51,8 +61,8 @@
                   to="/contact"
                   class="nav-link ps-2 d-flex cursor-pointer align-items-center"
                 >
-                  <i class="material-icons opacity-6 me-2 text-md">contact_mail</i>
-                  Contact
+                  <i class="material-icons opacity-6 me-2 text-md">question_answer</i>
+                  Q&A
                 </router-link>
               </li>
               <li class="nav-item">
@@ -69,9 +79,9 @@
                     {{userName}}
                   </a>
                   <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownUserMenu">
+                    <li><a class="dropdown-item border-radius-md" href="javascript:;">로그아웃</a></li>
                     <li><a class="dropdown-item border-radius-md" href="javascript:;">내 정보</a></li>
                     <li><router-link class="dropdown-item border-radius-md" to="/manage">사용자 관리</router-link></li>
-                    <li><a class="dropdown-item border-radius-md" href="javascript:;">?</a></li>
                   </ul>
                 
               </li>
@@ -93,7 +103,7 @@ export default{
   data() {
     return {
       isLogin: "",
-      userName: "test",
+      userName: "유저이름",
       userProfileImgUrl: "",
 
       isMapView: true,
@@ -102,19 +112,22 @@ export default{
           {
           language: '시도',
           libs: [
-              { name: 'Vue.js', category: 'Front-end' },
-              { name: 'Adonis', category: 'Backend' }
+              { name: 'Vue.js', category: 'sido' },
+              { name: 'Adonis', category: 'sido' }
           ]
           },
           {
           language: '구군',
           libs: [
-              { name: 'Rails', category: 'Backend' },
-              { name: 'Sinatra', category: 'Backend' }
+              { name: 'Rails', category: 'gugun1' },
+              { name: 'Rails', category: 'gugun2' },
+              { name: 'Rails', category: 'gugun3' },
+              { name: 'Rails', category: 'gugun4' },
+              { name: 'Rails', category: 'gugun5' },
           ]
           },
       ],
-      value: []
+      value: [],
     }
   },
   methods: {
@@ -122,9 +135,24 @@ export default{
       this.$emit("show-login");
     },
   },
+  computed:{
+    filteredOptions(){
+      return this.options.filter(el=>{
+        let sidoCount = this.value.filter(el => el.category == "sido").length;
+        if(sidoCount == 0){
+          return el.language == "시도";
+        }
+
+        let gugunCount = this.value.filter(el => el.category.indexOf("gugun") != -1).length;
+
+        if(gugunCount < 2){
+          return el.language == "구군";
+        }
+      });
+    },
+  },
   mounted() {
     this.isLogin = this.$store.getters.isLogin;
-    
   },
 }
 </script>

@@ -30,7 +30,7 @@
 
       <div class="col-lg-3 mt-lg-n2 mt-2">
         <label>&nbsp;</label>
-        <button type="button" class="btn bg-gradient-info w-100 mb-0">찾기</button>
+        <button type="button" class="btn bg-gradient-info w-100 mb-0" @click="gotoMap">찾기</button>
       </div>
     </div>
   </div>
@@ -64,6 +64,9 @@ export default {
     },
     clearDong(){
       this.dongValue = [];
+    },
+    gotoMap(){
+      this.$router.push("/map");
     }
   }
 }
