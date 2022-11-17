@@ -10,6 +10,7 @@ require("@/assets/css/material-kit.css?v=3.0.4")
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+
 Vue.config.productionTip = false
 
 new Vue({
