@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="callSettersOnNulls" value="true"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
+	<mappers>
+		<mapper resource="mapper/login_query.xml"></mapper>
+		<mapper resource="mapper/user_query.xml"></mapper>
+		<mapper resource="mapper/sido_query.xml"></mapper>
+ 		<mapper resource="mapper/gugun_query.xml"></mapper> 
+		<mapper resource="mapper/dong_query.xml"></mapper>
+		<mapper resource="mapper/house_query.xml"></mapper>
+	</mappers>
+	
+	
+</configuration>
