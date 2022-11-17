@@ -80,8 +80,9 @@
                   </a>
                   <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownUserMenu">
                     <li><a class="dropdown-item border-radius-md" href="javascript:;">로그아웃</a></li>
-                    <li><a class="dropdown-item border-radius-md" href="javascript:;">내 정보</a></li>
+                    <li><a class="dropdown-item border-radius-md" href="javascript:;" @click="showInfo">내 정보</a></li>
                     <li><router-link class="dropdown-item border-radius-md" to="/manage">사용자 관리</router-link></li>
+                    <li><router-link class="dropdown-item border-radius-md" to="/wishlist">찜 목록</router-link></li>
                   </ul>
                 
               </li>
@@ -97,7 +98,6 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
-
 export default{
   components:{Multiselect},
   data() {
@@ -105,9 +105,7 @@ export default{
       isLogin: "",
       userName: "유저이름",
       userProfileImgUrl: "",
-
       isMapView: true,
-
       options: [
           {
           language: '시도',
@@ -134,6 +132,9 @@ export default{
     showLogin(){
       this.$emit("show-login");
     },
+    showInfo() {
+      this.$emit("show-info");
+    },
   },
   computed:{
     filteredOptions(){
@@ -142,9 +143,7 @@ export default{
         if(sidoCount == 0){
           return el.language == "시도";
         }
-
         let gugunCount = this.value.filter(el => el.category.indexOf("gugun") != -1).length;
-
         if(gugunCount < 2){
           return el.language == "구군";
         }
@@ -161,6 +160,4 @@ export default{
 <style scoped>
 #topThreeDiv {height:0px;}
 .navbar .container-fluid{min-height: 44.39px;}
-
-
 </style>

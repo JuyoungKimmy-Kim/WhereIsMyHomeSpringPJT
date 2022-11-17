@@ -8,6 +8,7 @@ import Map from "@/components/map/MapPage.vue";
 import Contact from "@/components/ContactUs.vue";
 import Board from "@/components/board/BoardMain.vue";
 import UserManage from "@/components/board/UserManage.vue";
+import WishList from "@/components/board/WishList.vue";
 
 export default new VueRouter({
     routes : [
@@ -35,6 +36,13 @@ export default new VueRouter({
             path:'/manage',
             components: {
                 default: UserManage,
+                Footer
+            }
+        },
+        {
+            path:'/wishlist',
+            components: {
+                default: WishList,
                 Footer
             }
         },

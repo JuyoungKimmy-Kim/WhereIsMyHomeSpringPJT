@@ -13,6 +13,8 @@ export default new Vuex.Store({
             userProfileImageUrl: "",
         },
         isMapView: false,
+
+        
     },
     mutations:{
         SET_LOGIN(state, payload) {
