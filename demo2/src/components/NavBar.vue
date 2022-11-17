@@ -58,7 +58,7 @@
               </li>
               <li class="nav-item">
                 <router-link
-                  to="/contact"
+                  to="/qna"
                   class="nav-link ps-2 d-flex cursor-pointer align-items-center"
                 >
                   <i class="material-icons opacity-6 me-2 text-md">question_answer</i>

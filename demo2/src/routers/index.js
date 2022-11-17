@@ -5,10 +5,10 @@ Vue.use(VueRouter);
 import Footer from "@/components/FooterPage.vue";
 import MainPage from "@/components/MainPage.vue";
 import Map from "@/components/map/MapPage.vue";
-import Contact from "@/components/ContactUs.vue";
+import QuestionAnswer from "@/components/QuestionAnswer.vue";
 import Board from "@/components/board/BoardMain.vue";
-import UserManage from "@/components/board/UserManage.vue";
-import WishList from "@/components/board/WishList.vue";
+import UserManage from "@/components/UserManage.vue";
+import WishList from "@/components/WishList.vue";
 
 export default new VueRouter({
     routes : [
@@ -47,9 +47,9 @@ export default new VueRouter({
             }
         },
         {
-            path:'/contact',
+            path:'/qna',
             components : {
-                default : Contact,
+                default : QuestionAnswer,
                 Footer 
             }
         },

@@ -65,11 +65,11 @@
 
 <script>
 import HeaderPage from '@/components/HeaderPage.vue'
-import PaginationUi from '@/components/board/PaginationUI.vue'
+import PaginationUi from '@/components/PaginationUI.vue'
 
 import { Modal } from "bootstrap";
-import BoardInsertModal from '@/components/modal/BoardInsertModal.vue'
-import boardDetailModal from '@/components/modal/BoardDetailModal.vue'
+import BoardInsertModal from '@/components/modal/board/BoardInsert.vue'
+import boardDetailModal from '@/components/modal/board/BoardDetail.vue'
 
 export default {
     components:{
