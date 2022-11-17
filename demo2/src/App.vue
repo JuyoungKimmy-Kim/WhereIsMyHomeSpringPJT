@@ -19,7 +19,7 @@ import NavBar from "@/components/NavBar.vue"
 import { Modal } from "bootstrap";
 import LoginModal from "@/components/modal/LoginModal.vue"
 import JoinModal from "@/components/modal/JoinModal.vue"
-import UpdateModal from "@/components/modal/UpdateModal.vue"
+import UpdateModal from "@/components/modal/user/UpdateUserInfo.vue"
 
 export default {
   data() {

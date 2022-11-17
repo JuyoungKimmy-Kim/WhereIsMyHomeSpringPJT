@@ -7,6 +7,7 @@
                 <div class="container">
                     <div class="row justify-space-between py-1">
                         <div class="card shadow-lg">
+                        
                         <div class="card-body">
                             <h4> {{place.place_name}} </h4>
                             <p> {{place.address_name}} </p>
