@@ -52,16 +52,16 @@ export default {
                 this.progress = Math.round((100 * event.loaded) / event.total);
             })
             .then(response => {
-            this.message = response.data.message;
-            return UploadService.getFiles();
+                this.message = response.data.message;
+                return UploadService.getFiles();
             })
             .then(files => {
-            this.fileInfos = files.data;
+                this.fileInfos = files.data;
             })
             .catch(() => {
-            this.progress = 0;
-            this.message = "파일 업로드에 실패하였습니다!";
-            this.currentFile = undefined;
+                this.progress = 0;
+                this.message = "파일 업로드에 실패하였습니다!";
+                this.currentFile = undefined;
             });
 
         this.selectedFiles = undefined;
