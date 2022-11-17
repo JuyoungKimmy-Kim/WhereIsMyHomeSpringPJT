@@ -2,11 +2,12 @@ package com.mycom.myhome.user;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class UserEntity {
-	private int userSeq;
+@AllArgsConstructor
+public class User {
 	private String userName;
 	private String userPassword;
 	private String userEmail;

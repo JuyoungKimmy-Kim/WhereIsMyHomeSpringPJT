@@ -5,8 +5,8 @@
     <router-view name="Footer"></router-view>
 
     
-    <login-modal @show-join="showJoinModal"></login-modal>
-    <join-modal></join-modal>
+    <login-modal @show-signUp="showSignUp"></login-modal>
+    <signup-modal @close-this-modal="closeSignUp"></signup-modal>
     <update-modal></update-modal>
 
 
@@ -14,29 +14,43 @@
 </template>
 
 <script>
+import Vue from "vue";
+import VueAlertify from "vue-alertify";
+
+Vue.use(VueAlertify);
+
 import NavBar from "@/components/NavBar.vue"
 
 import { Modal } from "bootstrap";
 import LoginModal from "@/components/modal/LoginModal.vue"
-import JoinModal from "@/components/modal/JoinModal.vue"
+import SignupModal from "@/components/modal/SignupModal.vue"
 import UpdateModal from "@/components/modal/user/UpdateUserInfo.vue"
+
 
 export default {
   data() {
     return {
       loginModal: null,
-      joinModal: null,
+      signUpModal: null,
       updateModal: null,
     }
   },
-  components: { LoginModal, JoinModal, NavBar, UpdateModal },
+  components: { LoginModal, SignupModal, NavBar, UpdateModal },
   methods: {
     showLogin(){
       this.loginModal.show();
     },
-    showJoinModal(){
+    showSignUp(){
       this.loginModal.hide();
-      this.joinModal.show();
+      this.signUpModal.show();
+    },
+    closeSignUp(payload){
+      if("SUCCESS" == payload.result){
+        this.$alertify.success(payload.message);
+        this.signUpModal.hide();
+      }else{
+        this.$alertify.error(payload.message);
+      }
     },
     showInfo() {
       this.updateModal.show();
@@ -44,7 +58,7 @@ export default {
   },
   mounted() {
       this.loginModal = new Modal(document.getElementById("loginModal"));
-      this.joinModal = new Modal(document.getElementById("joinModal"));
+      this.signUpModal = new Modal(document.getElementById("signUpModal"));
       this.updateModal=new Modal(document.getElementById("updateModal"));
   },
 }

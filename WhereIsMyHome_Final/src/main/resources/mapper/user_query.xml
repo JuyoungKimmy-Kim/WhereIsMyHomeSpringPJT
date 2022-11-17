@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mycom.more.dao.UserDao"> <!-- @Mapper annotation 있는 dao -->
+<mapper namespace="com.mycom.myhome.user.UserDao"> <!-- @Mapper annotation 있는 dao -->
 	
+	<insert id="signup" parameterType="com.mycom.myhome.user.User">
+		insert into users(user_name, user_password, user_email, user_register_date)
+		values(#{userName}, #{userPassword}, #{userEmail}, now())
+	</insert>
 	
+	<select id="findByEmail" parameterType="string" resultType="com.mycom.myhome.user.User">
+		select user_name, user_password, user_email, user_profile_image_url, user_register_date, user_clsf
+		from users
+		where user_email = #{email}
+	</select>
 </mapper>
 
 

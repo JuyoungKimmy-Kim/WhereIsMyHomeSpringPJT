@@ -1,5 +1,5 @@
 package com.mycom.myhome.user;
 
-public class UserService {
-
+public interface UserService {
+	public UserResultDto signup(UserParamDto paramDto);
 }
