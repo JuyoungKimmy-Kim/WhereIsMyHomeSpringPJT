@@ -76,17 +76,16 @@
                   <a class="nav-link ps-2 d-flex cursor-pointer align-items-center dropdown-toggle" id="dropdownUserMenu" data-bs-toggle="dropdown" aria-expanded="false" 
                     v-if="isLogin" >
                     <i class="material-icons opacity-6 me-2 text-md">image</i>
-                    {{userName}}
+                    {{userInfo.userName}}
                   </a>
                   <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownUserMenu">
-                    <li><a class="dropdown-item border-radius-md" href="javascript:;">로그아웃</a></li>
-                    <li><a class="dropdown-item border-radius-md" href="javascript:;" @click="showInfo">내 정보</a></li>
-                    <li><router-link class="dropdown-item border-radius-md" to="/manage">사용자 관리</router-link></li>
-                    <li><router-link class="dropdown-item border-radius-md" to="/wishlist">찜 목록</router-link></li>
+                    <li><a class="dropdown-item border-radius-md" @click="tokenCheck('logout')">로그아웃</a></li>
+                    <li><a class="dropdown-item border-radius-md" @click="tokenCheck('myinfo')">내 정보</a></li>
+                    <li v-if="this.userInfo.userClsf == '001'">
+                      <a class="dropdown-item border-radius-md" @click="tokenCheck('manage')">사용자 관리</a></li>
+                    <li><a class="dropdown-item border-radius-md" @click="tokenCheck('wishlist')">찜 목록</a></li>
                   </ul>
-                
               </li>
-              
             </ul>
           </div>
         </div>
@@ -98,7 +97,7 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
-import {mapState} from "vuex";
+import { mapState, mapActions } from "vuex";
 
 const userStore = "userStore";
 
@@ -106,8 +105,6 @@ export default{
   components:{Multiselect},
   data() {
     return {
-      isMapView: true,
-
       options: [
           {
           language: '시도',
@@ -131,15 +128,40 @@ export default{
     }
   },
   methods: {
+    ...mapActions(userStore, ["logoutConfirm", "getUserInfo"]),
     showLogin(){
       this.$emit("show-login");
     },
     showInfo() {
       this.$emit("show-info");
     },
+    async doLogout(){
+      await this.logoutConfirm();
+      sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+      sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+      if(this.result.status == "SUCCESS"){
+          this.$alertify.success(this.result.message);
+      }else{
+          this.$alertify.error(this.result.message);
+      }
+    },
+    async tokenCheck(message){
+      let token = sessionStorage.getItem("access-token");
+      await this.getUserInfo(token);
+      if(this.result.status == "SUCCESS"){
+        if(message == "logout") this.showLogin();
+        else if(message == "myinfo") this.showInfo();
+        else if(message == "manage" && this.$route.path != "/manage") this.$router.push("/manage");
+        else if(message == "wishlist" && this.$route.path != "/wishlist") this.$router.push("/wishlist");
+      }else{
+        this.$alertify.error(this.result.message);
+        if(this.$route.path != "/")
+          this.$router.push("/");
+      }
+    }
   },
   computed:{
-    ...mapState(userStore, ["isLogin", "userInfo"]),
+    ...mapState(userStore, ["isLogin", "userInfo", "result"]),
     filteredOptions(){
       return this.options.filter(el=>{
         let sidoCount = this.value.filter(el => el.category == "sido").length;
@@ -152,9 +174,6 @@ export default{
         }
       });
     },
-  },
-  mounted() {
-    this.isLogin = this.$store.getters.isLogin;
   },
 }
 </script>

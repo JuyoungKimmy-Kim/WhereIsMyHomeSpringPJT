@@ -8,7 +8,7 @@ public interface UserDao {
 	
 	int signup(User user);
 	User findByEmail(String email);
-	void updateRefreshToken(@Param("userEmail") String userEmail, @Param("token") String token);
+	int updateRefreshToken(@Param("userEmail") String userEmail, @Param("token") String token);
 	String getRefreshToken(String userEmail);
 }
  

@@ -46,9 +46,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import Vue from 'vue';
-import VueAlertify from "vue-alertify";
-Vue.use(VueAlertify);
+
 
 const userStore = "userStore";
 
@@ -62,17 +60,28 @@ export default {
         }
     },
     computed:{
-        ...mapState(userStore, ["isLogin", "resultMessage"]),
+        ...mapState(userStore, ["isLogin", "result"]),
     },
     methods: {
-        ...mapActions(userStore, ["loginConfirm"]),
+        ...mapActions(userStore, ["loginConfirm", "getUserInfo"]),
         showRegister(){
             this.$emit("show-signUp");
         },
         async confirm(){
+            console.log(this.user);
             await this.loginConfirm(this.user);
+            if(this.result.status == "FAIL"){
+                this.$alertify.error(this.result.message);
+            }
+            
             if(this.isLogin){
-                this.$alertify.success(this.resultMessage);
+                let token = sessionStorage.getItem("access-token");
+                await this.getUserInfo(token);
+                if(this.result.status == "SUCCESS"){
+                    this.$alertify.success(this.result.message);
+                }else{
+                    this.$alertify.error(this.result.message);
+                }
                 this.$emit("close-this-modal");
             }
         }

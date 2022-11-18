@@ -13,20 +13,20 @@
             <div class="card-body">
                 <form role="form text-start">
                 <div class="input-group input-group-static mb-4">
-                    <label :style="{color:valide.name}">이름</label>
+                    <label :style="{color:valid.name}">이름</label>
                     <input type="text" class="form-control in" v-model="user.userName" @blur="validateUserName" placeholder="이름을 입력하세요.">
                 </div>
                 <div class="input-group input-group-static mb-4">
-                    <label :style="{color:valide.email}">이메일</label>
+                    <label :style="{color:valid.email}">이메일</label>
                     <input type="email" class="form-control" v-model="user.userEmail" @blur="validateUserEmail" placeholder="john@email.com">
                 </div>
                 <div class="input-group input-group-static mb-4">
-                    <label :style="{color:valide.password}">비밀번호</label>
+                    <label :style="{color:valid.password}">비밀번호</label>
                     <input type="password" class="form-control" v-model="user.userPassword" @blur="validatePassword" placeholder="•••••••••••••">
                 </div>
                 <div class="input-group input-group-static mb-4">
-                    <label :style="{color:valide.password2}">비밀번호 확인</label>
-                    <input type="password" class="form-control" @blur="validatePassword2" placeholder="•••••••••••••">
+                    <label :style="{color:valid.password2}">비밀번호 확인</label>
+                    <input type="password" class="form-control" v-model="user.userPassword2" @blur="validatePassword2" placeholder="•••••••••••••">
                 </div>
                 <div class="input-group input-group-static mb-4">
                     <label class="typo__label">관심지역</label>
@@ -48,8 +48,7 @@
 
 <script>
 import Multiselect from 'vue-multiselect';
-import {mapActions} from "vuex";
-import {signUp} from "@/common/user";
+import {mapState, mapActions} from "vuex";
 
 const userStore = "userStore";
 
@@ -64,8 +63,9 @@ export default {
         userName:'',
         userEmail:'',
         userPassword:'',
+        userPassword2:'',
       },
-      valide:{
+      valid:{
         name: "",
         email: "",
         password: "",
@@ -83,26 +83,24 @@ export default {
       value: []
     }
   },
+  computed:{
+    ...mapState(userStore, ["result"]),
+  },
   methods : {
     ...mapActions(userStore, ["signUp"]),
     async callSignUp(){
-      await signUp(this.user,
-        ({data})=>{ // SUCCESS
-          this.$emit("close-this-modal", data);
-        },
-        (error)=>{ // FAIL
-          console.log(error);
-        });
+      await this.signUp(this.user);
+      this.$emit("close-this-modal");
     },
     activateButton(){
-      return this.valide.name == "green" && this.valide.email == "green" && this.valide.password == "green" && this.valide.password2 == "green";
+      return this.valid.name == "green" && this.valid.email == "green" && this.valid.password == "green" && this.valid.password2 == "green";
     },
     // 길이가 3 이상이면 이름 valid
     validateUserName() {
         if (this.user.userName.length >= 3) {
-          this.valide.name = "green";
+          this.valid.name = "green";
         }else{
-          this.valide.name = "red";
+          this.valid.name = "red";
         }
     },
     // 하나 이상의 숫자, 알파벳, 특수문자 포함
@@ -117,11 +115,11 @@ export default {
           patternNumAtListOne.test(this.user.userPassword) &&
           this.user.userPassword.length >= 8
         ) {
-          this.valide.password = "green";
-        } else this.valide.password = "red";
+          this.valid.password = "green";
+        } else this.valid.password = "red";
     },
     validatePassword2(e) {
-        this.valide.password2 = 
+        this.valid.password2 = 
           e.target.value != "" && e.target.value == this.user.userPassword 
           ? "green" 
           : "red";
@@ -134,8 +132,8 @@ export default {
         // ? 없거나 1회
         let regexp =
           /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-        if (regexp.test(this.user.userEmail)) this.valide.email = "green";
-        else this.valide.email = "red";
+        if (regexp.test(this.user.userEmail)) this.valid.email = "green";
+        else this.valid.email = "red";
       },
   }
 }

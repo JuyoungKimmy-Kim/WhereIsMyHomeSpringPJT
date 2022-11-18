@@ -19,8 +19,8 @@ export default new Vuex.Store({
         isMapView: false,
     },
     mutations:{
-        IS_MAP_VIEW(state, status){
-            state.isMapView = status;
+        IS_MAP_VIEW(state, payload){
+            state.isMapView = payload;
         }
     },
     actions:{
