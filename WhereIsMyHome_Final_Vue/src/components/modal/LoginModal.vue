@@ -68,8 +68,8 @@ export default {
             this.$emit("show-signUp");
         },
         async confirm(){
-            console.log(this.user);
             await this.loginConfirm(this.user);
+            console.log(this.result);
             if(this.result.status == "FAIL"){
                 this.$alertify.error(this.result.message);
             }

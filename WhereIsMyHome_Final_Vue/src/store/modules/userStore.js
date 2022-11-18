@@ -1,5 +1,5 @@
 import jwtDecode from "jwt-decode";
-import { signup, login, findByEmail, logout, tokenRegeneration } from "@/common/user";
+import { signup, login, findByEmail, logout, tokenRegeneration, update } from "@/common/user";
 
 
 const userStore = {
@@ -24,7 +24,7 @@ const userStore = {
             state.isLogin = payload;
         },
         SET_RESULT_MESSAGE(state, payload){
-            state.result.status = payload.result;
+            state.result.status = payload.status;
             state.result.message = payload.message;
         },
         SET_VALID_TOKEN(state, payload){
@@ -48,7 +48,7 @@ const userStore = {
         async signUp({commit}, user){
             await signup(user,
                 ({data})=>{ // SUCCESS
-                    commit("SET_RESULT_MESSAGE", data);
+                    commit("SET_RESULT_MESSAGE", {status: data.result, message: data.message});
                 },
                 (error)=>{ // FAIL
                     console.log(error);
@@ -61,13 +61,13 @@ const userStore = {
                     if(data.result == "SUCCESS"){
                         commit("SET_IS_LOGIN", true);
                         commit("SET_VALID_TOKEN", true);
-                        commit("SET_RESULT_MESSAGE", data);
+                        commit("SET_RESULT_MESSAGE", {status: data.result, message: data.message});
                         sessionStorage.setItem("access-token", data.accessToken);
                         sessionStorage.setItem("refresh-token", data.refreshToken);
                     }else{
                         commit("SET_IS_LOGIN", false);
                         commit("SET_VALID_TOKEN", false);
-                        commit("SET_RESULT_MESSAGE",  data);
+                        commit("SET_RESULT_MESSAGE",  {status: data.result, message: data.message});
                     }
                 }),(error) => {
                     console.log(error);
@@ -79,7 +79,7 @@ const userStore = {
                         if(data.result == "SUCCESS"){
                             commit("SET_IS_LOGIN", false);
                             commit("SET_VALID_TOKEN", false);
-                            commit("SET_RESULT_MESSAGE", data);
+                            commit("SET_RESULT_MESSAGE", {status: data.result, message: data.message});
                         }else{
                             console.log("유저 정보 없음!!!");
                         }
@@ -136,6 +136,16 @@ const userStore = {
                     }
                 }
             )
+        },
+        async passwordUpdate({commit}, user){
+            await update(user, 
+                ({data})=>{
+                    commit("SET_USER_INFO", data.userInfo);
+                    commit("SET_RESULT_MESSAGE", {status: data.result, message: data.message});
+                },
+                (error)=>{
+                    console.log(error);
+                })
         }
     },
 }

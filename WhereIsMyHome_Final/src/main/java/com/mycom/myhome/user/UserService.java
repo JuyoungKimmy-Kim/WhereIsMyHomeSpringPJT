@@ -7,4 +7,5 @@ public interface UserService {
 	public UserResultDto info(String email, String accessToken);
 	public UserResultDto deleteRefreshToken(String userEmail);
 	public UserResultDto getRefreshToken(UserParamDto paramDto, String token);
+	public UserResultDto update(UserParamDto paramDto);
 }

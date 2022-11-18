@@ -79,7 +79,7 @@
                     {{userInfo.userName}}
                   </a>
                   <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownUserMenu">
-                    <li><a class="dropdown-item border-radius-md" @click="tokenCheck('logout')">로그아웃</a></li>
+                    <li><a class="dropdown-item border-radius-md" @click="doLogout">로그아웃</a></li>
                     <li><a class="dropdown-item border-radius-md" @click="tokenCheck('myinfo')">내 정보</a></li>
                     <li v-if="this.userInfo.userClsf == '001'">
                       <a class="dropdown-item border-radius-md" @click="tokenCheck('manage')">사용자 관리</a></li>
@@ -149,8 +149,7 @@ export default{
       let token = sessionStorage.getItem("access-token");
       await this.getUserInfo(token);
       if(this.result.status == "SUCCESS"){
-        if(message == "logout") this.showLogin();
-        else if(message == "myinfo") this.showInfo();
+        if(message == "myinfo") this.showInfo();
         else if(message == "manage" && this.$route.path != "/manage") this.$router.push("/manage");
         else if(message == "wishlist" && this.$route.path != "/wishlist") this.$router.push("/wishlist");
       }else{

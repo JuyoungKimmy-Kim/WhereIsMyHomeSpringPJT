@@ -7,7 +7,7 @@
     
     <login-modal @show-signUp="showSignUp" @close-this-modal="closeLogin" ref="login_modal"></login-modal>
     <signup-modal @close-this-modal="closeSignUp" ref="signup_modal"></signup-modal>
-    <update-modal ref="update_modal"></update-modal>
+    <update-modal @close-this-modal="closeInfo" ref="update_modal"></update-modal>
 
 
   </div>
@@ -43,9 +43,6 @@ export default {
 
       this.loginModal.show();
     },
-    closeLogin(){
-      this.loginModal.hide();
-    },
     showSignUp(){
       this.loginModal.hide();
 
@@ -66,14 +63,20 @@ export default {
 
       this.signUpModal.show();
     },
-    closeSignUp( ){
+    closeLogin(){
+      this.loginModal.hide();
+    },
+    closeSignUp(){
       this.signUpModal.hide();
+    },
+    closeInfo(){
+      this.updateModal.hide();
     },
     async showInfo() {
       if(this.updateModal == null){
         this.updateModal= new Modal(document.getElementById("updateModal"));
       }
-
+      console.log("showInfo");
       this.$refs.update_modal.userPassword = "";
       this.$refs.update_modal.userPassword2 = "";
 
@@ -91,4 +94,12 @@ export default {
 </script>
 
 <style>
+html{
+     /* 드래그 방지 */
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
 </style>

@@ -22,15 +22,15 @@
                     <input type="email" class="form-control" v-model="userInfo.userEmail" disabled/>
                 </div>
                 <div class="input-group input-group-static mb-4">
-                    <label>비밀번호</label>
-                    <input type="password" v-model="userPassword" class="form-control" placeholder="•••••••••••••">
+                    <label :style="{color:passwordColor}">비밀번호</label>
+                    <input type="password" v-model="userPassword" @blur="validatePassword" class="form-control" placeholder="•••••••••••••">
                 </div>
                 <div class="input-group input-group-static mb-4">
-                    <label>비밀번호 확인</label>
-                    <input type="password" v-model="userPassword2" class="form-control" placeholder="•••••••••••••">
+                    <label :style="{color:passwordColor2}">비밀번호 확인</label>
+                    <input type="password" v-model="userPassword2" @blur="validatePassword2" class="form-control" placeholder="•••••••••••••">
                 </div>
                 <div class="text-center">
-                    <button type="button"  class="btn bg-gradient-info mt-4 mb-0">수정완료</button>
+                    <button type="button"  class="btn bg-gradient-info mt-4 mb-0" @click="updateInfo">수정완료</button>
                 </div>
                 </form>
             </div>
@@ -51,10 +51,44 @@ export default {
     return {
       userPassword:"",
       userPassword2:"",
+      passwordColor: "",
+      passwordColor2: "",
     }
   },
   methods:{
-    ...mapActions(userStore, ["getUserInfo"]),
+    ...mapActions(userStore, ["getUserInfo", "passwordUpdate"]),
+    async updateInfo(){
+        let userInfoChanged = this.userInfo;
+        userInfoChanged.userPassword = this.userPassword;
+        await this.passwordUpdate(userInfoChanged);
+
+        if(this.result.status == "SUCCESS"){
+          this.$alertify.success(this.result.message);
+        }else{
+          this.$alertify.error(this.result.message);
+        }
+        this.$emit("close-this-modal");
+    },
+    validatePassword() {
+        var patternEngAtListOne = new RegExp(/[a-zA-Z]+/); // + for at least one
+        var patternSpeAtListOne = new RegExp(/[~!@#$%^&*()_+|<>?:{}]+/); // + for at least one
+        var patternNumAtListOne = new RegExp(/[0-9]+/); // + for at least one
+
+        if (
+          patternEngAtListOne.test(this.userPassword) &&
+          patternSpeAtListOne.test(this.userPassword) &&
+          patternNumAtListOne.test(this.userPassword) &&
+          this.userPassword.length >= 8
+        ) {
+          this.passwordColor = "green";
+        } else this.passwordColor = "red";
+    },
+    validatePassword2(e) {
+        this.passwordColor2 = 
+          e.target.value != "" && e.target.value == this.userPassword 
+          ? "green" 
+          : "red";
+    },
   },
   computed:{
     ...mapState(userStore, ["userInfo","result"]),

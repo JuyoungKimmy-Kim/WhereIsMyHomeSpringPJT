@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.mycom.myhome.Status;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +28,37 @@ import lombok.RequiredArgsConstructor;
 				RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.HEAD, RequestMethod.OPTIONS })
 public class UserController {
 	
-	private final UserService service;
+	private final UserService service;	
+	
+	@GetMapping("/users")
+	public ResponseEntity<List<Object>> users(){
+		
+		return null;
+	}
+	
+	@PutMapping("/users")
+	public ResponseEntity<UserResultDto> update(@RequestBody UserParamDto paramDto){
+		UserResultDto resultDto = service.update(paramDto);
+		if(resultDto != null) {
+			return new ResponseEntity<>(resultDto, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@GetMapping("/users/{email}")
+	public ResponseEntity<UserResultDto> info(@PathVariable String email, HttpServletRequest request){
+		UserResultDto resultDto = service.info(email, request.getHeader("access-token"));
+		
+		HttpStatus status = null;
+		switch(resultDto.getResult()) {
+			case SUCCESS: status = HttpStatus.OK; break;
+			case FAIL: status = HttpStatus.INTERNAL_SERVER_ERROR; break;
+			case UNAUTHORIZED: status = HttpStatus.UNAUTHORIZED; break;
+		}
+		
+		return new ResponseEntity<>(resultDto, status);
+	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<UserResultDto> login(@RequestBody UserParamDto paramDto) {
@@ -43,19 +72,7 @@ public class UserController {
 		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping("/info/{email}")
-	public ResponseEntity<UserResultDto> info(@PathVariable String email, HttpServletRequest request){
-		UserResultDto resultDto = service.info(email, request.getHeader("access-token"));
-		
-		HttpStatus status = null;
-		switch(resultDto.getResult()) {
-			case SUCCESS: status = HttpStatus.OK; break;
-			case FAIL: status = HttpStatus.INTERNAL_SERVER_ERROR; break;
-			case UNAUTHORIZED: status = HttpStatus.UNAUTHORIZED; break;
-		}
-		
-		return new ResponseEntity<>(resultDto, status);
-	}
+	
 	
 	@GetMapping("/logout/{email}")
 	public ResponseEntity<UserResultDto> logout(@PathVariable String email) {
@@ -87,12 +104,6 @@ public class UserController {
 		}
 		
 		return new ResponseEntity<>(resultDto, status);
-	}
-	
-	@GetMapping("/users")
-	public ResponseEntity<List<Object>> users(){
-		
-		return null;
 	}
 	
 }
