@@ -14,18 +14,20 @@
             <form role="form text-start">
             <div class="input-group input-group-static mb-4">
                 <label>이메일</label>
-                <input type="email" class="form-control" placeholder="john@email.com">
+                <input type="email" class="form-control" v-model="user.userEmail" @keyup.enter="confirm" placeholder="john@email.com">
             </div>
             <div class="input-group input-group-static mb-4">
                 <label>비밀번호</label>
-                <input type="password" class="form-control" placeholder="•••••••••••••">
+                <input type="password" class="form-control" v-model="user.userPassword" @keyup.enter="confirm" placeholder="•••••••••••••">
             </div>
+
             <div class="form-check form-switch d-flex align-items-center">
                 <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
                 <label class="form-check-label mb-0 ms-3" for="rememberMe">내 정보 기억하기</label>
             </div>
+
             <div class="text-center">
-                <button type="button" class="btn bg-gradient-info mt-4 mb-0">로그인</button>
+                <button type="button" class="btn bg-gradient-info mt-4 mb-0" @click="confirm">로그인</button>
             </div>
             </form>
         </div>
@@ -43,10 +45,36 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+import Vue from 'vue';
+import VueAlertify from "vue-alertify";
+Vue.use(VueAlertify);
+
+const userStore = "userStore";
+
 export default {
+    data() {
+        return {
+            user:{
+                userEmail: "",
+                userPassword: ""
+            }
+        }
+    },
+    computed:{
+        ...mapState(userStore, ["isLogin", "resultMessage"]),
+    },
     methods: {
+        ...mapActions(userStore, ["loginConfirm"]),
         showRegister(){
             this.$emit("show-signUp");
+        },
+        async confirm(){
+            await this.loginConfirm(this.user);
+            if(this.isLogin){
+                this.$alertify.success(this.resultMessage);
+                this.$emit("close-this-modal");
+            }
         }
     },
 }

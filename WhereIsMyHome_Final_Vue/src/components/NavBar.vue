@@ -66,7 +66,7 @@
                 </router-link>
               </li>
               <li class="nav-item">
-                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" v-if="!this.$store.getters.isLogin"  @click="showLogin">
+                <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" v-if="!isLogin"  @click="showLogin">
                   <i class="material-icons opacity-6 me-2 text-md">people</i>
                   로그인
                 </a>
@@ -74,7 +74,7 @@
               </li>
               <li class="nav-item dropdown">
                   <a class="nav-link ps-2 d-flex cursor-pointer align-items-center dropdown-toggle" id="dropdownUserMenu" data-bs-toggle="dropdown" aria-expanded="false" 
-                    v-if="this.$store.getters.isLogin" >
+                    v-if="isLogin" >
                     <i class="material-icons opacity-6 me-2 text-md">image</i>
                     {{userName}}
                   </a>
@@ -98,14 +98,16 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
+import {mapState} from "vuex";
+
+const userStore = "userStore";
+
 export default{
   components:{Multiselect},
   data() {
     return {
-      isLogin: "",
-      userName: "유저이름",
-      userProfileImgUrl: "",
       isMapView: true,
+
       options: [
           {
           language: '시도',
@@ -137,6 +139,7 @@ export default{
     },
   },
   computed:{
+    ...mapState(userStore, ["isLogin", "userInfo"]),
     filteredOptions(){
       return this.options.filter(el=>{
         let sidoCount = this.value.filter(el => el.category == "sido").length;

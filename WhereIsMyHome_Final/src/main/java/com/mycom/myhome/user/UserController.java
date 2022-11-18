@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mycom.myhome.Status;
+import com.mycom.myhome.user.jwt.JwtService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,6 +28,20 @@ public class UserController {
 	
 	private final UserService service;
 	
+	@PostMapping("/login")
+	public ResponseEntity<UserResultDto> login(@RequestBody UserParamDto paramDto) {
+		UserResultDto resultDto = service.login(paramDto);
+		
+		if(resultDto != null) {
+			return new ResponseEntity<UserResultDto>(resultDto, HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<UserResultDto>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@GetMapping("/logout")
+	public void logout() {
+		
+	}
 	
 	@PostMapping("/signup")
 	public ResponseEntity<UserResultDto> signup(@RequestBody UserParamDto paramDto) {

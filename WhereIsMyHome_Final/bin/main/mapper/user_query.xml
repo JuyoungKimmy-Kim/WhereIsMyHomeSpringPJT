@@ -12,6 +12,18 @@
 		from users
 		where user_email = #{email}
 	</select>
+	
+	<update id="updateRefreshToken" parameterType="string">
+		update users
+		set token = #{token}
+		where user_email = #{userEmail}
+	</update>
+	
+	<select id="getRefreshToken" parameterType="string" resultType="string">
+		select token
+		from users
+		where user_email = #{userEmail}
+	</select>
 </mapper>
 
 

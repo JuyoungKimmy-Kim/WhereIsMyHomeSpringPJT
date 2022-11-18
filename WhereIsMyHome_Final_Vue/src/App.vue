@@ -5,7 +5,7 @@
     <router-view name="Footer"></router-view>
 
     
-    <login-modal @show-signUp="showSignUp"></login-modal>
+    <login-modal @show-signUp="showSignUp" @close-this-modal="closeLogin"></login-modal>
     <signup-modal @close-this-modal="closeSignUp"></signup-modal>
     <update-modal></update-modal>
 
@@ -39,6 +39,9 @@ export default {
   methods: {
     showLogin(){
       this.loginModal.show();
+    },
+    closeLogin(){
+      this.loginModal.hide();
     },
     showSignUp(){
       this.loginModal.hide();
