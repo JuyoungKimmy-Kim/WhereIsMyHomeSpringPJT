@@ -5,7 +5,7 @@ import { signup, login, findByEmail, logout, tokenRegeneration, update } from "@
 const userStore = {
     namespaced: true,
     state:{
-        result:{
+        userResult:{
             status: "",
             message: "",
         },
@@ -24,8 +24,14 @@ const userStore = {
             state.isLogin = payload;
         },
         SET_RESULT_MESSAGE(state, payload){
-            state.result.status = payload.status;
-            state.result.message = payload.message;
+            if(payload == null){
+                state.userResult = {};
+            }else{
+                state.userResult = {
+                    status: payload.status,
+                    message: payload.message
+                }
+            }
         },
         SET_VALID_TOKEN(state, payload){
             state.validToken = payload;
@@ -94,6 +100,7 @@ const userStore = {
             await findByEmail(decodedToken.userEmail, 
                 ({data})=>{
                     if(data.result == "SUCCESS"){
+                        commit("SET_RESULT_MESSAGE", {status: "SUCCESS", message: "토큰 검증 완료"});
                         commit("SET_USER_INFO", data.userInfo);
                     }else{
                         console.log("유저 정보 없음!!!!");
@@ -112,7 +119,8 @@ const userStore = {
                 ({data})=>{
                     if(data.result == "SUCCESS"){
                         sessionStorage.setItem("access-token", data.accessToken);
-                        commit("SET_IS_VALID_TOKEN", true);
+                        commit("SET_RESULT_MESSAGE", {status: "Fail", message: "다시 시도 해주세요."});
+                        commit("SET_VALID_TOKEN", true);
                     }
                 },
                 async (error)=>{

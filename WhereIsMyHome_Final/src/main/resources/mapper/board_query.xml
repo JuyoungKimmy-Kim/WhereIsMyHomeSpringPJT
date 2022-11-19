@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycom.myhome.board.BoardDao"> <!-- @Mapper annotation 있는 dao -->
+	
+	<select id="list" parameterType="map" resultType="com.mycom.myhome.board.Board">
+		SELECT b.board_id, b.title, (
+			SELECT user_name
+			FROM users u
+			WHERE u.user_seq = b.writer) as writer, 
+			b.reg_dt, b.board_clsf, b.read_count
+		FROM board b
+		WHERE board_clsf = #{boardClsf}
+		ORDER BY b.board_id
+		DESC
+        LIMIT #{limit} OFFSET #{offset}
+	</select>
+	<select id="listCount" parameterType="string" resultType="int">
+		SELECT count(*)
+		FROM board
+		WHERE board_clsf = #{boardClsf}
+	</select>
+	
+	
+	<select id="detail" parameterType="string" resultType="com.mycom.myhome.board.Board">
+		SELECT board_id, writer, title, content, reg_dt, read_count
+		FROM board 
+		WHERE board_id = #{boardId}
+	</select>
+	<select id="getFileList" parameterType="string" resultType="com.mycom.myhome.board.BoardFile">
+		SELECT file_id, board_id, file_name, file_size, file_content_type, file_url, reg_dt
+		FROM board_file
+		WHERE board_id = #{boardId}
+	</select>
+	<select id="ReadCount" parameterType="map" resultType="int">
+		select count(*) from board_user_read where board_id = #{boardId} and user_seq = #{userSeq}
+	</select>
+	<insert id="insertReadCount" parameterType="map">
+		INSERT INTO board_user_read(board_id, user_seq)
+		VALUES(#{boardId}, #{userSeq})
+	</insert>
+	<update id="addReadCount" parameterType="string">
+		UPDATE board
+		SET read_count = read_count + 1
+		WHERE board_id = #{boardId}
+	</update>
+	
+	
+	<insert id="insert" parameterType="com.mycom.myhome.board.Board">
+		INSERT INTO board(writer, title, content, reg_dt, read_count, board_clsf)
+		VALUES(#{writer}, #{title}, #{content}, now(), #{readCount}, #{boardClsf})
+	</insert>
+	<insert id="uploadFile" parameterType="com.mycom.myhome.board.BoardFile">
+		INSERT INTO board_file(board_id, file_name, file_size, file_content_type, file_url, reg_dt)
+		VALUES(#{boardId}, #{fileName}, #{fileSize}, #{fileContentType}, #{fileUrl}, now())
+	</insert>
+	
+	
+	<update id="update" parameterType="com.mycom.myhome.board.Board">
+		UPDATE board
+		SET title = #{title}, content = #{content}
+		WHERE board_id = #{boardId} 
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="string">
+		DELETE FROM board
+		WHERE board_id = #{boardId}
+	</delete>
+	<delete id="deleteFile" parameterType="string">
+		DELETE FROM board_file
+		WHERE board_id = #{boardId}
+	</delete>
+	<delete id="deleteReadCount" parameterType="string">
+		delete from board_user_read where board_id = #{boardId} 
+	</delete>
+	<select id="deleteFileUrl" parameterType="string" resultType="string">
+		SELECT file_url
+		FROM board_file
+		WHERE board_id= #{boardId}
+	</select>
+</mapper>
+
+
+
+

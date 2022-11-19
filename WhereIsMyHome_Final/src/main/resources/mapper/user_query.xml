@@ -4,7 +4,7 @@
 	
 	<!-- 회원가입 -->
 	<insert id="signup" parameterType="com.mycom.myhome.user.User">
-		INSERT INTO users(user_name, user_password, user_email, user_register_date)
+		INSERT INTO users(user_name, user_password, user_email, reg_dt)
 		VALUES(#{userName}, #{userPassword}, #{userEmail}, now())
 	</insert>
 	
@@ -17,13 +17,13 @@
 	
 	<!-- 이메일로 찾기 -->
 	<select id="findByEmail" parameterType="string" resultType="com.mycom.myhome.user.User">
-		SELECT user_name, user_password, user_email, user_profile_image_url, user_register_date, user_clsf
+		SELECT user_seq, user_name, user_password, user_email, user_profile_image_url, reg_dt, user_clsf
 		FROM users
 		WHERE user_email = #{email}
 	</select>
 	
 	<select id="findByMatch" parameterType="com.mycom.myhome.user.User" resultType="com.mycom.myhome.user.User">
-		SELECT user_name, user_password, user_email, user_profile_image_url, user_register_date, user_clsf
+		SELECT user_seq, user_name, user_password, user_email, user_profile_image_url, reg_dt, user_clsf
 		FROM users
 		WHERE user_email = #{userEmail} and user_password = #{userPassword}
 	</select>

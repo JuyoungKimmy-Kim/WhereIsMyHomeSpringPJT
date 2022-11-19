@@ -13,7 +13,8 @@
                 <hr class="vertical dark">
               </div>
               <div class="col-md-6 justify-content-end">
-                <notice-fragment></notice-fragment>
+                <h4 class="row justify-content-center">공지사항</h4>
+                <notice-fragment @show-this-notice="showDetail"></notice-fragment>
               </div>
             </div>
           </div>
@@ -23,6 +24,7 @@
       </div>
     </section>
   </div>
+  <board-detail-modal></board-detail-modal>
 </div>
 
 </template>
@@ -34,10 +36,39 @@ import NoticeFragment from "@/components/NoticeFragment.vue"
 import NewsSection from "@/components/NewsSection.vue"
 import BottomCard from "@/components/BottomCard.vue"
 
+import {mapState, mapActions} from "vuex";
+
+const boardStore = "boardStore";
+const userStore = "userStore";
+
+
+import { Modal } from "bootstrap";
+import boardDetailModal from '@/components/modal/board/BoardDetail.vue'
+
 export default {
   components : {
-    HeaderPage,SearchBox, NoticeFragment, NewsSection, BottomCard
-  }
+    HeaderPage,SearchBox, NoticeFragment, NewsSection, BottomCard, boardDetailModal
+  },
+  methods: {
+    ...mapActions(boardStore, ["postDetail"]),
+    async showDetail(boardId){
+      await this.postDetail({boardId: boardId, userEmail:this.userInfo.userEmail});
+      if(this.boardResult.status == "SUCCESS"){
+          this.$router.push("/boards");
+          this.boardDetailModal.show();
+      }else{
+          this.$alertify.error(this.boardResult.message);
+      }
+      this.$store.commit("boardStore/SET_RESULT_MESSAGE", null);
+    },
+  },
+  computed:{
+    ...mapState(boardStore, ["boardResult"]),
+    ...mapState(userStore, ["userInfo"])
+  },
+  mounted() {
+    this.boardDetailModal = new Modal(document.getElementById("boardDetailModal"));
+  },
 }
 </script>
 

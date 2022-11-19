@@ -21,33 +21,33 @@
                     </thead>
                     <tbody>
                         <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                            <div>
-                                <img src="@/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-xs">John Michael</h6>
-                                <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                            </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">Manager</p>
-                            <p class="text-xs text-secondary mb-0">Organization</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                        </td>
-                        <td class="align-middle">
-                            <div class="btn-group dropdown">
-                                <a class="text-secondary font-weight-bold text-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</a>
-                                <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                                </ul>
-                            </div>
-                        </td>
+                            <td>
+                                <div class="d-flex px-2 py-1">
+                                <div>
+                                    <img src="@/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-xs">John Michael</h6>
+                                    <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
+                                </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0">Manager</p>
+                                <p class="text-xs text-secondary mb-0">Organization</p>
+                            </td>
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                            </td>
+                            <td class="align-middle">
+                                <div class="btn-group dropdown">
+                                    <a class="text-secondary font-weight-bold text-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</a>
+                                    <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
+                                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                                    </ul>
+                                </div>
+                            </td>
                         </tr>
 
                         <tr>

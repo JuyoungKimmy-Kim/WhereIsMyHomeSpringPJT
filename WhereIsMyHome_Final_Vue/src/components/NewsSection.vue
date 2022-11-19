@@ -56,7 +56,6 @@ export default {
 </script>
 
 <style scoped>
-.card-body {height:50%}
 .card-title {
     width:300px;
     display:-webkit-box;
@@ -65,9 +64,7 @@ export default {
     overflow: hidden;
 }
 .card.card-background .card-body .content-center, .card.card-background .card-body .content-left{
-    min-height: 150px;
-    max-height: 150px;
-    max-width: 450px;
+    display: flex;
     padding-top: 60px;
     padding-bottom: 60px;
 }

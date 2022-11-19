@@ -1,38 +1,72 @@
 <template>
-    <table class="table">
+    <table class="table align-items-center mb-0">
         <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-3 ps-3">#</th>
+            <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-8 ps-2">제목</th>
+            <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-1 ps-2">조회 수</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+            <tr v-for="(post, index) in list" :key="index">
+                <th scope="row">
+                    <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-s">{{post.boardId}}</h6>
+                    </div>
+                    </div>
+                </th>
+                <td>
+                    <a class="text-s font-weight-bold mb-0 cursor-pointer" @click="gotoNotice(post.boardId)">{{post.title}}</a>
+                </td>
+                <td>
+                    <span class="text-secondary text-s font-weight-bold">{{post.readCount}}</span>
+                </td>
+            </tr>
         </tbody>
     </table>
 </template>
 
 <script>
-export default {
 
+import {list} from '@/common/board.js';
+
+
+
+export default {
+    data() {
+        return {
+            limit: 5,
+            offset: 0,
+            list:[],
+        }
+    },
+    methods:{
+        async callList(){
+            await list(this.limit, this.offset, ({data})=>{
+                if(data.result == "SUCCESS"){
+                    data.list.forEach(el => {
+                        console.log(el);
+                        // el.regDate = util.makeDateStr(el.regDt.date.year, el.regDt.date.month, el.regDt.date.day, "/");
+                        // el.regTime = util.makeDateStr(el.regDt.time.hour, el.regDt.time.minute, el.regDt.time.second, "/");
+                    });
+                    this.list = data.list;
+                }else{
+                    this.list = [];
+                    this.$alertify.error(data.message);
+                }
+            },
+            (error)=>{
+                console.log(error);
+            })
+        },
+        gotoNotice(boardId){
+            this.$emit("show-this-notice", boardId);
+        }
+    },
+    mounted(){
+        this.callList();
+    }
 }
 </script>
 
