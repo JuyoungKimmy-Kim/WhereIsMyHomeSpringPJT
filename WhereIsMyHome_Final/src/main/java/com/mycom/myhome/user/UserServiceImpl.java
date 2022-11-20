@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService{
 	
 	//로그인
 	public UserResultDto login(UserParamDto paramDto) {
+		logger.info(paramDto.toEntity().toString());
 		User findUser = dao.findByMatch(paramDto.toEntity());
 		if(findUser != null) {
 			logger.info("login 성공!! >> " + findUser.toString());

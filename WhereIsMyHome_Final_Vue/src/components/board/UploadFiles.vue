@@ -1,39 +1,44 @@
 <template>
 <div>
-    <div v-if="currentFile" class="progress">
+    <div class="progress">
         <div
-            class="progress-bar progress-bar-info progress-bar"
+            class="progress-bar bg-success"
             role="progressbar"
             :aria-valuenow="progress"
             aria-valuemin="0"
             aria-valuemax="100"
             :style="{ width: progress + '%' }"
         >
-            {{ progress }}%
         </div>
     </div>
 
     <label class="btn btn-default">
-        <input type="file" ref="file" @change="selectFile" />
+        <input type="file" ref="file" @change="selectFile"/>
     </label>
-    <button class="btn bg-gradient-secondary  btn-sm" v-show="selectedFiles" @click="upload">
-        업로드
-    </button>
-
-    <div class="alert alert-light alert-dismissible fade show" role="alert">
+    <div class="alert alert-info text-white font-weight-bold" role="alert">
         {{ message }}
+    </div>
+
+    <div>
+        <div class="px-3 py-1" v-for="(file, index) in fileInfos" :key="index">
+            {{file.name}}
+            <i class="material-icons" @click="deleteFile(file.name)">clear</i>
+        </div>
     </div>
 </div>
 </template>
 
 <script>
-import UploadService from "@/common/UploadFilesService";
+import http from "@/common/axios.js";
+import {mapState, mapActions} from "vuex";
+
+const userStore = "userStore";
+const boardStore = "boardStore";
 
 export default {
     data() {
         return {
             selectedFiles: undefined,
-            currentFile: undefined,
             progress: 0,
             message: "",
 
@@ -41,31 +46,67 @@ export default {
         };
     },
     methods: {
+        ...mapActions(userStore, ["getUserInfo"]),
+        async tokenCheck(){
+            let token = sessionStorage.getItem("access-token");
+            await this.getUserInfo(token);
+            if(this.userResult.status == "SUCCESS"){
+                this.upload();
+            }else{
+                this.$alertify.error(this.userResult.message);
+            }
+        },
         selectFile(){
             this.selectedFiles = this.$refs.file.files;
+
+            let target = this.fileInfos.findIndex(el => el.name == this.selectedFiles.item(0).name);
+            console.log(target);
+            if(target >= 0){
+                this.message = "중복된 파일을 업로드할 수 없습니다."
+            }else{
+                this.message = "파일을 추가하였습니다."
+                this.fileInfos.push(this.selectedFiles.item(0));
+            }
+        },
+        deleteFile(fileName){
+            for (let i = 0; i < this.fileInfos.length; i++) {
+                if(this.fileInfos[i].name == fileName){
+                    this.fileInfos.splice(i, 1);
+                    this.message = "파일을 제거하였습니다."
+                    break;
+                } 
+            }
         },
         upload() {
-        this.progress = 0;
+            this.progress = 0;
+            let formData = new FormData();
 
-        this.currentFile = this.selectedFiles.item(0);
-        UploadService.upload(this.currentFile, event => {
-                this.progress = Math.round((100 * event.loaded) / event.total);
+            this.fileInfos.forEach(file=>{
+                formData.append("file", file);
             })
-            .then(response => {
-                this.message = response.data.message;
-                return UploadService.getFiles();
+            
+            http.post(`/upload/${this.post.boardId}`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                },
+                onUploadProgress: (event) => {
+                    this.progress = Math.round((100 * event.loaded) / event.total);
+                }
             })
-            .then(files => {
-                this.fileInfos = files.data;
+            .then(({data}) => {
+                this.message = data.message;
             })
             .catch(() => {
                 this.progress = 0;
                 this.message = "파일 업로드에 실패하였습니다!";
-                this.currentFile = undefined;
             });
 
-        this.selectedFiles = undefined;
+            this.selectedFiles = undefined;
         }
+    },
+    computed:{
+        ...mapState(userStore, ["userResult"]),
+        ...mapState(boardStore, ["post"]),
     },
 };
 </script>

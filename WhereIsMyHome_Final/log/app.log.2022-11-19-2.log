@@ -1,0 +1,792 @@
+2022-11-19 23:16:25.861  INFO 29056 --- [Thread-685] com.zaxxer.hikari.HikariDataSource       : HikariPool-50 - Shutdown completed.
+2022-11-19 23:16:25.957  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:16:25.957  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:16:26.196  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:16:26.196  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:16:26.197  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:16:26.215  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:16:26.215  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 256 ms
+2022-11-19 23:16:26.288  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:16:26.293  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:16:26.294  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.371 seconds (JVM running for 20824.082)
+2022-11-19 23:16:26.295  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:16:55.442  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2022-11-19 23:16:55.612  INFO 29056 --- [Thread-689] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:16:55.693  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:16:55.693  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:16:55.893  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:16:55.893  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:16:55.893  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:16:55.911  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:16:55.911  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 216 ms
+2022-11-19 23:16:55.987  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:16:55.992  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:16:55.994  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.33 seconds (JVM running for 20853.781)
+2022-11-19 23:16:55.995  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:17:18.991  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-19 23:17:19.161  INFO 29056 --- [Thread-693] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:17:19.249  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:17:19.250  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:17:19.482  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:17:19.483  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:17:19.483  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:17:19.500  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:17:19.500  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 249 ms
+2022-11-19 23:17:19.571  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:17:19.575  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:17:19.578  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.357 seconds (JVM running for 20877.365)
+2022-11-19 23:17:19.578  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:18:51.274  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-19 23:18:51.443  INFO 29056 --- [Thread-697] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:18:51.528  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:18:51.528  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:18:51.770  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:18:51.770  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:18:51.770  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:18:51.788  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:18:51.788  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 258 ms
+2022-11-19 23:18:51.866  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:18:51.871  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:18:51.874  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.375 seconds (JVM running for 20969.661)
+2022-11-19 23:18:51.874  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:20:34.936  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-19 23:20:35.105  INFO 29056 --- [Thread-701] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:20:35.197  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:20:35.197  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:20:35.439  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:20:35.439  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:20:35.439  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:20:35.455  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:20:35.455  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 256 ms
+2022-11-19 23:20:35.534  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:20:35.539  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:20:35.541  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.374 seconds (JVM running for 21073.329)
+2022-11-19 23:20:35.542  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:23:51.803  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-19 23:23:51.970  INFO 29056 --- [Thread-705] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:23:52.062  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:23:52.062  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:23:52.294  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:23:52.295  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:23:52.295  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:23:52.311  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:23:52.311  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 247 ms
+2022-11-19 23:23:52.384  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:23:52.389  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:23:52.391  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.359 seconds (JVM running for 21270.178)
+2022-11-19 23:23:52.392  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:24:18.411  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-19 23:24:18.581  INFO 29056 --- [Thread-709] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:24:18.663  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:24:18.663  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:24:18.856  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:24:18.856  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:24:18.856  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:24:18.872  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:24:18.872  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 207 ms
+2022-11-19 23:24:18.895  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:24:18.895  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:24:18.898  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:24:18.905 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:24:34.723  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:24:34.724  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:24:34.959  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:24:34.960  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:24:34.960  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:24:34.976  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:24:34.976  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 251 ms
+2022-11-19 23:24:34.999  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:24:34.999  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:24:35.002  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:24:35.007 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:26:42.525  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:26:42.525  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:26:42.755  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:26:42.755  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:26:42.755  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:26:42.773  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-4].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:26:42.773  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 246 ms
+2022-11-19 23:26:42.804  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:26:42.804  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:26:42.807  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:26:42.812 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:27:36.615  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:27:36.615  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:27:36.849  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:27:36.850  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:27:36.850  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:27:36.868  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-5].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:27:36.868  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 251 ms
+2022-11-19 23:27:36.890  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:27:36.891  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:27:36.894  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:27:36.898 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:27:53.746  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:27:53.746  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:27:53.942  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:27:53.942  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:27:53.942  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:27:53.959  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-6].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:27:53.959  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 211 ms
+2022-11-19 23:27:53.982  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:27:53.982  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:27:53.986  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:27:53.990 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:28:31.361  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:28:31.361  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:28:31.605  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:28:31.605  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:28:31.605  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:28:31.622  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-7].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:28:31.622  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 259 ms
+2022-11-19 23:28:31.645  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:28:31.645  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:28:31.648  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:28:31.652 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:32:30.227  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:32:30.227  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:32:30.462  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:32:30.462  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:32:30.462  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:32:30.480  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-8].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:32:30.481  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 252 ms
+2022-11-19 23:32:30.506  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:32:30.506  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:32:30.510  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:32:30.514 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:32:50.445  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:32:50.445  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:32:50.641  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:32:50.641  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:32:50.641  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:32:50.660  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-9].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:32:50.660  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 213 ms
+2022-11-19 23:32:50.683  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:32:50.683  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:32:50.687  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:32:50.691 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:34:23.070  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:34:23.070  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:34:23.308  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:34:23.308  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:34:23.308  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:34:23.327  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-10].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:34:23.327  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 256 ms
+2022-11-19 23:34:23.351  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:34:23.351  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:34:23.354  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:34:23.359 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:34:42.338  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:34:42.338  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:34:42.534  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:34:42.535  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:34:42.535  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:34:42.554  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-11].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:34:42.554  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 215 ms
+2022-11-19 23:34:42.576  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:34:42.576  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:34:42.579  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:34:42.584 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:35:34.941  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:35:34.941  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:35:35.185  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:35:35.185  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:35:35.185  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:35:35.204  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-12].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:35:35.204  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 262 ms
+2022-11-19 23:35:35.228  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:35:35.228  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:35:35.231  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:35:35.235 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:36:58.790  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:36:58.790  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:36:59.026  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:36:59.027  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:36:59.027  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:36:59.043  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-13].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:36:59.043  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 251 ms
+2022-11-19 23:36:59.070  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:36:59.070  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:36:59.074  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:36:59.078 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:37:58.547  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:37:58.547  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:37:58.792  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:37:58.792  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:37:58.792  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:37:58.809  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-14].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:37:58.809  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 260 ms
+2022-11-19 23:37:58.843  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:37:58.844  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:37:58.847  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:37:58.851 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:38:15.732  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:38:15.732  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:38:15.948  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:38:15.948  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:38:15.948  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:38:15.966  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-15].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:38:15.966  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 232 ms
+2022-11-19 23:38:15.989  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:38:15.989  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:38:15.993  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:38:15.997 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:38:30.823  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:38:30.823  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:38:31.063  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:38:31.063  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:38:31.063  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:38:31.082  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-16].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:38:31.082  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 257 ms
+2022-11-19 23:38:31.106  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:38:31.106  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:38:31.109  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:38:31.113 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:38:50.267  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:38:50.268  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:38:50.461  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:38:50.461  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:38:50.461  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:38:50.480  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-17].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:38:50.480  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 211 ms
+2022-11-19 23:38:50.507  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:38:50.508  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:38:50.511  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:38:50.519 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:39:14.836  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:39:14.837  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:39:15.065  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:39:15.065  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:39:15.065  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:39:15.083  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-18].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:39:15.083  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 245 ms
+2022-11-19 23:39:15.107  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:39:15.108  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:39:15.111  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:39:15.115 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:39:20.697  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:39:20.697  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:39:20.890  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:39:20.890  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:39:20.890  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:39:20.911  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-19].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:39:20.912  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 214 ms
+2022-11-19 23:39:20.937  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:39:20.937  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:39:20.940  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:39:20.944 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:39:25.513  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:39:25.513  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:39:25.719  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:39:25.719  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:39:25.719  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:39:25.737  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-20].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:39:25.737  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 222 ms
+2022-11-19 23:39:25.771  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:39:25.771  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:39:25.775  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:39:25.781 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:39:30.337  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:39:30.337  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:39:30.542  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:39:30.543  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:39:30.543  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:39:30.560  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-21].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:39:30.560  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 221 ms
+2022-11-19 23:39:30.583  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:39:30.583  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:39:30.586  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:39:30.591 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:39:41.418  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:39:41.418  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:39:41.615  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:39:41.615  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:39:41.615  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:39:41.633  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-22].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:39:41.634  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 214 ms
+2022-11-19 23:39:41.657  WARN 29056 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardController' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'boardServiceImpl' defined in file [C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main\com\mycom\myhome\board\BoardServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-11-19 23:39:41.657  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:39:41.660  INFO 29056 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 23:39:41.664 ERROR 29056 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.mycom.myhome.board.BoardServiceImpl required a bean of type 'java.lang.String' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2022-11-19 23:39:48.399  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:39:48.399  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:39:48.630  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:39:48.630  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:39:48.630  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:39:48.650  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-23].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:39:48.650  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 249 ms
+2022-11-19 23:39:48.724  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:39:48.729  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:39:48.731  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.36 seconds (JVM running for 22226.518)
+2022-11-19 23:39:48.731  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:41:52.678  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-19 23:41:52.848  INFO 29056 --- [Thread-713] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:41:52.964  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:41:52.964  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:41:53.202  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:41:53.202  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:41:53.202  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:41:53.223  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-23].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:41:53.223  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 257 ms
+2022-11-19 23:41:53.301  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:41:53.305  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:41:53.308  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.378 seconds (JVM running for 22351.095)
+2022-11-19 23:41:53.308  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:43:24.668  INFO 29056 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat-23].[localhost].[/]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-19 23:43:24.669  INFO 29056 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-19 23:43:24.670  INFO 29056 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-19 23:43:24.674  INFO 29056 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-51 - Starting...
+2022-11-19 23:43:24.682  INFO 29056 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-51 - Start completed.
+2022-11-19 23:43:24.685 DEBUG 29056 --- [http-nio-8080-exec-2] c.mycom.myhome.board.BoardDao.listCount  : ==>  Preparing: SELECT count(*) FROM board WHERE board_clsf = ?
+2022-11-19 23:43:24.685 DEBUG 29056 --- [http-nio-8080-exec-2] c.mycom.myhome.board.BoardDao.listCount  : ==> Parameters: 001(String)
+2022-11-19 23:43:24.685 DEBUG 29056 --- [http-nio-8080-exec-2] c.mycom.myhome.board.BoardDao.listCount  : <==      Total: 1
+2022-11-19 23:43:24.887 DEBUG 29056 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT b.board_id, b.title, ( SELECT user_name FROM users u WHERE u.user_seq = b.writer) as writer, b.reg_dt, b.board_clsf, b.read_count FROM board b WHERE board_clsf = ? ORDER BY b.board_id DESC LIMIT ? OFFSET ?
+2022-11-19 23:43:24.887 DEBUG 29056 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 10(Integer), 0(Integer)
+2022-11-19 23:43:24.888 DEBUG 29056 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : <==      Total: 6
+2022-11-19 23:43:26.423 DEBUG 29056 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.detail   : ==>  Preparing: SELECT board_id, writer, title, content, reg_dt, read_count FROM board WHERE board_id = ?
+2022-11-19 23:43:26.423 DEBUG 29056 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.detail   : ==> Parameters: 3193(String)
+2022-11-19 23:43:26.424 DEBUG 29056 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.detail   : <==      Total: 1
+2022-11-19 23:43:26.424 DEBUG 29056 --- [http-nio-8080-exec-5] c.mycom.myhome.board.BoardDao.ReadCount  : ==>  Preparing: select count(*) from board_user_read where board_id = ? and user_seq = ?
+2022-11-19 23:43:26.424 DEBUG 29056 --- [http-nio-8080-exec-5] c.mycom.myhome.board.BoardDao.ReadCount  : ==> Parameters: 3193(String), 1(String)
+2022-11-19 23:43:26.425 DEBUG 29056 --- [http-nio-8080-exec-5] c.mycom.myhome.board.BoardDao.ReadCount  : <==      Total: 1
+2022-11-19 23:43:27.454 DEBUG 29056 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT b.board_id, b.title, ( SELECT user_name FROM users u WHERE u.user_seq = b.writer) as writer, b.reg_dt, b.board_clsf, b.read_count FROM board b WHERE board_clsf = ? ORDER BY b.board_id DESC LIMIT ? OFFSET ?
+2022-11-19 23:43:27.455 DEBUG 29056 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 10(Integer), 0(Integer)
+2022-11-19 23:43:27.456 DEBUG 29056 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : <==      Total: 6
+2022-11-19 23:49:05.018  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-19 23:49:05.185  INFO 29056 --- [Thread-780] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:49:05.185  INFO 29056 --- [Thread-780] o.a.c.c.C.[Tomcat-23].[localhost].[/]    : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2022-11-19 23:49:05.188  WARN 29056 --- [Thread-780] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-51 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2083)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+2022-11-19 23:49:05.189  INFO 29056 --- [Thread-780] com.zaxxer.hikari.HikariDataSource       : HikariPool-51 - Shutdown initiated...
+2022-11-19 23:49:05.194  INFO 29056 --- [Thread-780] com.zaxxer.hikari.HikariDataSource       : HikariPool-51 - Shutdown completed.
+2022-11-19 23:49:05.296  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:49:05.297  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:49:05.537  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:49:05.538  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:49:05.538  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:49:05.559  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-23].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:49:05.559  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 261 ms
+2022-11-19 23:49:05.631  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:49:05.636  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:49:05.638  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.372 seconds (JVM running for 22783.426)
+2022-11-19 23:49:05.639  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:51:13.773  INFO 29056 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat-23].[localhost].[/]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-19 23:51:13.774  INFO 29056 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-19 23:51:13.775  INFO 29056 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-19 23:51:13.776  INFO 29056 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-52 - Starting...
+2022-11-19 23:51:13.787  INFO 29056 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-52 - Start completed.
+2022-11-19 23:51:13.792 DEBUG 29056 --- [http-nio-8080-exec-1] c.mycom.myhome.board.BoardDao.listCount  : ==>  Preparing: SELECT count(*) FROM board WHERE board_clsf = ?
+2022-11-19 23:51:13.792 DEBUG 29056 --- [http-nio-8080-exec-1] c.mycom.myhome.board.BoardDao.listCount  : ==> Parameters: 001(String)
+2022-11-19 23:51:13.793 DEBUG 29056 --- [http-nio-8080-exec-1] c.mycom.myhome.board.BoardDao.listCount  : <==      Total: 1
+2022-11-19 23:51:14.146 DEBUG 29056 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT b.board_id, b.title, ( SELECT user_name FROM users u WHERE u.user_seq = b.writer) as writer, b.reg_dt, b.board_clsf, b.read_count FROM board b WHERE board_clsf = ? ORDER BY b.board_id DESC LIMIT ? OFFSET ?
+2022-11-19 23:51:14.146 DEBUG 29056 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 10(Integer), 0(Integer)
+2022-11-19 23:51:14.147 DEBUG 29056 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : <==      Total: 6
+2022-11-19 23:57:09.526  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-19 23:57:09.698  INFO 29056 --- [Thread-784] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:57:09.699  INFO 29056 --- [Thread-784] o.a.c.c.C.[Tomcat-23].[localhost].[/]    : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2022-11-19 23:57:09.702  WARN 29056 --- [Thread-784] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-52 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2083)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+2022-11-19 23:57:09.704  INFO 29056 --- [Thread-784] com.zaxxer.hikari.HikariDataSource       : HikariPool-52 - Shutdown initiated...
+2022-11-19 23:57:09.709  INFO 29056 --- [Thread-784] com.zaxxer.hikari.HikariDataSource       : HikariPool-52 - Shutdown completed.
+2022-11-19 23:57:09.805  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:57:09.805  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:57:10.043  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:57:10.043  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:57:10.043  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:57:10.059  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-23].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:57:10.059  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 252 ms
+2022-11-19 23:57:10.134  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:57:10.138  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:57:10.140  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.366 seconds (JVM running for 23267.928)
+2022-11-19 23:57:10.141  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:58:51.408  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-19 23:58:51.594  INFO 29056 --- [Thread-788] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:58:51.676  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:58:51.676  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:58:51.908  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:58:51.908  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:58:51.908  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:58:51.924  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-23].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:58:51.924  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 246 ms
+2022-11-19 23:58:52.000  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:58:52.005  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:58:52.008  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.361 seconds (JVM running for 23369.796)
+2022-11-19 23:58:52.009  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:58:55.547  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-19 23:58:55.718  INFO 29056 --- [Thread-792] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:58:55.808  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:58:55.808  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:58:56.009  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:58:56.009  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:58:56.009  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:58:56.026  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-23].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:58:56.026  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 216 ms
+2022-11-19 23:58:56.098  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:58:56.105  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:58:56.107  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.329 seconds (JVM running for 23373.895)
+2022-11-19 23:58:56.107  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-19 23:59:49.959  INFO 29056 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-19 23:59:50.130  INFO 29056 --- [Thread-796] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 23:59:50.237  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29056 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-19 23:59:50.238  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 23:59:50.482  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-19 23:59:50.483  INFO 29056 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 23:59:50.483  INFO 29056 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-19 23:59:50.499  INFO 29056 --- [restartedMain] o.a.c.c.C.[Tomcat-23].[localhost].[/]    : Initializing Spring embedded WebApplicationContext
+2022-11-19 23:59:50.499  INFO 29056 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 259 ms
+2022-11-19 23:59:50.572  INFO 29056 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-19 23:59:50.577  INFO 29056 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-19 23:59:50.579  INFO 29056 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.373 seconds (JVM running for 23428.366)
+2022-11-19 23:59:50.579  INFO 29056 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged

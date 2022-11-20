@@ -60,7 +60,7 @@ export default {
         }
     },
     computed:{
-        ...mapState(userStore, ["isLogin", "result"]),
+        ...mapState(userStore, ["isLogin", "userResult"]),
     },
     methods: {
         ...mapActions(userStore, ["loginConfirm", "getUserInfo"]),
@@ -69,19 +69,21 @@ export default {
         },
         async confirm(){
             await this.loginConfirm(this.user);
-            console.log(this.result);
-            if(this.result.status == "FAIL"){
-                this.$alertify.error(this.result.message);
+            console.log(this.userResult);
+            if(this.userResult.status == "FAIL"){
+                this.$alertify.error(this.userResult.message);
             }
             
+            this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
             if(this.isLogin){
                 let token = sessionStorage.getItem("access-token");
                 await this.getUserInfo(token);
-                if(this.result.status == "SUCCESS"){
-                    this.$alertify.success(this.result.message);
+                if(this.userResult.status == "SUCCESS"){
+                    this.$alertify.success(this.userResult.message);
                 }else{
-                    this.$alertify.error(this.result.message);
+                    this.$alertify.error(this.userResult.message);
                 }
+                this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
                 this.$emit("close-this-modal");
             }
         }

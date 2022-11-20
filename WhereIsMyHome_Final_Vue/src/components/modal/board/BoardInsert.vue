@@ -11,7 +11,7 @@
             <div class="modal-body">
               <div class="input-group input-group-static mb-4">
                 <label>제목</label>
-                <input type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="제목">
+                <input v-model="title" type="text" class="form-control" placeholder="제목을 입력하세요." aria-label="제목">
               </div>
               <div>
                 <label>내용</label>
@@ -19,11 +19,11 @@
               </div>
             </div>
             
-            <upload-files></upload-files>
+            <upload-files ref="upload"></upload-files>
 
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn bg-gradient-dark mb-0" data-bs-dismiss="modal">닫기</button>
-              <button type="button" class="btn bg-gradient-primary mb-0">작성</button>
+              <button type="button" class="btn bg-gradient-primary mb-0" @click="tokenCheck">작성</button>
             </div>
 
           </div>
@@ -39,6 +39,11 @@ Vue.use(CKEditor)
 
 import UploadFiles from "@/components/board/UploadFiles.vue";
 
+import {mapState, mapActions} from "vuex";
+
+const userStore = "userStore";
+const boardStore = "boardStore";
+
 export default {
   components:{
     UploadFiles
@@ -46,9 +51,52 @@ export default {
   data() {
     return {
       title:"",
-      content:"",
       CKEditor: null,
     }
+  },
+  methods: {
+    ...mapActions(boardStore, ["insertPost"]),
+    ...mapActions(userStore, ["getUserInfo"]),
+    async tokenCheck(){
+      let token = sessionStorage.getItem("access-token");
+      await this.getUserInfo(token);
+      if(this.userResult.status == "SUCCESS"){
+        this.submitPost();
+      }else{
+        this.$alertify.error(this.userResult.message);
+      }
+    },
+    async submitPost(){
+      const post = {
+        title: this.title,
+        content: this.CKEditor.getData(),
+        userEmail: this.userInfo.userEmail
+      };
+      
+      await this.insertPost(post);
+      this.$refs.upload.upload();
+
+      
+      await setTimeout(() => {
+          if(this.boardResult.status == "SUCCESS"){
+            this.$alertify.success(this.boardResult.message);
+            this.$emit("close-this-modal");
+          }else{
+            this.$alertify.error(this.boardResult.message);
+          }
+      }, 2000);
+    },
+    clearUpload(){
+        this.$refs.upload.selectedFiles = undefined;
+        this.$refs.upload.uploadProcess = false;
+        this.$refs.upload.progress = 0;
+        this.$refs.upload.message = "";
+        this.$refs.upload.fileInfos = [];
+    }
+  },
+  computed:{
+    ...mapState(userStore, ["userInfo", "userResult"]),
+    ...mapState(boardStore, ["boardResult", "post"]),
   },
   mounted() {
     ClassicEditor.create(document.getElementById("InsertEditor"))
@@ -58,7 +106,6 @@ export default {
         this.content = "";
         this.CKEditor.setData("");
     });
-
   },
 }
 </script>

@@ -62,11 +62,12 @@ export default {
         userInfoChanged.userPassword = this.userPassword;
         await this.passwordUpdate(userInfoChanged);
 
-        if(this.result.status == "SUCCESS"){
-          this.$alertify.success(this.result.message);
+        if(this.userResult.status == "SUCCESS"){
+          this.$alertify.success(this.userResult.message);
         }else{
-          this.$alertify.error(this.result.message);
+          this.$alertify.error(this.userResult.message);
         }
+        this.$store.commit("userStoreStore/SET_RESULT_MESSAGE", null);
         this.$emit("close-this-modal");
     },
     validatePassword() {
@@ -91,7 +92,7 @@ export default {
     },
   },
   computed:{
-    ...mapState(userStore, ["userInfo","result"]),
+    ...mapState(userStore, ["userInfo","userResult"]),
   },
 }
 </script>

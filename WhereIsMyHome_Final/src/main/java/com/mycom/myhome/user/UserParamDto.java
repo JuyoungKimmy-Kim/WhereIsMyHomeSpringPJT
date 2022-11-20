@@ -10,6 +10,6 @@ public class UserParamDto {
 	private String userClsf;
 	
 	public User toEntity() {
-		return new User(userName, userPassword, userEmail, null, null, userClsf);
+		return new User(null, userName, userPassword, userEmail, null, null, userClsf);
 	}
 }

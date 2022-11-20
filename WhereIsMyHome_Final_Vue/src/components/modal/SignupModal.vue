@@ -84,13 +84,21 @@ export default {
     }
   },
   computed:{
-    ...mapState(userStore, ["result"]),
+    ...mapState(userStore, ["userResult"]),
   },
   methods : {
     ...mapActions(userStore, ["signUp"]),
     async callSignUp(){
       await this.signUp(this.user);
-      this.$emit("close-this-modal");
+
+      if(this.userResult.status == "SUCCESS"){
+        this.$alertify.success(this.userResult.message);
+        this.$emit("close-this-modal");
+      }
+      else{
+        this.$alertify.error(this.userResult.message);
+      }
+      this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
     },
     activateButton(){
       return this.valid.name == "green" && this.valid.email == "green" && this.valid.password == "green" && this.valid.password2 == "green";

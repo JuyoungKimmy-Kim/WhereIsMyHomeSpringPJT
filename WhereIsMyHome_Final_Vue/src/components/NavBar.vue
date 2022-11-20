@@ -139,28 +139,33 @@ export default{
       await this.logoutConfirm();
       sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
       sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
-      if(this.result.status == "SUCCESS"){
-          this.$alertify.success(this.result.message);
+      if(this.userResult.status == "SUCCESS"){
+          this.$alertify.success(this.userResult.message);
       }else{
-          this.$alertify.error(this.result.message);
+          this.$alertify.error(this.userResult.message);
       }
+      this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
     },
     async tokenCheck(message){
       let token = sessionStorage.getItem("access-token");
       await this.getUserInfo(token);
-      if(this.result.status == "SUCCESS"){
+      if(this.userResult.status == "SUCCESS"){
+        this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
+
         if(message == "myinfo") this.showInfo();
         else if(message == "manage" && this.$route.path != "/manage") this.$router.push("/manage");
         else if(message == "wishlist" && this.$route.path != "/wishlist") this.$router.push("/wishlist");
       }else{
-        this.$alertify.error(this.result.message);
+        this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
+
+        this.$alertify.error(this.userResult.message);
         if(this.$route.path != "/")
           this.$router.push("/");
       }
     }
   },
   computed:{
-    ...mapState(userStore, ["isLogin", "userInfo", "result"]),
+    ...mapState(userStore, ["isLogin", "userInfo", "userResult"]),
     filteredOptions(){
       return this.options.filter(el=>{
         let sidoCount = this.value.filter(el => el.category == "sido").length;

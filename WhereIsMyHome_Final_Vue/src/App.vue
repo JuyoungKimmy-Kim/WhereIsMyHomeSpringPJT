@@ -21,7 +21,7 @@ import LoginModal from "@/components/modal/LoginModal.vue"
 import SignupModal from "@/components/modal/SignupModal.vue"
 import UpdateModal from "@/components/modal/user/UpdateUserInfo.vue"
 
-import { mapState, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 const userStore = "userStore";
 
@@ -82,9 +82,6 @@ export default {
 
       this.updateModal.show();
     }
-  },
-  computed:{
-    ...mapState(userStore, ["result"]),
   },
   mounted() {
       this.loginModal = new Modal(document.getElementById("loginModal"));
