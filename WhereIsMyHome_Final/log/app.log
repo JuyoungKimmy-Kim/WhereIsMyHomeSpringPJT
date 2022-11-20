@@ -6115,3 +6115,212 @@ Caused by: java.lang.ClassNotFoundException: IOException
 2022-11-20 19:05:42.062 DEBUG 29640 --- [http-nio-8080-exec-1] c.m.myhome.board.BoardDao.downloadFile   : ==>  Preparing: SELECT file_id, board_id, file_name, file_size, file_content_type, file_url, reg_dt FROM board_file WHERE file_id = ?
 2022-11-20 19:05:42.063 DEBUG 29640 --- [http-nio-8080-exec-1] c.m.myhome.board.BoardDao.downloadFile   : ==> Parameters: 84(Integer)
 2022-11-20 19:05:42.063 DEBUG 29640 --- [http-nio-8080-exec-1] c.m.myhome.board.BoardDao.downloadFile   : <==      Total: 1
+2022-11-20 19:30:38.390 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 19:30:38.391 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 10(Integer), 0(Integer)
+2022-11-20 19:30:38.392 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : <==      Total: 10
+2022-11-20 19:30:39.068 DEBUG 29640 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 19:30:39.068 DEBUG 29640 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 19:30:39.070 DEBUG 29640 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 19:49:37.917 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 19:49:37.918 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 19:49:37.924 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 19:51:02.831  INFO 29640 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 12 class path changes (12 additions, 0 deletions, 0 modifications)
+2022-11-20 19:51:03.049  INFO 29640 --- [Thread-447] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-20 19:51:03.049  INFO 29640 --- [Thread-447] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2022-11-20 19:51:03.054  WARN 29640 --- [Thread-447] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-47 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2083)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+2022-11-20 19:51:03.057  INFO 29640 --- [Thread-447] com.zaxxer.hikari.HikariDataSource       : HikariPool-47 - Shutdown initiated...
+2022-11-20 19:51:03.062  INFO 29640 --- [Thread-447] com.zaxxer.hikari.HikariDataSource       : HikariPool-47 - Shutdown completed.
+2022-11-20 19:51:03.285  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29640 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-20 19:51:03.285  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-20 19:51:03.683  INFO 29640 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-20 19:51:03.684  INFO 29640 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-20 19:51:03.684  INFO 29640 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-20 19:51:03.707  INFO 29640 --- [restartedMain] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-20 19:51:03.707  INFO 29640 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 419 ms
+2022-11-20 19:51:03.857  INFO 29640 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-20 19:51:03.865  INFO 29640 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-20 19:51:03.869  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.629 seconds (JVM running for 16268.396)
+2022-11-20 19:51:03.870  INFO 29640 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-20 19:51:39.463  INFO 29640 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2022-11-20 19:51:39.725  INFO 29640 --- [Thread-451] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-20 19:51:39.869  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29640 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-20 19:51:39.869  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-20 19:51:40.249  INFO 29640 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-20 19:51:40.250  INFO 29640 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-20 19:51:40.250  INFO 29640 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-20 19:51:40.273  INFO 29640 --- [restartedMain] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-20 19:51:40.274  INFO 29640 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 402 ms
+2022-11-20 19:51:40.416  INFO 29640 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-20 19:51:40.423  INFO 29640 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-20 19:51:40.428  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.607 seconds (JVM running for 16304.955)
+2022-11-20 19:51:40.429  INFO 29640 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-20 19:51:52.406  INFO 29640 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-20 19:51:52.407  INFO 29640 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-20 19:51:52.408  INFO 29640 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-20 19:51:52.414  INFO 29640 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-48 - Starting...
+2022-11-20 19:51:52.426  INFO 29640 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-48 - Start completed.
+2022-11-20 19:51:52.431 ERROR 29640 --- [http-nio-8080-exec-2] c.mycom.myhome.user.jwt.JwtServiceImpl   : JWT expired at 2022-11-20T19:02:22Z. Current time: 2022-11-20T19:51:52Z, a difference of 2970431 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-11-20 19:52:06.940  INFO 29640 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2022-11-20 19:52:07.210  INFO 29640 --- [Thread-455] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-20 19:52:07.210  INFO 29640 --- [Thread-455] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2022-11-20 19:52:07.212  WARN 29640 --- [Thread-455] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-48 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2083)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+2022-11-20 19:52:07.213  INFO 29640 --- [Thread-455] com.zaxxer.hikari.HikariDataSource       : HikariPool-48 - Shutdown initiated...
+2022-11-20 19:52:07.218  INFO 29640 --- [Thread-455] com.zaxxer.hikari.HikariDataSource       : HikariPool-48 - Shutdown completed.
+2022-11-20 19:52:07.361  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29640 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-20 19:52:07.362  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-20 19:52:07.641  INFO 29640 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-20 19:52:07.642  INFO 29640 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-20 19:52:07.642  INFO 29640 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-20 19:52:07.668  INFO 29640 --- [restartedMain] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-20 19:52:07.669  INFO 29640 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 305 ms
+2022-11-20 19:52:07.817  INFO 29640 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-20 19:52:07.826  INFO 29640 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-20 19:52:07.830  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.51 seconds (JVM running for 16332.357)
+2022-11-20 19:52:07.831  INFO 29640 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-20 19:52:10.335  INFO 29640 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-20 19:52:10.552  INFO 29640 --- [Thread-459] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-20 19:52:10.677  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 29640 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-20 19:52:10.677  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-20 19:52:11.030  INFO 29640 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-20 19:52:11.030  INFO 29640 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-20 19:52:11.030  INFO 29640 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-20 19:52:11.059  INFO 29640 --- [restartedMain] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2022-11-20 19:52:11.059  INFO 29640 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 379 ms
+2022-11-20 19:52:11.191  INFO 29640 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-20 19:52:11.199  INFO 29640 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-20 19:52:11.202  INFO 29640 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 0.577 seconds (JVM running for 16335.729)
+2022-11-20 19:52:11.202  INFO 29640 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-20 19:52:36.789  INFO 29640 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-20 19:52:36.789  INFO 29640 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-20 19:52:36.790  INFO 29640 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-20 19:52:36.792  INFO 29640 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-49 - Starting...
+2022-11-20 19:52:36.804  INFO 29640 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-49 - Start completed.
+2022-11-20 19:52:36.867 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 19:52:36.868 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 19:52:36.869 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 19:53:16.211 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 19:53:16.212 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 19:53:16.213 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 19:53:51.762 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 19:53:51.763 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 19:53:51.765 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 19:56:12.704 ERROR 29640 --- [http-nio-8080-exec-2] c.mycom.myhome.user.jwt.JwtServiceImpl   : JWT expired at 2022-11-20T19:52:52Z. Current time: 2022-11-20T19:56:12Z, a difference of 200704 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-11-20 19:56:12.725 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 19:56:12.725 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 19:56:12.736 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 19:57:18.622 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 19:57:18.623 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 19:57:18.624 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 19:57:55.356 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 19:57:55.356 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 19:57:55.357 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 19:59:28.056 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 19:59:28.056 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 19:59:28.057 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:01:19.863 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:01:19.864 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:01:19.865 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:01:19.866 ERROR 29640 --- [http-nio-8080-exec-2] c.mycom.myhome.user.jwt.JwtServiceImpl   : JWT expired at 2022-11-20T19:57:12Z. Current time: 2022-11-20T20:01:19Z, a difference of 247866 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-11-20 20:08:39.248 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:08:39.249 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:08:39.250 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:08:39.250 ERROR 29640 --- [http-nio-8080-exec-8] c.mycom.myhome.user.jwt.JwtServiceImpl   : JWT expired at 2022-11-20T20:02:19Z. Current time: 2022-11-20T20:08:39Z, a difference of 380250 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-11-20 20:10:02.861 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:10:02.862 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:10:02.864 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:10:02.864 ERROR 29640 --- [http-nio-8080-exec-4] c.mycom.myhome.user.jwt.JwtServiceImpl   : JWT expired at 2022-11-20T20:09:39Z. Current time: 2022-11-20T20:10:02Z, a difference of 23864 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-11-20 20:12:46.577 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:12:46.577 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:12:46.579 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:12:46.579 ERROR 29640 --- [http-nio-8080-exec-8] c.mycom.myhome.user.jwt.JwtServiceImpl   : JWT expired at 2022-11-20T20:11:02Z. Current time: 2022-11-20T20:12:46Z, a difference of 104579 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-11-20 20:23:04.749 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:23:04.749 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:23:04.753 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:23:04.753 ERROR 29640 --- [http-nio-8080-exec-5] c.mycom.myhome.user.jwt.JwtServiceImpl   : JWT expired at 2022-11-20T20:13:46Z. Current time: 2022-11-20T20:23:04Z, a difference of 558753 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-11-20 20:24:59.226 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:24:59.227 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:24:59.228 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:24:59.235 ERROR 29640 --- [http-nio-8080-exec-1] c.mycom.myhome.user.jwt.JwtServiceImpl   : JWT expired at 2022-11-20T20:24:04Z. Current time: 2022-11-20T20:24:59Z, a difference of 55235 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-11-20 20:25:56.138 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:25:56.138 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:25:56.140 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:27:32.294 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:27:32.295 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:27:32.296 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:27:32.297 ERROR 29640 --- [http-nio-8080-exec-8] c.mycom.myhome.user.jwt.JwtServiceImpl   : JWT expired at 2022-11-20T20:25:59Z. Current time: 2022-11-20T20:27:32Z, a difference of 93297 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-11-20 20:28:02.110 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:28:02.111 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:28:02.112 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:28:13.847 DEBUG 29640 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:28:13.848 DEBUG 29640 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:28:13.849 DEBUG 29640 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:28:24.249 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:28:24.249 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:28:24.250 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:29:08.651 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:29:08.652 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:29:08.653 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:29:08.654 ERROR 29640 --- [http-nio-8080-exec-7] c.mycom.myhome.user.jwt.JwtServiceImpl   : JWT expired at 2022-11-20T20:28:32Z. Current time: 2022-11-20T20:29:08Z, a difference of 36654 milliseconds.  Allowed clock skew: 0 milliseconds.
+2022-11-20 20:29:28.757 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:29:28.757 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:29:28.758 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:29:47.190 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:29:47.190 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:29:47.191 DEBUG 29640 --- [http-nio-8080-exec-2] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:30:41.524 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:30:41.525 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:30:41.526 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:31:25.235 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:31:25.236 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:31:25.236 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:33:49.875 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:33:49.875 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:33:49.876 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:34:49.482 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:34:49.482 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:34:49.483 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:34:53.355 DEBUG 29640 --- [http-nio-8080-exec-8] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:34:53.355 DEBUG 29640 --- [http-nio-8080-exec-8] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:34:53.357 DEBUG 29640 --- [http-nio-8080-exec-8] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:35:00.919 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:35:00.920 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:35:00.920 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:35:03.096 DEBUG 29640 --- [http-nio-8080-exec-10] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:35:03.097 DEBUG 29640 --- [http-nio-8080-exec-10] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:35:03.098 DEBUG 29640 --- [http-nio-8080-exec-10] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:37:40.006 DEBUG 29640 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:37:40.006 DEBUG 29640 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:37:40.007 DEBUG 29640 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:40:26.510 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:40:26.510 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:40:26.511 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:40:43.442 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:40:43.443 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:40:43.444 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:46:42.363 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:46:42.363 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:46:42.364 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 20:56:53.478 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 20:56:53.479 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 20:56:53.482 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 21:01:33.613 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 21:01:33.613 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 21:01:33.616 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
