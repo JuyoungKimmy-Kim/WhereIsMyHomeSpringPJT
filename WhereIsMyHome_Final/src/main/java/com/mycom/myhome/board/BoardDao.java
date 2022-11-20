@@ -11,19 +11,20 @@ public interface BoardDao {
 	List<Board> list(@Param("limit") int limit, @Param("offset") int offset, @Param("boardClsf") String boardClsf);
 	int listCount(String boardClsf);
 	
-	Board detail(String boardId);
-	List<BoardFile> getFileList(String boardId);
-	int ReadCount(@Param("boardId") String boardId, @Param("userSeq")  String userSeq);
-	int insertReadCount(@Param("boardId") String boardId, @Param("userSeq")  String userSeq);
-	int addReadCount(String boardId);
+	Board detail(int boardId);
+	List<BoardFile> getFileList(int boardId);
+	int ReadCount(@Param("boardId") int boardId, @Param("userSeq")  int userSeq);
+	int insertReadCount(@Param("boardId") int boardId, @Param("userSeq")  int userSeq);
+	int addReadCount(int boardId);
 	
 	int insert(Board board);
 	int uploadFile(BoardFile files);
+	BoardFile downloadFile(int fileId);
 	
 	int update(Board board);
 	
-	List<String> deleteFileUrl(String boardId);
-	int deleteReadCount(String boardId);
-	int deleteFile(String boardId);
-	int delete(String boardId);
+	List<String> deleteFileUrl(int boardId);
+	int deleteReadCount(int boardId);
+	int deleteFile(int boardId);
+	int delete(int boardId);
 }

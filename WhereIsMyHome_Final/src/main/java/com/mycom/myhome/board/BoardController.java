@@ -1,10 +1,25 @@
 package com.mycom.myhome.board;
 
-import java.util.List;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.webresources.FileResource;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,8 +28,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -27,6 +44,7 @@ import lombok.RequiredArgsConstructor;
 		origins = "http://localhost:5500", 
 		allowCredentials = "true", 
 		allowedHeaders = "*", 
+		exposedHeaders = {"Content-Disposition"},
 		methods = { RequestMethod.GET, RequestMethod.POST,
 				RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.HEAD, RequestMethod.OPTIONS })
 public class BoardController {
@@ -35,7 +53,7 @@ public class BoardController {
 	
 	private final BoardService service;
 	
-	@GetMapping("/boards/{limit}/{offset}")
+	@GetMapping("/boards/{limit}/{offset}") 
 	public ResponseEntity<BoardResultDto> list(@PathVariable int limit,@PathVariable  int offset){
 		BoardResultDto resultDto = service.list(limit, offset);
 		
@@ -47,7 +65,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/boards/{boardId}")
-	public ResponseEntity<BoardResultDto> detail(@PathVariable String boardId, @RequestParam String userEmail){
+	public ResponseEntity<BoardResultDto> detail(@PathVariable int boardId, @RequestParam String userEmail){
 		BoardResultDto resultDto = service.detail(boardId, userEmail);
 		
 		if(resultDto != null) {
@@ -80,7 +98,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/upload/{boardId}")
-	public ResponseEntity<BoardResultDto> fileUpload(@PathVariable String boardId, MultipartHttpServletRequest request){
+	public ResponseEntity<BoardResultDto> fileUpload(@PathVariable int boardId, MultipartHttpServletRequest request){
 		BoardResultDto resultDto = service.fileUpload(boardId, request);
 
 		if(resultDto != null) {
@@ -88,6 +106,21 @@ public class BoardController {
 		}
 		
 		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	
+	@GetMapping("/download/{fileId}")
+	public ResponseEntity<Resource> fileDownload(@PathVariable int fileId) throws IOException{
+		BoardFileResultDto resultDto = service.fileDownload(fileId);
+		System.out.println(resultDto);
+		BoardFile bfile = resultDto.getFile();
+		
+		File file = new File(bfile.getFileUrl());
+		
+		Resource resource =  new InputStreamResource(new FileInputStream(file));
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + new String(bfile.getFileName().getBytes("UTF-8"),"ISO-8859-1"))
+				.body(resource);
 	}
 	
 	@PutMapping("/boards")
@@ -102,7 +135,7 @@ public class BoardController {
 	}
 	
 	@DeleteMapping("/boards/{boardId}")
-	public ResponseEntity<BoardResultDto> delete(@PathVariable String boardId){
+	public ResponseEntity<BoardResultDto> delete(@PathVariable int boardId){
 		BoardResultDto resultDto = service.delete(boardId);
 		
 		if(resultDto != null) {

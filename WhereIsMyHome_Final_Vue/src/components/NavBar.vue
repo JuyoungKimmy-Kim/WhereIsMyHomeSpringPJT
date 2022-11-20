@@ -130,38 +130,39 @@ export default{
   methods: {
     ...mapActions(userStore, ["logoutConfirm", "getUserInfo"]),
     showLogin(){
+      console.log("NAVBER");
       this.$emit("show-login");
     },
     showInfo() {
       this.$emit("show-info");
     },
-    async doLogout(){
-      await this.logoutConfirm();
-      sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
-      sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
-      if(this.userResult.status == "SUCCESS"){
-          this.$alertify.success(this.userResult.message);
-      }else{
-          this.$alertify.error(this.userResult.message);
-      }
-      this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
+    doLogout(){
+      this.$alertify.confirm("로그아웃 하시겠습니까?", async ()=>{
+        await this.logoutConfirm();
+        sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+        sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+        if(this.userResult.status == "SUCCESS"){
+            this.$alertify.success(this.userResult.message);
+        }else{
+            this.$alertify.error(this.userResult.message);
+        }
+        this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
+      });
     },
     async tokenCheck(message){
       let token = sessionStorage.getItem("access-token");
       await this.getUserInfo(token);
-      if(this.userResult.status == "SUCCESS"){
-        this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
 
+      if(this.userResult.status == "SUCCESS"){
         if(message == "myinfo") this.showInfo();
         else if(message == "manage" && this.$route.path != "/manage") this.$router.push("/manage");
         else if(message == "wishlist" && this.$route.path != "/wishlist") this.$router.push("/wishlist");
       }else{
-        this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
-
         this.$alertify.error(this.userResult.message);
         if(this.$route.path != "/")
           this.$router.push("/");
       }
+      this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
     }
   },
   computed:{

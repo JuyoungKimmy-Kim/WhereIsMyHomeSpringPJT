@@ -5,13 +5,14 @@ import lombok.Data;
 @Data
 public class BoardParamDto {
 	
-	private String boardId;
+	private int boardId;
+	private int userSeq;
 	private String title;
 	private String content;
 	private String userEmail;
 	
-	public Board toEntity(String userSeq) {
-		return new Board(boardId, userSeq, title, content, null, 0, "001");
+	public Board toEntity(String writer) {
+		return new Board(boardId, userSeq, writer, title, content, null, 0, "001");
 	}
 	
 }

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BoardFile {
 	private int fileId;
-	private String boardId;
+	private int boardId;
 	private String fileName;
 	private long fileSize;
 	private String fileContentType;

@@ -3,14 +3,10 @@
 <mapper namespace="com.mycom.myhome.board.BoardDao"> <!-- @Mapper annotation 있는 dao -->
 	
 	<select id="list" parameterType="map" resultType="com.mycom.myhome.board.Board">
-		SELECT b.board_id, b.title, (
-			SELECT user_name
-			FROM users u
-			WHERE u.user_seq = b.writer) as writer, 
-			b.reg_dt, b.board_clsf, b.read_count
-		FROM board b
+		SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf
+		FROM board
 		WHERE board_clsf = #{boardClsf}
-		ORDER BY b.board_id
+		ORDER BY board_id
 		DESC
         LIMIT #{limit} OFFSET #{offset}
 	</select>
@@ -21,12 +17,12 @@
 	</select>
 	
 	
-	<select id="detail" parameterType="string" resultType="com.mycom.myhome.board.Board">
-		SELECT board_id, writer, title, content, reg_dt, read_count
+	<select id="detail" parameterType="int" resultType="com.mycom.myhome.board.Board">
+		SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf
 		FROM board 
 		WHERE board_id = #{boardId}
 	</select>
-	<select id="getFileList" parameterType="string" resultType="com.mycom.myhome.board.BoardFile">
+	<select id="getFileList" parameterType="int" resultType="com.mycom.myhome.board.BoardFile">
 		SELECT file_id, board_id, file_name, file_size, file_content_type, file_url, reg_dt
 		FROM board_file
 		WHERE board_id = #{boardId}
@@ -38,7 +34,7 @@
 		INSERT INTO board_user_read(board_id, user_seq)
 		VALUES(#{boardId}, #{userSeq})
 	</insert>
-	<update id="addReadCount" parameterType="string">
+	<update id="addReadCount" parameterType="int">
 		UPDATE board
 		SET read_count = read_count + 1
 		WHERE board_id = #{boardId}
@@ -46,13 +42,18 @@
 	
 	
 	<insert id="insert" parameterType="com.mycom.myhome.board.Board">
-		INSERT INTO board(writer, title, content, reg_dt, read_count, board_clsf)
-		VALUES(#{writer}, #{title}, #{content}, now(), #{readCount}, #{boardClsf})
+		INSERT INTO board(user_seq, writer, title, content, reg_dt, read_count, board_clsf)
+		VALUES(#{userSeq}, #{writer}, #{title}, #{content}, now(), #{readCount}, #{boardClsf})
 	</insert>
 	<insert id="uploadFile" parameterType="com.mycom.myhome.board.BoardFile">
 		INSERT INTO board_file(board_id, file_name, file_size, file_content_type, file_url, reg_dt)
 		VALUES(#{boardId}, #{fileName}, #{fileSize}, #{fileContentType}, #{fileUrl}, now())
 	</insert>
+	<select id="downloadFile" parameterType="int" resultType="com.mycom.myhome.board.BoardFile">
+		SELECT file_id, board_id, file_name, file_size, file_content_type, file_url, reg_dt
+		FROM board_file
+		WHERE file_id = #{fileId}
+	</select>
 	
 	
 	<update id="update" parameterType="com.mycom.myhome.board.Board">
@@ -62,18 +63,18 @@
 	</update>
 	
 	<!-- 삭제 -->
-	<delete id="delete" parameterType="string">
+	<delete id="delete" parameterType="int">
 		DELETE FROM board
 		WHERE board_id = #{boardId}
 	</delete>
-	<delete id="deleteFile" parameterType="string">
+	<delete id="deleteFile" parameterType="int">
 		DELETE FROM board_file
 		WHERE board_id = #{boardId}
 	</delete>
-	<delete id="deleteReadCount" parameterType="string">
+	<delete id="deleteReadCount" parameterType="int">
 		delete from board_user_read where board_id = #{boardId} 
 	</delete>
-	<select id="deleteFileUrl" parameterType="string" resultType="string">
+	<select id="deleteFileUrl" parameterType="int" resultType="string">
 		SELECT file_url
 		FROM board_file
 		WHERE board_id= #{boardId}

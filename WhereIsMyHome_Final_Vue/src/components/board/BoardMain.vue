@@ -41,10 +41,10 @@
                                         <a class="text-xs font-weight-bold mb-0 cursor-pointer" @click="showDetail(post.boardId)">{{post.title}}</a>
                                     </td>
                                     <td class="align-middle text-center text-sm">
-                                        <p class="text-xs font-weight-bold mb-0">{{post.userName}}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{post.writer}}</p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">{{post.regDt}}</span>
+                                        <span class="text-secondary text-xs font-weight-bold">{{post.regDate}}</span>
                                     </td>
                                     <td class="align-middle text-center">
                                         <span class="text-secondary text-xs font-weight-bold">{{post.readCount}}</span>
@@ -115,10 +115,10 @@ export default {
             await list(this.limit, this.offset, ({data})=>{
                 if(data.result == "SUCCESS"){
                     data.list.forEach(el => {
-                        console.log(el);
-                        console.log(util);
-                        // el.regDate = util.makeDateStr(el.regDt.date.year, el.regDt.date.month, el.regDt.date.day, "/");
-                        // el.regTime = util.makeDateStr(el.regDt.time.hour, el.regDt.time.minute, el.regDt.time.second, "/");
+                        let date = new Date(el.regDt);
+                        
+                        el.regDate = util.makeDateStr(date.getFullYear(), date.getMonth() + 1, date.getDate(), "/");
+                        el.regTime = util.makeTimeStr(date.getHours(), date.getMinutes(), date.getSeconds(), ":");
                     });
                     this.list = data.list;
                 }else{
@@ -131,6 +131,10 @@ export default {
             })
         },
         async showInsertModal(){
+            if(this.boardInsertModal == null){
+                this.boardInsertModal = new Modal(document.getElementById("boardInsertModal"));
+            }
+
             this.$refs.insert_modal.clearUpload();
             this.$refs.insert_modal.title = "";
             if(this.$refs.insert_modal.CKEditor != null){
@@ -141,6 +145,10 @@ export default {
         async showDetail(boardId){
             await this.postDetail({boardId: boardId, userEmail:this.userInfo.userEmail});
             if(this.boardResult.status == "SUCCESS"){
+                if(this.boardDetailModal == null){
+                    this.boardDetailModal = new Modal(document.getElementById("boardDetailModal"));
+                }
+                
                 this.boardDetailModal.show();
             }else{
                 this.$alertify.error(this.boardResult.message);
@@ -150,6 +158,10 @@ export default {
         async showUpdate(boardId){
             await this.postDetail({boardId: boardId, userEmail:this.userInfo.userEmail});
             if(this.boardResult.status == "SUCCESS"){
+                if(this.update_modal == null){
+                    this.boardUpdateModal = new Modal(document.getElementById("boardUpdateModal"));
+                }
+
                 this.$refs.update_modal.title = this.post.title;
                 this.$refs.update_modal.content = this.post.content;
                 this.$refs.update_modal.CKEditor.setData(this.post.content);
@@ -180,11 +192,6 @@ export default {
         ...mapState(boardStore, ["boardList", "boardResult", "totalListItemCount", "post"]),
     },
     async mounted() {
-        this.boardInsertModal = new Modal(document.getElementById("boardInsertModal"));
-        this.boardDetailModal = new Modal(document.getElementById("boardDetailModal"));
-        this.boardUpdateModal = new Modal(document.getElementById("boardUpdateModal"));
-
-        
         await this.getTotalCount("001");
         await this.callList();
     },

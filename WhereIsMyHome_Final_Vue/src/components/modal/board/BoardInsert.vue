@@ -64,10 +64,12 @@ export default {
         this.submitPost();
       }else{
         this.$alertify.error(this.userResult.message);
+        this.$store.commt("boardStore/SET_RESULT_MESSAGE", null); 
       }
     },
     async submitPost(){
       const post = {
+        userSeq: this.userInfo.userSeq,
         title: this.title,
         content: this.CKEditor.getData(),
         userEmail: this.userInfo.userEmail
@@ -84,7 +86,9 @@ export default {
           }else{
             this.$alertify.error(this.boardResult.message);
           }
-      }, 2000);
+
+        this.$store.commt("boardStore/SET_RESULT_MESSAGE", null);
+      }, 1000);
     },
     clearUpload(){
         this.$refs.upload.selectedFiles = undefined;

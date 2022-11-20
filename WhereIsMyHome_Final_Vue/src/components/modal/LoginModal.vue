@@ -74,13 +74,12 @@ export default {
                 this.$alertify.error(this.userResult.message);
             }
             
-            this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
             if(this.isLogin){
+                this.$alertify.success(this.userResult.message);
+
                 let token = sessionStorage.getItem("access-token");
                 await this.getUserInfo(token);
-                if(this.userResult.status == "SUCCESS"){
-                    this.$alertify.success(this.userResult.message);
-                }else{
+                if(this.userResult.status != "SUCCESS"){
                     this.$alertify.error(this.userResult.message);
                 }
                 this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
