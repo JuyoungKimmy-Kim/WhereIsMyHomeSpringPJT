@@ -6324,3 +6324,21 @@ Caused by: java.lang.ClassNotFoundException: IOException
 2022-11-20 21:01:33.613 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
 2022-11-20 21:01:33.613 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
 2022-11-20 21:01:33.616 DEBUG 29640 --- [http-nio-8080-exec-9] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 21:06:55.769 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 21:06:55.770 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 21:06:55.771 DEBUG 29640 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 21:13:26.329 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 21:13:26.329 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 21:13:26.330 DEBUG 29640 --- [http-nio-8080-exec-3] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 21:13:40.711 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 21:13:40.711 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 21:13:40.712 DEBUG 29640 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 21:17:57.042 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 21:17:57.042 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 21:17:57.043 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 21:18:26.104 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 21:18:26.104 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 21:18:26.105 DEBUG 29640 --- [http-nio-8080-exec-6] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-20 21:18:40.473 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-20 21:18:40.474 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-20 21:18:40.474 DEBUG 29640 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
