@@ -11,6 +11,7 @@ const userStore = {
         },
         isLogin: false,
         userInfo: {
+            userSeq:"",
             userName:"",
             userEmail:"",
             userProfileImgUrl:"",
@@ -103,17 +104,21 @@ const userStore = {
                         commit("SET_RESULT_MESSAGE", {status: "SUCCESS", message: "토큰 검증 완료"});
                         commit("SET_USER_INFO", data.userInfo);
                     }else{
+                        commit("SET_USER_INFO", null);
+                        commit("SET_IS_LOGIN", false);
+                        commit("SET_VALID_TOKEN", false);
+                        
                         console.log("유저 정보 없음!!!!");
                     }
                 },
                 async (error)=>{
-                    console.log("토큰만료" + error);
+                    console.log("토큰만료 >> " + error);
                     commit("SET_VALID_TOKEN", false);
                     await dispatch("accessTokenRegeneration");
                 });
         },
         async accessTokenRegeneration({commit, state}){
-            console.log("토큰 재발급 >> ");
+            console.log("= 토큰 재발급 = ");
             await tokenRegeneration(
                 state.userInfo,
                 ({data})=>{

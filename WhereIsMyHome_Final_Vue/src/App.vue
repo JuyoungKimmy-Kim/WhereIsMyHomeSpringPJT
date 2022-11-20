@@ -37,6 +37,9 @@ export default {
   methods: {
     ...mapActions(userStore, ["getUserInfo"]),
     showLogin(){
+      if(this.loginModal == null){
+        this.loginModal = new Modal(document.getElementById("loginModal"));
+      }
 
       this.$refs.login_modal.user.userEmail = "";
       this.$refs.login_modal.user.userPassword = "";
@@ -45,6 +48,10 @@ export default {
     },
     showSignUp(){
       this.loginModal.hide();
+
+      if(this.signUpModal == null){
+        this.signUpModal = new Modal(document.getElementById("signUpModal"));
+      }
 
       this.$refs.signup_modal.user = {
         userEmail: "",
@@ -76,16 +83,18 @@ export default {
       if(this.updateModal == null){
         this.updateModal= new Modal(document.getElementById("updateModal"));
       }
-      console.log("showInfo");
+
       this.$refs.update_modal.userPassword = "";
       this.$refs.update_modal.userPassword2 = "";
+      this.$refs.update_modal.passwordColor = "";
+      this.$refs.update_modal.passwordColor2 = "";
 
       this.updateModal.show();
     }
   },
-  mounted() {
-      this.loginModal = new Modal(document.getElementById("loginModal"));
-      this.signUpModal = new Modal(document.getElementById("signUpModal"));
+  async mounted() {
+    let token = sessionStorage.getItem("access-token");
+    await this.getUserInfo(token);
   },
 }
 </script>

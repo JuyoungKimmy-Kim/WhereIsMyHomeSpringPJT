@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-	private String userSeq;
+	private int userSeq;
 	private String userName;
 	private String userPassword;
 	private String userEmail;

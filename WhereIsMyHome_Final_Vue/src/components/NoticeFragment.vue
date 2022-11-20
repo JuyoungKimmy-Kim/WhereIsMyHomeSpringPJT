@@ -4,6 +4,7 @@
         <tr>
             <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-3 ps-3">#</th>
             <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-8 ps-2">제목</th>
+            <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-1 ps-2">작성 날짜</th>
             <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-1 ps-2">조회 수</th>
         </tr>
         </thead>
@@ -20,6 +21,9 @@
                     <a class="text-s font-weight-bold mb-0 cursor-pointer" @click="gotoNotice(post.boardId)">{{post.title}}</a>
                 </td>
                 <td>
+                    <span class="text-secondary text-s font-weight-bold">{{post.regDate}}</span>
+                </td>
+                <td>
                     <span class="text-secondary text-s font-weight-bold">{{post.readCount}}</span>
                 </td>
             </tr>
@@ -30,7 +34,7 @@
 <script>
 
 import {list} from '@/common/board.js';
-
+import util from '@/common/utils.js';
 
 
 export default {
@@ -44,11 +48,13 @@ export default {
     methods:{
         async callList(){
             await list(this.limit, this.offset, ({data})=>{
+                console.log(data);
                 if(data.result == "SUCCESS"){
                     data.list.forEach(el => {
-                        console.log(el);
-                        // el.regDate = util.makeDateStr(el.regDt.date.year, el.regDt.date.month, el.regDt.date.day, "/");
-                        // el.regTime = util.makeDateStr(el.regDt.time.hour, el.regDt.time.minute, el.regDt.time.second, "/");
+                        let date = new Date(el.regDt);
+                        
+                        el.regDate = util.makeDateStr(date.getFullYear(), date.getMonth() + 1, date.getDate(), "/");
+                        el.regTime = util.makeTimeStr(date.getHours(), date.getMinutes(), date.getSeconds(), ":");
                     });
                     this.list = data.list;
                 }else{

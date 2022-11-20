@@ -78,6 +78,8 @@ export default {
             }
         },
         upload() {
+            if(this.fileInfos.length == 0) return;
+            
             this.progress = 0;
             let formData = new FormData();
 

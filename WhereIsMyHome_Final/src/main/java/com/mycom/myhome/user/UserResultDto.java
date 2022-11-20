@@ -35,7 +35,7 @@ public class UserResultDto {
 	@Data
 	@RequiredArgsConstructor(staticName = "of")
 	private static class UserInfo{
-		private final String userSeq;
+		private final int userSeq;
 		private final String userEmail;
 		private final String userName;
 		private final String userProfileImgUrl;

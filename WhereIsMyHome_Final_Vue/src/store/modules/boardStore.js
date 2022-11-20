@@ -1,4 +1,5 @@
 import {listCount, detail, insert, update, deletePost} from '@/common/board.js';
+import util from '@/common/utils.js';
 
 
 const boardStore = {
@@ -24,7 +25,12 @@ const boardStore = {
             }
         },
         SET_POST(state, payload){
-            state.post = payload.post;
+            state.post = payload.board;
+            
+            let date = new Date(state.post.regDt);
+                        
+            state.post.regDate = util.makeDateStr(date.getFullYear(), date.getMonth() + 1, date.getDate(), "/");
+            state.post.regTime = util.makeTimeStr(date.getHours(), date.getMinutes(), date.getSeconds(), ":");
 
             if(payload.fileList != null){
                 state.post.fileList = payload.fileList;
@@ -42,7 +48,6 @@ const boardStore = {
             await listCount(boardClsf,
                 ({data})=>{
                     if(data.result == "SUCCESS"){
-                        console.log(data);
                         commit("SET_TOTAL_LIST_ITEM_COUNT", data.listCount);
                     }
                 },
@@ -55,7 +60,6 @@ const boardStore = {
                 ({data})=>{
                     console.log(data);
                     if(data.result == "SUCCESS"){
-                        console.log(data);
                         commit("SET_POST", data);
                     }
                     commit("SET_RESULT_MESSAGE", data);

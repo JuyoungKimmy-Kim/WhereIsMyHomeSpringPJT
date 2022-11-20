@@ -30,7 +30,7 @@
                     <input type="password" v-model="userPassword2" @blur="validatePassword2" class="form-control" placeholder="•••••••••••••">
                 </div>
                 <div class="text-center">
-                    <button type="button"  class="btn bg-gradient-info mt-4 mb-0" @click="updateInfo">수정완료</button>
+                    <button type="button"  :class="[activateButton() ? 'btn bg-gradient-info mt-4 mb-0' : 'btn bg-gradient-info mt-4 mb-0 disabled']" @click="updateInfo">수정완료</button>
                 </div>
                 </form>
             </div>
@@ -69,6 +69,9 @@ export default {
         }
         this.$store.commit("userStoreStore/SET_RESULT_MESSAGE", null);
         this.$emit("close-this-modal");
+    },
+    activateButton(){
+      return this.passwordColor == "green" && this.passwordColor2 == "green";
     },
     validatePassword() {
         var patternEngAtListOne = new RegExp(/[a-zA-Z]+/); // + for at least one

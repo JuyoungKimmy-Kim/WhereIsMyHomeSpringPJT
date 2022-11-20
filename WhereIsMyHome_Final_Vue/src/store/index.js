@@ -5,10 +5,11 @@ Vue.use(Vuex);
 
 import userStore from "@/store/modules/userStore.js";
 import boardStore from "@/store/modules/boardStore.js";
+import mapStore from "@/store/modules/mapStore.js";
 
 export default new Vuex.Store({
     modules:{
-        userStore, boardStore
+        userStore, boardStore, mapStore
     },
     plugins:[
         createPersistedState({
@@ -20,14 +21,12 @@ export default new Vuex.Store({
         isMapView: false,
     },
     mutations:{
-        IS_MAP_VIEW(state, payload){
-            state.isMapView = payload;
-        }
+        IS_MAP_VIEW(state, status){
+            state.isMapView = status;
+        },
     },
     actions:{
-
     },
     getters:{
-
     }
 })

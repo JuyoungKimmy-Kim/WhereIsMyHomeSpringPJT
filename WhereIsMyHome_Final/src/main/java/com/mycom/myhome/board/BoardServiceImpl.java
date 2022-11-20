@@ -1,7 +1,6 @@
 package com.mycom.myhome.board;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,7 +26,7 @@ public class BoardServiceImpl implements BoardService{
 	private final BoardDao dao;
 	
 	@Value("${app.fileupload.uploadDir}")
-	private String uploadFoler;
+	private String uploadFolder;
 	 
 	@Override
 	public BoardResultDto list(int limit, int offset) {
@@ -39,7 +38,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public BoardResultDto detail(String boardId, String userEmail) {
+	public BoardResultDto detail(int boardId, String userEmail) {
 		Board board = dao.detail(boardId);
 		
 		User findUser = userDao.findByEmail(userEmail);
@@ -71,20 +70,22 @@ public class BoardServiceImpl implements BoardService{
 	public BoardResultDto insert(BoardParamDto paramDto) {
 		String userEmail = paramDto.getUserEmail();
 		User findUser = userDao.findByEmail(userEmail);	
-
-		int result = dao.insert(paramDto.toEntity(findUser.getUserSeq()));
-		if(result == 1) {
-			Board board = dao.list(1,0,"001").get(0);
-			return BoardResultDto.ofSuccess("게시물이 등록되었습니다.", board, null, 0, null);
+		
+		if(findUser != null) {
+			int result = dao.insert(paramDto.toEntity(findUser.getUserName()));
+			if(result == 1) {
+				Board board = dao.list(1,0,"001").get(0);
+				return BoardResultDto.ofSuccess("게시물이 등록되었습니다.", board, null, 0, null);
+			}
 		}
 		
 		return BoardResultDto.ofFail("게시물 등록이 실패하였습니다.");
 	}
 	
 	@Override
-	public BoardResultDto fileUpload(String boardId, MultipartHttpServletRequest request) {
+	public BoardResultDto fileUpload(int boardId, MultipartHttpServletRequest request) {
 		try {
-			File uploadDir = new File("C:/" + uploadFoler);
+			File uploadDir = new File(uploadFolder);
 			if(!uploadDir.exists()) uploadDir.mkdir();
 			
 			List<MultipartFile> fileList = request.getFiles("file");
@@ -96,10 +97,10 @@ public class BoardServiceImpl implements BoardService{
 				String extension = FilenameUtils.getExtension(fileName);
 				
 				String savingFileName = uuid+"."+extension;
-				File destFile = new File(uploadDir.getPath() + "/" + savingFileName);
+				File destFile = new File(uploadFolder + savingFileName);
 				partFile.transferTo(destFile);
 				 
-				BoardFile files =new BoardFile(0, boardId, fileName, partFile.getSize(), partFile.getContentType(), uploadFoler + "/" + savingFileName, null);
+				BoardFile files =new BoardFile(0, boardId, fileName, partFile.getSize(), partFile.getContentType(), uploadFolder + savingFileName, null);
 				dao.uploadFile(files);
 			}
 			return BoardResultDto.ofSuccess("파일 업로드 완료.", null, null, 0, null);
@@ -110,6 +111,17 @@ public class BoardServiceImpl implements BoardService{
 		return BoardResultDto.ofFail("파일 업로드 실패.");
 	}
 	
+	@Override
+	public BoardFileResultDto fileDownload(int fileId) {
+		
+		BoardFile file = dao.downloadFile(fileId);
+			
+		if(file != null) {
+			return BoardFileResultDto.ofSuccess("파일 다운로드 성공", file);
+		}
+		
+		return BoardFileResultDto.ofFail("파일 다운로드 실패");
+	}
 
 	@Override
 	public BoardResultDto update(BoardParamDto paramDto) {
@@ -123,12 +135,11 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public BoardResultDto delete(String boardId) {
+	public BoardResultDto delete(int boardId) {
 		List<String> fileUrlList = dao.deleteFileUrl(boardId);
         
 		for(String fileUrl : fileUrlList) {
-            File file = new File("C:/" + fileUrl);                
-            System.out.println(file.getPath());
+            File file = new File(uploadFolder + fileUrl);
             if(file.exists()) {
                 file.delete();
             }
