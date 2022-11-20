@@ -22,6 +22,7 @@
             :searchable="true"
             :close-on-select="true"
             :show-labels="false"
+            :disabled="map.gugunList.length == 0"
             placeholder="구/군 선택"
           >
           </multiselect>
@@ -34,6 +35,7 @@
             :searchable="true"
             :close-on-select="true"
             :show-labels="false"
+            :disabled="map.dongList.length == 0"
             placeholder="동 선택"
           >
           </multiselect>
@@ -80,16 +82,33 @@ export default {
   },
   watch : {
     sidoValue() {
-      console.log ('sido value 변경 -->  gugun List 출력')
-      this.getGugunList(this.sidoValue);
+      if(this.sidoValue == null || this.sidoValue.code != this.map.sido.code){
+        this.gugunValue = "";
+        this.dongValue = "";
+        this.$store.commit("mapStore/SET_GUGUN", {});
+        this.$store.commit("mapStore/SET_DONG", {});
+      }
+
+      if(this.sidoValue != null){
+        console.log ('sido value 변경 -->  gugun List 출력');
+        this.getGugunList(this.sidoValue);
+      }
     },
     gugunValue() {
-      console.log ('gugun value 변경 -->  dong List 출력')
-      this.getDongList(this.gugunValue)
+      if(this.gugunValue  == null || this.gugunValue.code != this.map.gugun.code){
+        this.dongValue = "";
+        this.$store.commit("mapStore/SET_DONG", {});
+      }
+      if(this.gugunValue != null) {
+      console.log ('gugun value 변경 -->  dong List 출력');
+        this.getDongList(this.gugunValue);
+      }
     },
     dongValue() {
-      console.log ('dong value 변경 --> store 저장')
-      this.$store.commit("mapStore/SET_DONG_CODE", this.dongValue);
+      if(this.dongValue != null){
+        console.log ('dong value 변경 --> store 저장')
+        this.$store.commit("mapStore/SET_DONG", this.dongValue);
+      }
     }
   },
   methods: {
