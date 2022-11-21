@@ -2115,3 +2115,33 @@ Caused by: java.lang.Error: Unresolved compilation problem:
 2022-11-22 01:26:18.902 DEBUG 10296 --- [http-nio-8080-exec-7] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
 2022-11-22 01:26:22.256  INFO 10296 --- [http-nio-8080-exec-10] com.mycom.myhome.user.UserController     : Login Process => UserDto.Request(name=null, email=test, password=1234, code=null, role=null)
 2022-11-22 01:26:22.259  INFO 10296 --- [http-nio-8080-exec-10] com.mycom.myhome.user.UserController     : Login Result => UserDto.Response(result=SUCCESS, userSeq=0, name=test, email=test, profileImageUrl=no_profileImg.png, regDt=2022-11-17T00:00, role=관리자, accessToken=eyJ0eXAiOiJKV1QiLCJyZWdEYXRlIjoxNjY5MDQ3OTgyMjU4LCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjkwNDgwNDIsInN1YiI6ImFjY2Vzcy10b2tlbiIsImVtYWlsIjoidGVzdCJ9.kjAT93RlQK37uVHlizMIz3ovZoR6AEKJsgWB9uIyGaY, refreshToken=eyJ0eXAiOiJKV1QiLCJyZWdEYXRlIjoxNjY5MDQ3OTgyMjU4LCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NzAyNTc1ODIsInN1YiI6InJlZnJlc2gtdG9rZW4iLCJlbWFpbCI6InRlc3QifQ.W6ciajdb-o1QZGiS6d1Y_L6IJGHrApt8wnav4hn8EQ8, count=0)
+2022-11-22 01:32:04.979 DEBUG 10296 --- [http-nio-8080-exec-10] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-22 01:32:04.979 DEBUG 10296 --- [http-nio-8080-exec-10] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-22 01:32:04.980 DEBUG 10296 --- [http-nio-8080-exec-10] com.mycom.myhome.board.BoardDao.list     : <==      Total: 5
+2022-11-22 01:32:06.652 DEBUG 10296 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.detail   : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_id = ?
+2022-11-22 01:32:06.653 DEBUG 10296 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.detail   : ==> Parameters: 3260(Integer)
+2022-11-22 01:32:06.654 DEBUG 10296 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.detail   : <==      Total: 1
+2022-11-22 01:32:06.654 DEBUG 10296 --- [http-nio-8080-exec-1] c.m.myhome.board.BoardDao.getFileList    : ==>  Preparing: SELECT file_id, board_id, file_name, file_size, file_content_type, file_url, reg_dt FROM board_file WHERE board_id = ?
+2022-11-22 01:32:06.655 DEBUG 10296 --- [http-nio-8080-exec-1] c.m.myhome.board.BoardDao.getFileList    : ==> Parameters: 3260(Integer)
+2022-11-22 01:32:06.680 DEBUG 10296 --- [http-nio-8080-exec-1] c.m.myhome.board.BoardDao.getFileList    : <==      Total: 1
+2022-11-22 01:32:06.750 DEBUG 10296 --- [http-nio-8080-exec-4] c.mycom.myhome.board.BoardDao.listCount  : ==>  Preparing: SELECT count(*) FROM board WHERE board_clsf = ?
+2022-11-22 01:32:06.751 DEBUG 10296 --- [http-nio-8080-exec-4] c.mycom.myhome.board.BoardDao.listCount  : ==> Parameters: 001(String)
+2022-11-22 01:32:06.752 DEBUG 10296 --- [http-nio-8080-exec-4] c.mycom.myhome.board.BoardDao.listCount  : <==      Total: 1
+2022-11-22 01:32:07.053 DEBUG 10296 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-22 01:32:07.053 DEBUG 10296 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 10(Integer), 0(Integer)
+2022-11-22 01:32:07.055 DEBUG 10296 --- [http-nio-8080-exec-5] com.mycom.myhome.board.BoardDao.list     : <==      Total: 10
+2022-11-22 01:34:25.698  INFO 10296 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2022-11-22 01:34:25.916  INFO 10296 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-22 01:34:25.916  INFO 10296 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2022-11-22 01:34:25.920  WARN 10296 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-37 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ sun.misc.Unsafe.park(Native Method)
+ java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+ java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2083)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1093)
+ java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:809)
+ java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ java.lang.Thread.run(Thread.java:750)
+2022-11-22 01:34:25.921  INFO 10296 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-37 - Shutdown initiated...
+2022-11-22 01:34:25.927  INFO 10296 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-37 - Shutdown completed.
