@@ -14,19 +14,19 @@
                 <form role="form text-start">
                 <div class="input-group input-group-static mb-4">
                     <label :style="{color:valid.name}">이름</label>
-                    <input type="text" class="form-control in" v-model="user.userName" @blur="validateUserName" placeholder="이름을 입력하세요.">
+                    <input type="text" class="form-control in" v-model="enteredName" @blur="validateName" placeholder="이름을 입력하세요.">
                 </div>
                 <div class="input-group input-group-static mb-4">
                     <label :style="{color:valid.email}">이메일</label>
-                    <input type="email" class="form-control" v-model="user.userEmail" @blur="validateUserEmail" placeholder="john@email.com">
+                    <input type="email" class="form-control" v-model="enteredEmail" @blur="validateEmail" placeholder="john@email.com">
                 </div>
                 <div class="input-group input-group-static mb-4">
                     <label :style="{color:valid.password}">비밀번호</label>
-                    <input type="password" class="form-control" v-model="user.userPassword" @blur="validatePassword" placeholder="•••••••••••••">
+                    <input type="password" class="form-control" v-model="enteredPassword" @blur="validatePassword" placeholder="•••••••••••••">
                 </div>
                 <div class="input-group input-group-static mb-4">
                     <label :style="{color:valid.password2}">비밀번호 확인</label>
-                    <input type="password" class="form-control" v-model="user.userPassword2" @blur="validatePassword2" placeholder="•••••••••••••">
+                    <input type="password" class="form-control" v-model="enteredPassword2" @blur="validatePassword2" placeholder="•••••••••••••">
                 </div>
                 <div class="input-group input-group-static mb-4">
                     <label class="typo__label">관심지역</label>
@@ -59,12 +59,11 @@ export default {
   },
   data () {
     return {
-      user:{
-        userName:'',
-        userEmail:'',
-        userPassword:'',
-        userPassword2:'',
-      },
+      enteredName:'',
+      enteredEmail:'',
+      enteredPassword:'',
+      enteredPassword2:'',
+      
       valid:{
         name: "",
         email: "",
@@ -87,9 +86,14 @@ export default {
     ...mapState(userStore, ["userResult"]),
   },
   methods : {
-    ...mapActions(userStore, ["signUp"]),
+    ...mapActions(userStore, ["signUpUser"]),
     async callSignUp(){
-      await this.signUp(this.user);
+      let user = {
+        name: this.enteredName,
+        email: this.enteredEmail,
+        password: this.enteredPassword
+      }
+      await this.signUpUser(user);
 
       if(this.userResult.status == "SUCCESS"){
         this.$alertify.success(this.userResult.message);
@@ -98,14 +102,14 @@ export default {
       else{
         this.$alertify.error(this.userResult.message);
       }
-      this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
+      this.$store.commit("userStore/CLEAR_RESULT_MESSAGE");
     },
     activateButton(){
       return this.valid.name == "green" && this.valid.email == "green" && this.valid.password == "green" && this.valid.password2 == "green";
     },
     // 길이가 3 이상이면 이름 valid
-    validateUserName() {
-        if (this.user.userName.length >= 3) {
+    validateName() {
+        if (this.enteredName.length >= 3) {
           this.valid.name = "green";
         }else{
           this.valid.name = "red";
@@ -118,21 +122,21 @@ export default {
         var patternNumAtListOne = new RegExp(/[0-9]+/); // + for at least one
 
         if (
-          patternEngAtListOne.test(this.user.userPassword) &&
-          patternSpeAtListOne.test(this.user.userPassword) &&
-          patternNumAtListOne.test(this.user.userPassword) &&
-          this.user.userPassword.length >= 8
+          patternEngAtListOne.test(this.enteredPassword) &&
+          patternSpeAtListOne.test(this.enteredPassword) &&
+          patternNumAtListOne.test(this.enteredPassword) &&
+          this.enteredPassword.length >= 8
         ) {
           this.valid.password = "green";
         } else this.valid.password = "red";
     },
     validatePassword2(e) {
         this.valid.password2 = 
-          e.target.value != "" && e.target.value == this.user.userPassword 
+          e.target.value != "" && e.target.value == this.enteredPassword 
           ? "green" 
           : "red";
     },
-    validateUserEmail() {
+    validateEmail() {
         // ^ 시작일치, $ 끝 일치
         // {2, 3} 2개 ~ 3개
         // * 0회 이상, + 1회 이상
@@ -140,7 +144,7 @@ export default {
         // ? 없거나 1회
         let regexp =
           /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-        if (regexp.test(this.user.userEmail)) this.valid.email = "green";
+        if (regexp.test(this.enteredEmail)) this.valid.email = "green";
         else this.valid.email = "red";
       },
   }

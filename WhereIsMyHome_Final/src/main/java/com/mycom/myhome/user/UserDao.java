@@ -9,27 +9,22 @@ import org.apache.ibatis.annotations.Param;
 public interface UserDao {
 	
 	// 회원가입
-	int signup(User user);
+	int insert(User user);
 	
 	// 회원정보 수정
 	int updateByEmail(User user);
 	
-	// 전체 회원 목록
-	List<User> getTotalList();
+	// 전체 회원 수
+	int selectTotalCount();
 	
-	// 회원 목록
-	List<User> getList(@Param("limit") int limit, @Param("offset") int offset);
+	// 전체 회원 목록
+	List<User> selectAll(@Param("limit") int limit, @Param("offset") int offset);
 	
 	// 이메일로 찾기 
-	User findByEmail(String email);
-	
-	// 이메일과 비밀번호가 맞는 유저찾기
-	User findByMatch(User user);
+	User selectByEmail(String email);
 	
 	// refresh토큰 등록 or 삭제
-	int updateRefreshToken(@Param("userEmail") String userEmail, @Param("token") String token);
+	int updateToken();
 	
-	// refresh토큰 얻기
-	String getRefreshToken(String userEmail);
 }
  

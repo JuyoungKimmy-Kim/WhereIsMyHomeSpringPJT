@@ -2,60 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycom.myhome.user.UserDao"> <!-- @Mapper annotation 있는 dao -->
 	
-	
-	<select id="getTotalList" resultType="com.mycom.myhome.user.User">
-		SELECT user_seq, user_name, user_email, user_profile_image_url, reg_dt, user_clsf
-		FROM users
-	</select>
-	
-	<!-- 유저 목록 -->
-	<select id="getList" parameterType="map" resultType="com.mycom.myhome.user.User">
-		SELECT user_seq, user_name, user_email, user_profile_image_url, reg_dt, user_clsf
-		FROM users
-		ORDER BY user_seq
-		DESC
-        LIMIT #{limit} OFFSET #{offset}
-	</select>
-	
 	<!-- 회원가입 -->
-	<insert id="signup" parameterType="com.mycom.myhome.user.User">
-		INSERT INTO users(user_name, user_password, user_email, reg_dt)
-		VALUES(#{userName}, #{userPassword}, #{userEmail}, now())
+	<insert id="insert" parameterType="com.mycom.myhome.user.User">
+		INSERT INTO users(name, password, email, reg_dt)
+		VALUES(#{name}, #{password}, #{email}, now())
 	</insert>
 	
 	<!-- 회원정보 수정 -->
 	<update id="updateByEmail" parameterType="com.mycom.myhome.user.User">
 		UPDATE users
-		SET user_password = #{userPassword}, user_clsf = #{userClsf}
-		WHERE user_email = #{userEmail}
+		SET password = #{password}, code = #{code}
+		WHERE email = #{email}
 	</update>
 	
-	<!-- 이메일로 찾기 -->
-	<select id="findByEmail" parameterType="string" resultType="com.mycom.myhome.user.User">
-		SELECT user_seq, user_name, user_password, user_email, user_profile_image_url, reg_dt, user_clsf
+	<!-- 전체 회원 수 -->
+	<select id="selectTotalCount" resultType="int">
+		SELECT count(*)
 		FROM users
-		WHERE user_email = #{email}
 	</select>
 	
-	<select id="findByMatch" parameterType="com.mycom.myhome.user.User" resultType="com.mycom.myhome.user.User">
-		SELECT user_seq, user_name, user_password, user_email, user_profile_image_url, reg_dt, user_clsf
+	<!-- 회원 목록 -->
+	<select id="selectAll" parameterType="map" resultType="com.mycom.myhome.user.User">
+		SELECT seq, name, email, profile_image_url, reg_dt, code
 		FROM users
-		WHERE user_email = #{userEmail} and user_password = #{userPassword}
+		ORDER BY seq
+		DESC
+        LIMIT #{limit} OFFSET #{offset}
+	</select>
+	
+	<!-- 이메일로 찾기 -->
+	<select id="selectByEmail" parameterType="string" resultType="com.mycom.myhome.user.User">
+		SELECT seq, name, password, email, profile_image_url, reg_dt, code, token
+		FROM users
+		WHERE email = #{email}
 	</select>
 	
 	<!-- refresh 토큰 업데이트 ( 등록 / 삭제 ) -->
-	<update id="updateRefreshToken" parameterType="string">
+	<update id="updateToken" parameterType="string">
 		UPDATE users
 		SET token = #{token}
-		WHERE user_email = #{userEmail}
+		WHERE email = #{userEmail}
 	</update>
 	
-	<!-- refresh 토큰 얻기 ( 만료된건지 비교하는데 사용 ) -->
-	<select id="getRefreshToken" parameterType="string" resultType="string">
-		SELECT token
-		FROM users
-		WHERE user_email = #{userEmail}
-	</select>
 </mapper>
 
 

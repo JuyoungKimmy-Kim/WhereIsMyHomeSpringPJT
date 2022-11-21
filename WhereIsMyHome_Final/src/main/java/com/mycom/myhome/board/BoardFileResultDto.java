@@ -1,6 +1,6 @@
 package com.mycom.myhome.board;
 
-import com.mycom.myhome.Status;
+import com.mycom.myhome.common.Status;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

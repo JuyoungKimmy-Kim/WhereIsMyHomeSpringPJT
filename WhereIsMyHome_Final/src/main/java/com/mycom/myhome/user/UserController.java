@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mycom.myhome.common.Status;
+
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -35,93 +37,85 @@ public class UserController {
 	private final UserService service;	
 	
 	
-	@GetMapping("/users")
-	public ResponseEntity<UserResultDto> totalList(){
-		UserResultDto resultDto = service.getTotalList();
-		if(resultDto != null) {
-			return new ResponseEntity<>(resultDto, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+	// 모든 유저 수
+	@GetMapping("/users/count")
+	public ResponseEntity<UserDto.Response> totalCount(){
+		UserDto.Response responseDto = service.getTotalCount();
+
+		return ResponseEntity.ok(responseDto);
 	}
 	
+	// 유저 목록 ( limit offset )
 	@GetMapping("/users/{limit}/{offset}")
-	public ResponseEntity<UserResultDto> users(@PathVariable int limit, @PathVariable int offset){
-		UserResultDto resultDto = service.getUserList(limit, offset);
-		
-		if(resultDto != null) {
-			return new ResponseEntity<>(resultDto, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<List<UserDto.Response>> userList(@PathVariable int limit, @PathVariable  int offset){
+		List<UserDto.Response> list = service.getUserList(limit, offset);
+		return ResponseEntity.ok(list);
 	}
 	
-	@PutMapping("/users")
-	public ResponseEntity<UserResultDto> update(@RequestBody UserParamDto paramDto){
-		UserResultDto resultDto = service.update(paramDto);
-		if(resultDto != null) {
-			return new ResponseEntity<>(resultDto, HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	@GetMapping("/users/{email}")
-	public ResponseEntity<UserResultDto> info(@PathVariable String email, HttpServletRequest request){
-		UserResultDto resultDto = service.info(email, request.getHeader("access-token"));
-		
-		HttpStatus status = null;
-		switch(resultDto.getResult()) {
-			case SUCCESS: status = HttpStatus.OK; break;
-			case FAIL: status = HttpStatus.INTERNAL_SERVER_ERROR; break;
-			case UNAUTHORIZED: status = HttpStatus.UNAUTHORIZED; break;
-		}
-		
-		return new ResponseEntity<>(resultDto, status);
-	}
-	
+	// 로그인
 	@PostMapping("/login")
-	public ResponseEntity<UserResultDto> login(@RequestBody UserParamDto paramDto) {
-		UserResultDto resultDto = service.login(paramDto);
+	public ResponseEntity<UserDto.Response> login(@RequestBody UserDto.Request requestDto) {
+		logger.info("Login Process => " + requestDto.toString());
+		UserDto.Response responseDto = service.loginProcess(requestDto);
+		logger.info("Login Result => " + responseDto.toString());
 		
-		logger.info("로그인 >> " + paramDto.toString());
-		logger.info(resultDto.toString());
-		if(resultDto != null) {
-			return new ResponseEntity<>(resultDto, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+		return ResponseEntity.ok(responseDto);
 	}
 	
 	
-	
-	@GetMapping("/logout/{email}")
-	public ResponseEntity<UserResultDto> logout(@PathVariable String email) {
-		UserResultDto resultDto = service.deleteRefreshToken(email);
-		if(resultDto != null) {
-			return new ResponseEntity<>(resultDto, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
+	// 회원가입
 	@PostMapping("/signup")
-	public ResponseEntity<UserResultDto> signup(@RequestBody UserParamDto paramDto) {
-		UserResultDto resultDto = service.signup(paramDto);
+	public ResponseEntity<UserDto.Response> signUp(@RequestBody UserDto.Request requestDto) {
+		logger.info("signUp Process => " + requestDto.toString());
 		
-		if(resultDto != null) return new ResponseEntity<>(resultDto, HttpStatus.OK);
-		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+		UserDto.Response responseDto = service.processNewUser(requestDto);
+		
+		logger.info("signUp Result => " + responseDto.toString());
+		return ResponseEntity.ok(responseDto);
 	}
 	
-	@PostMapping("/regen")
-	public ResponseEntity<UserResultDto> accessRegen(@RequestBody UserParamDto paramDto, HttpServletRequest request){
+	// 유저 정보 수정
+	@PutMapping("/users")
+	public ResponseEntity<UserDto.Response> modifyInfo(@RequestBody UserDto.Request requestDto){
+		logger.info("modify Process => " + requestDto.toString());
+		
+		UserDto.Response responseDto = service.modifyProcess(requestDto);
+
+		logger.info("modify Result => " + responseDto.toString());
+		return ResponseEntity.ok(responseDto);
+	}
+	
+	// email인 유저 찾아서 토큰확인
+	@GetMapping("/users/token")
+	public ResponseEntity<UserDto.Response> validateToken(String email, HttpServletRequest request){
+		UserDto.Response responseDto = service.tokenValidationProcess(email, request.getHeader("access-token"));
+		return ResponseEntity.ok(responseDto);
+	}
+
+	
+	// 로그아웃
+	@GetMapping("/logout")
+	public ResponseEntity<UserDto.Response> logout(String email) {
+		UserDto.Response responseDto = service.logoutProcess(email);
+		return ResponseEntity.ok(responseDto);
+	}
+	
+	// AccessToken 재생성
+	@PostMapping("/users/token")
+	public ResponseEntity<UserDto.Response> createAccessToken(@RequestBody UserDto.Request requestDto, HttpServletRequest request){
+		logger.info("createAccessToken Process => " + requestDto.toString());
 		String token = request.getHeader("refresh-token");
-		UserResultDto resultDto = service.getRefreshToken(paramDto, token);
+		UserDto.Response responseDto = service.getRefreshToken(requestDto, token);
+		logger.info("createAccessToken Process => " + responseDto.toString());
 		
-		HttpStatus status = null;
-		switch(resultDto.getResult()) {
-			case SUCCESS: status = HttpStatus.OK; break;
-			case FAIL: status = HttpStatus.INTERNAL_SERVER_ERROR; break;
-			case UNAUTHORIZED: status = HttpStatus.UNAUTHORIZED; break;
+		Status result = responseDto.getResult();
+		if(result == Status.SUCCESS){
+			return ResponseEntity.ok(responseDto);
+		}else if(result == Status.UNAUTHORIZED) {
+			return new ResponseEntity<>(responseDto, HttpStatus.UNAUTHORIZED);
 		}
-		
-		return new ResponseEntity<>(resultDto, status);
+
+		return new ResponseEntity<>(responseDto, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 }

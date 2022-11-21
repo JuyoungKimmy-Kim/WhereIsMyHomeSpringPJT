@@ -27,8 +27,8 @@
                                     <img src="@/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-xs">{{user.userName}}</h6>
-                                    <p class="text-xs text-secondary mb-0">{{user.userEmail}}</p>
+                                    <h6 class="mb-0 text-xs">{{user.name}}</h6>
+                                    <p class="text-xs text-secondary mb-0">{{user.email}}</p>
                                 </div>
                                 </div>
                             </td>
@@ -68,8 +68,11 @@
 import HeaderPage from '@/components/HeaderPage.vue'
 import PaginationUi from '@/components/PaginationUI.vue'
 
-import {userList, totalList} from '@/common/user.js';
+import {mapState, mapActions} from 'vuex'
+import {userList, totalCount} from '@/common/user.js';
 import util from '@/common/utils.js';
+
+const userStore = "userStore";
 
 export default {
     components:{
@@ -89,11 +92,15 @@ export default {
             userlist:[],
         }
     }, 
+    computed:{
+        ...mapState(userStore, ["userResult"]),
+    },
     methods: {
+        ...mapActions(userStore, ["getUserInfo"]),
         async getUserListCount(){
-            await totalList(
+            await totalCount(
                 ({data})=>{
-                    this.totalListItemCount = data.userList.length;
+                    this.totalListItemCount = data.count;
                 },
                 (error)=>{
                     console.log(error);
@@ -104,12 +111,10 @@ export default {
         async callUserList(){
             await userList(this.limit, this.offset,
                 ({data})=>{
-                    console.log(data.userList);
-                    this.userlist = data.userList;   
+                    this.userlist = data;   
                     this.userlist.forEach(el=>{
                         el.regDate = util.makeDateStr(el.regDt.date.year, el.regDt.date.month, el.regDt.date.day, "/");
                         el.regTime = util.makeTimeStr(el.regDt.time.hour, el.regDt.time.minute, el.regDt.time.second, ":");
-                        el.role = el.userClsf == "001" ? "관리자" : "일반"
                     })
                 }, 
                 (error)=>{
@@ -122,7 +127,17 @@ export default {
             this.callUserList();
         },
     },
-    mounted(){
+    async mounted(){
+        
+        let token = sessionStorage.getItem("access-token");
+        await this.getUserInfo(token);
+
+        if(this.userResult.status != "SUCCESS"){
+            this.$alertify.error(this.userResult.message);
+            this.$store.commit("userStore/CLEAR_RESULT_MESSAGE");
+            this.$router.push("/");
+        }
+        
         this.getUserListCount();
         this.callUserList();
     }

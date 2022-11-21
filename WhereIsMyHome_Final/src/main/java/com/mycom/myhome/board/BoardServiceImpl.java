@@ -41,11 +41,11 @@ public class BoardServiceImpl implements BoardService{
 	public BoardResultDto detail(int boardId, String userEmail) {
 		Board board = dao.detail(boardId);
 		
-		User findUser = userDao.findByEmail(userEmail);
+		User findUser = userDao.selectByEmail(userEmail);
 		if(findUser != null) {
-			int sameUser = dao.ReadCount(boardId,findUser.getUserSeq());
+			int sameUser = dao.ReadCount(boardId,findUser.getSeq());
 			if(sameUser != 1) {
-				dao.insertReadCount(boardId, findUser.getUserSeq());
+				dao.insertReadCount(boardId, findUser.getSeq());
 				dao.addReadCount(boardId);
 			}
 		}
@@ -69,10 +69,10 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardResultDto insert(BoardParamDto paramDto) {
 		String userEmail = paramDto.getUserEmail();
-		User findUser = userDao.findByEmail(userEmail);	
+		User findUser = userDao.selectByEmail(userEmail);	
 		
 		if(findUser != null) {
-			int result = dao.insert(paramDto.toEntity(findUser.getUserName()));
+			int result = dao.insert(paramDto.toEntity(findUser.getName()));
 			if(result == 1) {
 				Board board = dao.list(1,0,"001").get(0);
 				return BoardResultDto.ofSuccess("게시물이 등록되었습니다.", board, null, 0, null);

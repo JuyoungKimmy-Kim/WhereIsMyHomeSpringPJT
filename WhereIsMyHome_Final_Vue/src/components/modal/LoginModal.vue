@@ -14,11 +14,11 @@
             <form role="form text-start">
             <div class="input-group input-group-static mb-4">
                 <label>이메일</label>
-                <input type="email" class="form-control" v-model="user.userEmail" @keyup.enter="confirm" placeholder="john@email.com">
+                <input type="email" class="form-control" v-model="user.email" @keyup.enter="confirm" placeholder="john@email.com">
             </div>
             <div class="input-group input-group-static mb-4">
                 <label>비밀번호</label>
-                <input type="password" class="form-control" v-model="user.userPassword" @keyup.enter="confirm" placeholder="•••••••••••••">
+                <input type="password" class="form-control" v-model="user.password" @keyup.enter="confirm" placeholder="•••••••••••••">
             </div>
 
             <div class="form-check form-switch d-flex align-items-center">
@@ -54,8 +54,8 @@ export default {
     data() {
         return {
             user:{
-                userEmail: "",
-                userPassword: ""
+                email: "",
+                password: ""
             }
         }
     },
@@ -69,21 +69,12 @@ export default {
         },
         async confirm(){
             await this.loginConfirm(this.user);
-            console.log(this.userResult);
-            if(this.userResult.status == "FAIL"){
-                this.$alertify.error(this.userResult.message);
-            }
             
             if(this.isLogin){
                 this.$alertify.success(this.userResult.message);
-
-                let token = sessionStorage.getItem("access-token");
-                await this.getUserInfo(token);
-                if(this.userResult.status != "SUCCESS"){
-                    this.$alertify.error(this.userResult.message);
-                }
-                this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
                 this.$emit("close-this-modal");
+            }else{
+                this.$alertify.error(this.userResult.message);
             }
         }
     },

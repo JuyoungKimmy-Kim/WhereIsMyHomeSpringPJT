@@ -41,8 +41,8 @@ export default {
         this.loginModal = new Modal(document.getElementById("loginModal"));
       }
 
-      this.$refs.login_modal.user.userEmail = "";
-      this.$refs.login_modal.user.userPassword = "";
+      this.$refs.login_modal.user.email = "";
+      this.$refs.login_modal.user.password = "";
 
       this.loginModal.show();
     },
@@ -53,19 +53,15 @@ export default {
         this.signUpModal = new Modal(document.getElementById("signUpModal"));
       }
 
-      this.$refs.signup_modal.user = {
-        userEmail: "",
-        userName: "",
-        userPassword: "",
-        userPassword2: "",
-      };
-
-      this.$refs.signup_modal.valid = {
+      const dump = {
         email: "",
         name: "",
         password: "",
         password2: "",
       };
+
+      this.$refs.signup_modal.user = dump;
+      this.$refs.signup_modal.valid = dump;
 
 
       this.signUpModal.show();
@@ -84,8 +80,8 @@ export default {
         this.updateModal= new Modal(document.getElementById("updateModal"));
       }
 
-      this.$refs.update_modal.userPassword = "";
-      this.$refs.update_modal.userPassword2 = "";
+      this.$refs.update_modal.password = "";
+      this.$refs.update_modal.password2 = "";
       this.$refs.update_modal.passwordColor = "";
       this.$refs.update_modal.passwordColor2 = "";
 
