@@ -1,4 +1,4 @@
-import {listCount, detail, insert, update, deletePost} from '@/common/board.js';
+import {detail, insert, update, deletePost} from '@/common/board.js';
 import util from '@/common/utils.js';
 
 
@@ -10,7 +10,6 @@ const boardStore = {
             message: "",
         },
         post:{},
-        totalListItemCount: 0,
         sameUser: false,
     },
     mutations:{
@@ -36,25 +35,11 @@ const boardStore = {
                 state.post.fileList = payload.fileList;
             }
         },
-        SET_TOTAL_LIST_ITEM_COUNT(state, payload){
-            state.totalListItemCount = payload;
-        },
         SET_SAME_USER(state, payload){
             state.sameUser = payload.sameUser;
         }
     },
     actions:{
-        async getTotalCount({commit}, boardClsf){
-            await listCount(boardClsf,
-                ({data})=>{
-                    if(data.result == "SUCCESS"){
-                        commit("SET_TOTAL_LIST_ITEM_COUNT", data.listCount);
-                    }
-                },
-                (error)=>{
-                    console.log(error);
-                })
-        },
         async postDetail({commit}, payload){
             await detail(payload.boardId, payload.userEmail,
                 ({data})=>{

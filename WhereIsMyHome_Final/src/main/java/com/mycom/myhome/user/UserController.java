@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,12 +30,28 @@ import lombok.RequiredArgsConstructor;
 				RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.HEAD, RequestMethod.OPTIONS })
 public class UserController {
 	
+	private final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	private final UserService service;	
 	
+	
 	@GetMapping("/users")
-	public ResponseEntity<List<Object>> users(){
+	public ResponseEntity<UserResultDto> totalList(){
+		UserResultDto resultDto = service.getTotalList();
+		if(resultDto != null) {
+			return new ResponseEntity<>(resultDto, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@GetMapping("/users/{limit}/{offset}")
+	public ResponseEntity<UserResultDto> users(@PathVariable int limit, @PathVariable int offset){
+		UserResultDto resultDto = service.getUserList(limit, offset);
 		
-		return null;
+		if(resultDto != null) {
+			return new ResponseEntity<>(resultDto, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@PutMapping("/users")
@@ -64,8 +82,8 @@ public class UserController {
 	public ResponseEntity<UserResultDto> login(@RequestBody UserParamDto paramDto) {
 		UserResultDto resultDto = service.login(paramDto);
 		
-		System.out.println(paramDto);
-		System.out.println(resultDto);
+		logger.info("로그인 >> " + paramDto.toString());
+		logger.info(resultDto.toString());
 		if(resultDto != null) {
 			return new ResponseEntity<>(resultDto, HttpStatus.OK);
 		}

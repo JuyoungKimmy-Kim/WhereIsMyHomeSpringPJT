@@ -1,5 +1,7 @@
 package com.mycom.myhome.user;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,6 +13,12 @@ public interface UserDao {
 	
 	// 회원정보 수정
 	int updateByEmail(User user);
+	
+	// 전체 회원 목록
+	List<User> getTotalList();
+	
+	// 회원 목록
+	List<User> getList(@Param("limit") int limit, @Param("offset") int offset);
 	
 	// 이메일로 찾기 
 	User findByEmail(String email);

@@ -24,7 +24,6 @@ const mapStore = {
             state.map.gugunList=list;
         },
         SET_GUGUN(state, payload) {
-            console.log("GUGUN");
             state.map.gugun = payload;
         },
         SET_DONG_LIST(state, list) {

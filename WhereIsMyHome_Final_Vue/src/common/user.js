@@ -1,5 +1,13 @@
 import http from "./axios.js"
 
+async function totalList(success, fail){
+    await http.get("/users").then(success).catch(fail);
+}
+
+async function userList(limit, offset, success, fail){
+    await http.get(`/users/${limit}/${offset}`).then(success).catch(fail);
+}
+
 // 회원가입
 async function signUp(user, success, fail){
     await http.post("/signup", user).then(success).catch(fail);
@@ -28,4 +36,4 @@ async function update(user, success, fail){
     await http.put("/users", user).then(success).catch(fail);
 }
 
-export { signUp, login, findByEmail, logout, tokenRegeneration, update }
+export { totalList, userList, signUp, login, findByEmail, logout, tokenRegeneration, update }

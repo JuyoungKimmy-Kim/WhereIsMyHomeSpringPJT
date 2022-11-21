@@ -102,7 +102,7 @@ const userStore = {
                 ({data})=>{
                     if(data.result == "SUCCESS"){
                         commit("SET_RESULT_MESSAGE", {status: "SUCCESS", message: "토큰 검증 완료"});
-                        commit("SET_USER_INFO", data.userInfo);
+                        commit("SET_USER_INFO", data.user);
                     }else{
                         commit("SET_USER_INFO", null);
                         commit("SET_IS_LOGIN", false);
@@ -124,8 +124,8 @@ const userStore = {
                 ({data})=>{
                     if(data.result == "SUCCESS"){
                         sessionStorage.setItem("access-token", data.accessToken);
-                        commit("SET_RESULT_MESSAGE", {status: "Fail", message: "다시 시도 해주세요."});
                         commit("SET_VALID_TOKEN", true);
+                        this.getUserInfo(data.accessToken);
                     }
                 },
                 async (error)=>{
@@ -153,7 +153,7 @@ const userStore = {
         async passwordUpdate({commit}, user){
             await update(user, 
                 ({data})=>{
-                    commit("SET_USER_INFO", data.userInfo);
+                    commit("SET_USER_INFO", data.user);
                     commit("SET_RESULT_MESSAGE", {status: data.result, message: data.message});
                 },
                 (error)=>{

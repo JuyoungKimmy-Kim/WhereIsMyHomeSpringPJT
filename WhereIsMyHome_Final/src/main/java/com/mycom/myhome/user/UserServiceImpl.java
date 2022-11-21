@@ -1,7 +1,10 @@
 package com.mycom.myhome.user;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,12 +26,34 @@ public class UserServiceImpl implements UserService{
 	
 	
 	@Override
+	public UserResultDto getTotalList() {
+		List<User> totalList = dao.getTotalList();
+		
+		if(totalList != null) {
+			return UserResultDto.ofSuccess("유저목록을 불러오는데 성공하였습니다.", null, totalList, null, null);
+		}
+		
+		return UserResultDto.ofFail("유저목록을 불러오는데 실패했습니다.");
+	}
+	
+	@Override
+	public UserResultDto getUserList(int limit, int offset) {
+		List<User> findUserList = dao.getList(limit, offset);
+		
+		if(findUserList != null) {
+			return UserResultDto.ofSuccess("유저목록을 불러오는데 성공하였습니다.", null, findUserList, null, null);
+		}
+		
+		return UserResultDto.ofFail("유저목록을 불러오는데 실패했습니다.");
+	}
+	
+	@Override
 	public UserResultDto update(UserParamDto paramDto) {
 		System.out.println(paramDto.toEntity());
 		int result = dao.updateByEmail(paramDto.toEntity());
 		if(result == 1) {
 			User findUser = dao.findByEmail(paramDto.getUserEmail());
-			return UserResultDto.ofSuccess("회원정보 수정이 완료되었습니다.", UserResultDto.setInfo(findUser), null, null);
+			return UserResultDto.ofSuccess("회원정보 수정이 완료되었습니다.", findUser, null, null, null);
 		}
 		
 		return UserResultDto.ofFail("회원정보 수정에 실패하였습니다. 다시 시도해주세요.");
@@ -47,7 +72,7 @@ public class UserServiceImpl implements UserService{
 			
 			dao.updateRefreshToken(findUser.getUserEmail(), refreshToken);
 			
-			return UserResultDto.ofSuccess("로그인이 완료되었습니다.", null, accessToken, refreshToken);
+			return UserResultDto.ofSuccess("로그인이 완료되었습니다.", null, null, accessToken, refreshToken);
 		}
 		return UserResultDto.ofFail("아이디 또는 비밀번호를 다시 확인해주세요.");
 	}
@@ -63,7 +88,7 @@ public class UserServiceImpl implements UserService{
 		}
 		
 		dao.signup(user);
-		return UserResultDto.ofSuccess("회원가입에 성공하였습니다.", null, null, null);
+		return UserResultDto.ofSuccess("회원가입에 성공하였습니다.", null, null, null, null);
 	}
 	
 	// 이메일을 가지고 현재 토큰이 유효한지 확인
@@ -71,7 +96,7 @@ public class UserServiceImpl implements UserService{
 		if(jwtService.checkToken(accessToken)) {
 			User findUser = dao.findByEmail(email);
 			if(findUser != null) {
-				return UserResultDto.ofSuccess("유저정보를 얻어오는데 성공하였습니다.", UserResultDto.setInfo(findUser), null, null);
+				return UserResultDto.ofSuccess("유저정보를 얻어오는데 성공하였습니다.", findUser, null, null, null);
 			}
 		}
 		
@@ -85,7 +110,7 @@ public class UserServiceImpl implements UserService{
 		if(jwtService.checkToken(token)) {
 			if(token.contentEquals(dbToken)) {
 				String accessToken = jwtService.createAccessToken("userEmail", email);
-				return UserResultDto.ofSuccess("토큰 재발급 성공", null, accessToken, null);
+				return UserResultDto.ofSuccess("토큰 재발급 성공", null, null, accessToken, null);
 			}
 		}
 
@@ -95,7 +120,7 @@ public class UserServiceImpl implements UserService{
 	// refresh 토큰 삭제
 	public UserResultDto deleteRefreshToken(String userEmail) {
 		int result = dao.updateRefreshToken(userEmail, null);
-		if(result == 1) return UserResultDto.ofSuccess("로그아웃에 성공하였습니다.", null, null, null);
+		if(result == 1) return UserResultDto.ofSuccess("로그아웃에 성공하였습니다.", null, null, null, null);
 		return UserResultDto.ofFail("리프레시 토큰 삭제 실패");
 	}
 	

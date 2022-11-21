@@ -38,17 +38,17 @@ export default {
         "listRowCount",
         "pageLinkCount",
         "currentPageIndex",
+        "totalListItemCount"
     ],
     methods: {
         paginationChanged(pageIndex) {
-        this.$emit("call-move-page", pageIndex);
+            this.$emit("call-move-page", pageIndex);
         },
         isActive(index){
             return this.currentPageIndex == index; 
         }
     },
     computed:{
-        ...mapState(boardStore, ["totalListItemCount"]),
         pageCount() {
             return Math.ceil(this.totalListItemCount / this.listRowCount);
         },
