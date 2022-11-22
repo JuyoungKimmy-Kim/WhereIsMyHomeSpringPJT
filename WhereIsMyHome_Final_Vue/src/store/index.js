@@ -19,11 +19,15 @@ export default new Vuex.Store({
     ],
     state:{
         isMapView: false,
+        isLoading: false,
     },
     mutations:{
         IS_MAP_VIEW(state, status){
             state.isMapView = status;
         },
+        SET_IS_LOADING(state, status){
+            state.isLoading = status;
+        }
     },
     actions:{
     },

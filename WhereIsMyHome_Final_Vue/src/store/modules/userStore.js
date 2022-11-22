@@ -12,9 +12,7 @@ const userStore = {
             message: "",
         },
         isLogin: false,
-        userInfo: {
-
-        },
+        userInfo: {},
         validToken: null,
     },
     mutations:{
@@ -47,9 +45,19 @@ const userStore = {
                 name:payload.name,
                 email:payload.email,
                 profileImageUrl:payload.profileImageUrl,
-                regDate: util.makeDateStr(payload.regDt.date.year, payload.regDt.date.month, payload.regDt.date.day, '/'),
-                role:payload.role,
             };   
+            
+            if(payload.profileImageUrl == "/no_img.png"){
+                state.userInfo.profileImageUrl = require("@/assets/img/profile/no_img.png");
+            }
+
+            if(payload.regDt != null){
+                state.userInfo.regDate = util.makeDateStr(payload.regDt.date.year, payload.regDt.date.month, payload.regDt.date.day, '/');
+            }
+
+            if(payload.role != null){
+                state.userInfo.role = payload.role;
+            }
             
         }
     },

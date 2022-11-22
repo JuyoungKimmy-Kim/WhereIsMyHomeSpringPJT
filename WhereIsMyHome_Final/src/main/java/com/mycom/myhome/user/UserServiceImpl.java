@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mycom.myhome.code.Code;
 import com.mycom.myhome.code.CodeDao;
 import com.mycom.myhome.common.Status;
+import com.mycom.myhome.user.UserDto.Request;
+import com.mycom.myhome.user.UserDto.Response;
 import com.mycom.myhome.user.jwt.JwtService;
 
 import lombok.RequiredArgsConstructor;
@@ -60,8 +62,6 @@ public class UserServiceImpl implements UserService{
 		return list;
 	}
 	
-	
-	
 	//로그인
 	@Override
 	public UserDto.Response loginProcess(UserDto.Request dto) {
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService{
 			String accessToken = jwtService.createAccessToken("email", email);
 			String refreshToken = jwtService.createRefreshToken("email", email);
 				
-			dao.updateToken();
+			dao.updateToken(refreshToken, email);
 			
 			Code code = codeDao.selectByCode(groupCode, user.getCode());
 			String role = code.getDescription();
@@ -97,10 +97,12 @@ public class UserServiceImpl implements UserService{
 	public UserDto.Response processNewUser(UserDto.Request dto) {
 		User entity = dto.toEntity();
 		String email = entity.getEmail();
-		
+
+		logger.info(dto.toString());
 		// insert 실패해도 seq오르는거 방지
 		User user = dao.selectByEmail(email);
 		if(user == null) {
+			logger.info(entity.toString());
 			dao.insert(entity);
 			return UserDto.Response.builder()
 					.result(Status.SUCCESS).build();
@@ -192,6 +194,41 @@ public class UserServiceImpl implements UserService{
 		dao.updateByEmail(user);
 		
 		return UserDto.Response.builder().result(Status.SUCCESS).build();
+	}
+
+	
+	@Override
+	public UserDto.Response validateUser(UserDto.Request paramDto){
+		String email = paramDto.getEmail();
+		User user = dao.selectByEmail(email);
+		if(user == null) {
+			return UserDto.Response.builder()
+					.result(Status.FAIL)
+					.email(paramDto.getEmail())
+					.name(paramDto.getName())
+					.profileImageUrl(paramDto.getProfileImageUrl())
+					.build();
+		}
+		
+
+		String accessToken = jwtService.createAccessToken("email", email);
+		String refreshToken = jwtService.createRefreshToken("email", email);
+		
+		dao.updateToken(refreshToken, email);
+		
+		Code code = codeDao.selectByCode(groupCode, user.getCode());
+		String role = code.getDescription();
+		
+		return UserDto.Response.builder()
+				.result(Status.SUCCESS)
+				.name(user.getName())
+				.email(user.getEmail())
+				.profileImageUrl(user.getProfileImageUrl())
+				.regDt(user.getRegDt())
+				.role(role)
+				.accessToken(accessToken)
+				.refreshToken(refreshToken)
+				.build();
 	}
 	
 	

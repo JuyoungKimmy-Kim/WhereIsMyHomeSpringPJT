@@ -75,9 +75,9 @@ import HeaderPage from '@/components/HeaderPage.vue'
 import PaginationUi from '@/components/PaginationUI.vue'
 
 import { Modal } from "bootstrap";
-import BoardInsertModal from '@/components/modal/board/BoardInsert.vue'
-import boardDetailModal from '@/components/modal/board/BoardDetail.vue'
-import boardUpdateModal from '@/components/modal/board/BoardUpdate.vue'
+import BoardInsertModal from '@/components/board/modal/BoardInsert.vue'
+import BoardDetailModal from '@/components/board/modal/BoardDetail.vue'
+import BoardUpdateModal from '@/components/board/modal/BoardUpdate.vue'
 
 import {list, listCount} from '@/common/board.js';
 import util from '@/common/utils.js';
@@ -92,8 +92,8 @@ export default {
         PaginationUi,
 
         BoardInsertModal,
-        boardDetailModal,
-        boardUpdateModal
+        BoardDetailModal,
+        BoardUpdateModal
     },
     data() {
         return {
@@ -149,7 +149,6 @@ export default {
                 }
                 
                 this.$refs.detail_modal.hideCollapse();
-
                 this.boardDetailModal.show();
             }else{
                 this.$alertify.error(this.boardResult.message);

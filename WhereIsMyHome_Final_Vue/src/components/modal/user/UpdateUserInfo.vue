@@ -23,11 +23,11 @@
                 </div>
                 <div class="input-group input-group-static mb-4">
                     <label :style="{color:passwordColor}">비밀번호</label>
-                    <input type="password" v-model="password" @blur="validatePassword" class="form-control" placeholder="•••••••••••••">
+                    <input type="password" v-model="password" class="form-control" placeholder="•••••••••••••">
                 </div>
                 <div class="input-group input-group-static mb-4">
                     <label :style="{color:passwordColor2}">비밀번호 확인</label>
-                    <input type="password" v-model="password2" @blur="validatePassword2" class="form-control" placeholder="•••••••••••••">
+                    <input type="password" v-model="password2" class="form-control" placeholder="•••••••••••••">
                 </div>
                 <div class="text-center">
                     <button type="button"  :class="[activateButton() ? 'btn bg-gradient-info mt-4 mb-0' : 'btn bg-gradient-info mt-4 mb-0 disabled']" @click="callUpdate">수정완료</button>
@@ -89,7 +89,7 @@ export default {
     },
     validatePassword2(e) {
         this.passwordColor2 = 
-          e.target.value != "" && e.target.value == this.password 
+          this.password2 != "" && this.password2 == this.password 
           ? "green" 
           : "red";
     },
@@ -97,6 +97,14 @@ export default {
   computed:{
     ...mapState(userStore, ["userInfo","userResult"]),
   },
+  watch:{
+    password(){
+      this.validatePassword();
+    },
+    password2(){
+      this.validatePassword2();
+    }
+  }
 }
 </script>
 

@@ -118,4 +118,12 @@ public class UserController {
 		return new ResponseEntity<>(responseDto, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@PostMapping("/login/kakao")
+	public ResponseEntity<UserDto.Response> kakaoLogin(@RequestBody UserDto.Request requestDto) {
+		logger.info("kakao login >> " + requestDto.toString());
+		
+		UserDto.Response responseDto = service.validateUser(requestDto);
+		
+		return ResponseEntity.ok(responseDto);
+	}
 }

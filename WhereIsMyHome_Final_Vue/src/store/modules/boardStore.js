@@ -26,11 +26,9 @@ const boardStore = {
         SET_POST(state, payload){
             state.post = payload.board;
             
-            let date = new Date(state.post.regDt);
-                        
-            state.post.regDate = util.makeDateStr(date.getFullYear(), date.getMonth() + 1, date.getDate(), "/");
-            state.post.regTime = util.makeTimeStr(date.getHours(), date.getMinutes(), date.getSeconds(), ":");
-
+            state.post.regDate = util.makeDateStr(state.post.regDt.date.year, state.post.regDt.date.month, state.post.regDt.date.day, "/");
+            state.post.regTime = util.makeTimeStr(state.post.regDt.time.hour, state.post.regDt.time.minute,state.post.regDt.time.second, ":");
+            
             if(payload.fileList != null){
                 state.post.fileList = payload.fileList;
             }

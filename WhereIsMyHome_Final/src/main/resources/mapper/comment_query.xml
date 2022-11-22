@@ -18,6 +18,11 @@
 		WHERE no = #{no}
 	</delete>
 	
+	<delete id="deleteHeart" parameterType="int">
+		DELETE FROM heart
+		WHERE comment_no = #{no}
+	</delete>
+	
 	<update id="updateHeartByNo" parameterType="int">
 		UPDATE comment
 		SET heart = heart + 1

@@ -4,8 +4,8 @@
 	
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="com.mycom.myhome.user.User">
-		INSERT INTO users(name, password, email, reg_dt)
-		VALUES(#{name}, #{password}, #{email}, now())
+		INSERT INTO users(name, password, email, reg_dt, profile_image_url)
+		VALUES(#{name}, #{password}, #{email}, now(), #{profileImageUrl})
 	</insert>
 	
 	<!-- 회원정보 수정 -->
@@ -47,8 +47,8 @@
 	<!-- refresh 토큰 업데이트 ( 등록 / 삭제 ) -->
 	<update id="updateToken" parameterType="string">
 		UPDATE users
-		SET token = #{token}
-		WHERE email = #{userEmail}
+		SET token = #{refreshToken}
+		WHERE email = #{email}
 	</update>
 	
 </mapper>

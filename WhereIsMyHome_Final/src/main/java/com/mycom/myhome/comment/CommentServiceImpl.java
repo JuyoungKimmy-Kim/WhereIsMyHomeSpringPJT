@@ -64,6 +64,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public CommentDto.Response processRemoveComment(int no){
+		dao.deleteHeart(no);
 		int result = dao.deleteComment(no);
 			
 		if(result == 1) {
@@ -82,15 +83,11 @@ public class CommentServiceImpl implements CommentService {
 		
 		if(user != null) {
 			Comment commentEntity = dto.toEntity(user.getSeq());
-			
-			System.out.println(commentEntity.toString());
 			int result = dao.selectByInfo(commentEntity);
 			
-			System.out.println(result);
 			if(result == 0) {
 				dao.insertByInfo(commentEntity);
 				dao.updateHeartByNo(commentEntity);
-				
 				
 				return CommentDto.Response.builder()
 						.result(Status.SUCCESS)

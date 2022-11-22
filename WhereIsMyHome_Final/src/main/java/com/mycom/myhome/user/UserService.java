@@ -12,4 +12,5 @@ public interface UserService {
 	public UserDto.Response tokenValidationProcess(String email, String accessToken);
 	public UserDto.Response getRefreshToken(UserDto.Request paramDto, String token);
 	public UserDto.Response logoutProcess(String userEmail);
+	public UserDto.Response validateUser(UserDto.Request paramDto);
 }

@@ -24,7 +24,7 @@
       </div>
     </section>
   </div>
-  <board-detail-modal></board-detail-modal>
+  <board-detail-modal ref="detail_modal"></board-detail-modal>
 </div>
 
 </template>
@@ -43,21 +43,20 @@ const userStore = "userStore";
 
 
 import { Modal } from "bootstrap";
-import boardDetailModal from '@/components/modal/board/BoardDetail.vue'
+import BoardDetailModal from '@/components/board/modal/BoardDetail.vue'
 
 export default {
   components : {
-    HeaderPage,SearchBox, NoticeFragment, NewsSection, BottomCard, boardDetailModal
+    HeaderPage,SearchBox, NoticeFragment, NewsSection, BottomCard, BoardDetailModal
   },
   methods: {
     ...mapActions(boardStore, ["postDetail"]),
     async showDetail(boardId){
       await this.postDetail({boardId: boardId, userEmail:this.userInfo.userEmail});
       if(this.boardResult.status == "SUCCESS"){
-          this.$router.push("/boards");
-          this.boardDetailModal.show();
+        await this.$router.push("/boards");
       }else{
-          this.$alertify.error(this.boardResult.message);
+        this.$alertify.error(this.boardResult.message);
       }
       this.$store.commit("boardStore/SET_RESULT_MESSAGE", null);
     },
@@ -67,7 +66,7 @@ export default {
     ...mapState(userStore, ["userInfo"])
   },
   mounted() {
-    this.boardDetailModal = new Modal(document.getElementById("boardDetailModal"));
+    this.BoardDetailModal = new Modal(document.getElementById("boardDetailModal"));
   },
 }
 </script>

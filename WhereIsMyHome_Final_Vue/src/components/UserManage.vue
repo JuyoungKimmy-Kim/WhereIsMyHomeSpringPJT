@@ -25,7 +25,7 @@
                             <td>
                                 <div class="d-flex px-2 py-1">
                                 <div>
-                                    <img src="@/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
+                                    <img :src=user.profileImageUrl class="avatar avatar-sm me-3">
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
                                     <h6 class="mb-0 text-xs">{{user.name}}</h6>
@@ -111,10 +111,14 @@ export default {
         async callUserList(){
             await userList(this.limit, this.offset,
                 ({data})=>{
-                    this.userlist = data;   
+                    this.userlist = data;
                     this.userlist.forEach(el=>{
                         el.regDate = util.makeDateStr(el.regDt.date.year, el.regDt.date.month, el.regDt.date.day, "/");
                         el.regTime = util.makeTimeStr(el.regDt.time.hour, el.regDt.time.minute, el.regDt.time.second, ":");
+
+                        if(el.profileImageUrl == "/no_img.png"){
+                            el.profileImageUrl = require("@/assets/img/profile/no_img.png");
+                        }
                     })
                 }, 
                 (error)=>{

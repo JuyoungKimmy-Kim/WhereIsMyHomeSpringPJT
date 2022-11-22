@@ -6,7 +6,7 @@
           <a href="javascript:;">
             <div class="position-relative">
               <div class="blur-shadow-avatar rounded-circle">
-                <img class="avatar" :src="require(`@/assets/img/profile${comment.profileImageUrl}`)" alt="...">
+                <img class="avatar" :src=comment.profileImageUrl alt="...">
               </div>
             </div>
           </a>
@@ -33,7 +33,7 @@
         <a class="author" href="javascript:;">
           <div class="position-relative">
             <div class="blur-shadow-avatar rounded-circle">
-              <img class="avatar" alt="64x64" :src="require(`@/assets/img/profile${userInfo.profileImageUrl}`)">
+              <img class="avatar" alt="64x64" :src=userInfo.profileImageUrl>
             </div>
           </div>
         </a>
@@ -74,7 +74,6 @@ export default {
   methods: {
     ...mapActions(userStore, ["getUserInfo"]),
     async getList(){
-      this.list = [];
       await list(this.post.boardId,
         ({data})=>{
           let tmpList = data;
@@ -82,8 +81,13 @@ export default {
             if(el.name == this.post.writer){
               el.name = "작성자";
             }
-            this.list.push(el);
+
+            if(el.profileImageUrl == "/no_img.png"){
+              el.profileImageUrl = require("@/assets/img/profile/no_img.png");
+            }
           });
+
+          this.list = tmpList;
         },
         (error)=>{
           console.log(error);

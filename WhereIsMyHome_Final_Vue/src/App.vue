@@ -9,19 +9,24 @@
     <signup-modal @close-this-modal="closeSignUp" ref="signup_modal"></signup-modal>
     <update-modal @close-this-modal="closeInfo" ref="update_modal"></update-modal>
 
+    <spinner-ui v-if="isLoading"></spinner-ui>
 
   </div>
 </template>
 
 <script>
+import http from "@/common/axios";
+
 import NavBar from "@/components/NavBar.vue"
+import SpinnerUi from '@/components/SpinnerUI.vue'
+
 
 import { Modal } from "bootstrap";
 import LoginModal from "@/components/modal/LoginModal.vue"
 import SignupModal from "@/components/modal/SignupModal.vue"
 import UpdateModal from "@/components/modal/user/UpdateUserInfo.vue"
 
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 const userStore = "userStore";
 
@@ -33,7 +38,11 @@ export default {
       updateModal: null,
     }
   },
-  components: { LoginModal, SignupModal, NavBar, UpdateModal },
+  components: { LoginModal, SignupModal, NavBar, UpdateModal, SpinnerUi },
+  computed:{
+    ...mapState(userStore, ["userInfo"]),
+    ...mapState(["isLoading"]),
+  },
   methods: {
     ...mapActions(userStore, ["getUserInfo"]),
     showLogin(){
@@ -53,16 +62,27 @@ export default {
         this.signUpModal = new Modal(document.getElementById("signUpModal"));
       }
 
-      const dump = {
+      this.$refs.signup_modal.user = {
         email: "",
         name: "",
         password: "",
         password2: "",
+        profileImageUrl: "",
       };
 
-      this.$refs.signup_modal.user = dump;
-      this.$refs.signup_modal.valid = dump;
 
+      this.$refs.signup_modal.valid = {
+        name: "",
+        email: "",
+        password: "",
+        password2: "",
+      }
+
+      if(this.userInfo != {}){
+        this.$refs.signup_modal.user.email = this.userInfo.email;
+        this.$refs.signup_modal.user.name = this.userInfo.name;
+        this.$refs.signup_modal.user.profileImageUrl = this.userInfo.profileImageUrl;
+      }
 
       this.signUpModal.show();
     },
@@ -92,6 +112,29 @@ export default {
     let token = sessionStorage.getItem("access-token");
     await this.getUserInfo(token);
   },
+  created(){
+      http.interceptors.request.use(
+          (config) => {
+              this.$store.commit("SET_IS_LOADING", true);
+              return config;
+          },
+          (error) => {
+              this.$store.commit("SET_IS_LOADING", false);
+              return Promise.reject(error);
+          }
+      );
+
+      http.interceptors.response.use(
+          (response) => {
+            this.$store.commit("SET_IS_LOADING", false);
+            return response;
+          },
+          (error) => {
+            this.$store.commit("SET_IS_LOADING", false);
+            return Promise.reject(error);
+          }
+      );
+  }
 }
 </script>
 

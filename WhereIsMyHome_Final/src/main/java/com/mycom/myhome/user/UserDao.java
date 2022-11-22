@@ -27,7 +27,7 @@ public interface UserDao {
 	User selectBySeq(int userSeq);
 	
 	// refresh토큰 등록 or 삭제
-	int updateToken();
+	int updateToken(@Param("refreshToken") String refreshToken, @Param("email") String email);
 	
 }
  

@@ -67,7 +67,7 @@
                   <a class="nav-link ps-2 d-flex cursor-pointer align-items-center dropdown-toggle" id="dropdownUserMenu" data-bs-toggle="dropdown" aria-expanded="false" 
                     v-if="isLogin" >
                     <a class="avatar avatar-xs rounded-circle opacity-6 me-2 text-md">
-                      <img alt="Image placeholder" :src="require(`@/assets/img/profile${userInfo.profileImageUrl}`)">
+                      <img alt="Image placeholder" :src=userInfo.profileImageUrl>
                     </a>
                     {{userInfo.name}}
                   </a>

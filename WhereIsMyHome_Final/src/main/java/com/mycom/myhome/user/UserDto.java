@@ -27,12 +27,14 @@ public class UserDto {
 		private String password;
 		private String code;
 		private String role;
+		private String profileImageUrl;
 		
 		public User toEntity() {
 			return User.builder()
 					.name(name)
 					.email(email)
 					.password(password)
+					.profileImageUrl(profileImageUrl)
 					.code(code)
 					.build();
 		}
