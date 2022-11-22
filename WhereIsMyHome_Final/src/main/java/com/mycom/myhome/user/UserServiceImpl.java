@@ -116,8 +116,15 @@ public class UserServiceImpl implements UserService{
 		User user = dao.selectByEmail(email);
 		
 		if(user != null) {
-			String code = user.getCode();
-			dto.setCode(code);
+			String role = dto.getRole();
+			if(role == null) {
+				String code = user.getCode();
+				dto.setCode(code);
+			}else {
+				Code findCode = codeDao.selectByDescription(role);
+				String code= findCode.getCode();
+				dto.setCode(code);
+			}
 			
 			User entity = dto.toEntity();
 			dao.updateByEmail(entity);

@@ -5,7 +5,6 @@ Vue.use(VueRouter);
 import Footer from "@/components/FooterPage.vue";
 import MainPage from "@/components/MainPage.vue";
 import Map from "@/components/map/MapPage.vue";
-import QuestionAnswer from "@/components/QuestionAnswer.vue";
 import Board from "@/components/board/BoardMain.vue";
 import UserManage from "@/components/UserManage.vue";
 import WishList from "@/components/WishList.vue";
@@ -44,13 +43,6 @@ export default new VueRouter({
             components: {
                 default: WishList,
                 Footer
-            }
-        },
-        {
-            path:'/qna',
-            components : {
-                default : QuestionAnswer,
-                Footer 
             }
         },
     ]

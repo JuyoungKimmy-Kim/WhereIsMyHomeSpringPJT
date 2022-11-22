@@ -9,7 +9,7 @@
 
             <!-- 관리자에게만 보여야함 v-show or v-if -->
             <div class="row justify-content-md-end">
-                <button type="button" class="btn bg-gradient-success w-auto btn-sm me-2"  v-if="userInfo.userClsf == '001'" @click="showInsertModal">글 쓰기</button>
+                <button type="button" class="btn bg-gradient-success w-auto btn-sm me-2"  v-if="userInfo.role == '관리자'" @click="showInsertModal">글 쓰기</button>
             </div>
 
             <div class="row justify-content-center pb-5">
@@ -65,7 +65,7 @@
     </div>
 
     <board-insert-modal @close-this-modal="closeInsertModal" ref="insert_modal"></board-insert-modal>
-    <board-detail-modal @close-this-modal="closeDetailModal" @show-this-update="showUpdate"></board-detail-modal>
+    <board-detail-modal @close-this-modal="closeDetailModal" @show-this-update="showUpdate" ref="detail_modal"></board-detail-modal>
     <board-update-modal @close-this-modal="closeUpdateModal" ref="update_modal"></board-update-modal>
 </div>
 </template>
@@ -148,6 +148,8 @@ export default {
                     this.boardDetailModal = new Modal(document.getElementById("boardDetailModal"));
                 }
                 
+                this.$refs.detail_modal.hideCollapse();
+
                 this.boardDetailModal.show();
             }else{
                 this.$alertify.error(this.boardResult.message);
@@ -199,7 +201,7 @@ export default {
     },
     computed:{
         ...mapState(userStore, ["userInfo"]),
-        ...mapState(boardStore, ["boardList", "boardResult", "totalListItemCount", "post"]),
+        ...mapState(boardStore, ["boardList", "boardResult", "post"]),
     },
     async mounted() {
         await this.getTotalCount("001");

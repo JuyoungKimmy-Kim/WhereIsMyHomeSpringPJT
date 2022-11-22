@@ -7,9 +7,11 @@ const mapStore = {
             sidoList : [],
             gugunList : [],
             dongList : [],
+            
             sido:{},
             gugun:{},
             dong:{},
+            
             property: [],
         },
     },

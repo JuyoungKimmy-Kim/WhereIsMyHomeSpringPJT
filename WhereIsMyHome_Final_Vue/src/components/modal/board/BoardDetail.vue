@@ -38,6 +38,20 @@
                         </div>
                     </div>
                     </div>
+                  <div class="accordion-item mb-3" style="scroll-behavior: smooth">
+                    <h5 class="accordion-header" id="headingOne">
+                      <button class="accordion-button border-bottom font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        댓글
+                        <i class="collapse-close fa fa-plus text-xs pt-1 position-absolute end-0"></i>
+                        <i class="collapse-open fa fa-minus text-xs pt-1 position-absolute end-0"></i>
+                      </button>
+                    </h5>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionRental">
+                      <div class="accordion-body text-sm opacity-8">
+                        <board-comments ref="board_comment"></board-comments>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 </section>
             </div>
@@ -56,11 +70,21 @@
 <script>
 import http from '@/common/axios.js';
 import {mapState, mapActions} from 'vuex';
+import BoardComments from '@/components/board/BoardComments.vue';
+
+import {Collapse} from "bootstrap";
 
 const userStore = "userStore";
 const boardStore = "boardStore";
 
+
 export default {
+  components: { BoardComments },
+  data() {
+    return {
+      collapse: null,
+    }
+  },
   methods: {
     ...mapActions(boardStore, ["deletePost"]),
     ...mapActions(userStore, ["getUserInfo"]),
@@ -115,11 +139,21 @@ export default {
         link.remove();
       })
       .catch(error=>console.log(error));
+    },
+    hideCollapse(){
+      this.collapse.hide();
     }
   },
   computed:{
     ...mapState(boardStore, ["post", "boardResult"]),
     ...mapState(userStore, ["userInfo", "userResult"]),
+  },
+  mounted(){
+        let myCollapse = document.getElementById("collapseOne");
+        this.collapse = new Collapse(myCollapse);
+        myCollapse.addEventListener("show.bs.collapse", async ()=>{
+          await this.$refs.board_comment.getList();
+        })
   }
 };
 </script>

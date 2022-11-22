@@ -3,9 +3,9 @@ import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
-import userStore from "@/store/modules/userStore.js";
-import boardStore from "@/store/modules/boardStore.js";
-import mapStore from "@/store/modules/mapStore.js";
+import userStore from "@/store/modules/userStore";
+import boardStore from "@/store/modules/boardStore";
+import mapStore from "@/store/modules/mapStore";
 
 export default new Vuex.Store({
     modules:{

@@ -12,7 +12,9 @@ const userStore = {
             message: "",
         },
         isLogin: false,
-        userInfo: {},
+        userInfo: {
+
+        },
         validToken: null,
     },
     mutations:{
@@ -44,7 +46,7 @@ const userStore = {
             state.userInfo = {
                 name:payload.name,
                 email:payload.email,
-                profileImgUrl:payload.profileImgUrl,
+                profileImageUrl:payload.profileImageUrl,
                 regDate: util.makeDateStr(payload.regDt.date.year, payload.regDt.date.month, payload.regDt.date.day, '/'),
                 role:payload.role,
             };   
@@ -70,8 +72,8 @@ const userStore = {
                     if(data.result == "SUCCESS"){
                         commit("SET_IS_LOGIN", true);
                         commit("SET_VALID_TOKEN", true);
-                        commit("SET_RESULT_MESSAGE_SUCCESS", "로그인에 성공하였습니다!!");
                         commit("SET_USER_INFO", data);
+                        commit("SET_RESULT_MESSAGE_SUCCESS", "로그인에 성공하였습니다!!");
                         sessionStorage.setItem("access-token", data.accessToken);
                         sessionStorage.setItem("refresh-token", data.refreshToken);
                     }else{
@@ -93,6 +95,7 @@ const userStore = {
                         if(data.result == "SUCCESS"){
                             commit("SET_IS_LOGIN", false);
                             commit("SET_VALID_TOKEN", false);
+                            commit("CLEAR_USER_INFO");
                             commit("SET_RESULT_MESSAGE_SUCCESS", "로그아웃이 완료되었습니다.");
                         }else{
                             console.log("유저 정보 없음!!!");
@@ -104,11 +107,16 @@ const userStore = {
                 )
         },
         async getUserInfo({commit, dispatch}, token){
+            if(token == null){
+                console.log("아직 로그인하지 않음");
+                return;
+            }
+
             const decodedToken = jwtDecode(token);
             const params = {
                 email: decodedToken.email
             };
-
+            
             await validateToken(params, 
                 ({data})=>{
                     if(data.result == "SUCCESS"){

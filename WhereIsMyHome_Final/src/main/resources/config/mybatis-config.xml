@@ -10,6 +10,7 @@
 	<mappers>
 		<mapper resource="mapper/user_query.xml"/>
 		<mapper resource="mapper/board_query.xml"/>
+		<mapper resource="mapper/comment_query.xml"/>
 		<mapper resource="mapper/address_query.xml"/>
 		<mapper resource="mapper/property_query.xml"/>
 		<mapper resource="mapper/code_query.xml"/>

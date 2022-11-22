@@ -57,15 +57,6 @@
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link
-                  to="/qna"
-                  class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-                >
-                  <i class="material-icons opacity-6 me-2 text-md">question_answer</i>
-                  Q&A
-                </router-link>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" v-if="!isLogin"  @click="showLogin">
                   <i class="material-icons opacity-6 me-2 text-md">people</i>
                   로그인
@@ -75,7 +66,9 @@
               <li class="nav-item dropdown">
                   <a class="nav-link ps-2 d-flex cursor-pointer align-items-center dropdown-toggle" id="dropdownUserMenu" data-bs-toggle="dropdown" aria-expanded="false" 
                     v-if="isLogin" >
-                    <i class="material-icons opacity-6 me-2 text-md">image</i>
+                    <a class="avatar avatar-xs rounded-circle opacity-6 me-2 text-md">
+                      <img alt="Image placeholder" :src="require(`@/assets/img/profile${userInfo.profileImageUrl}`)">
+                    </a>
                     {{userInfo.name}}
                   </a>
                   <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownUserMenu">
@@ -107,21 +100,21 @@ export default{
     return {
       options: [
           {
-          language: '시도',
-          libs: [
-              { name: 'Vue.js', category: 'sido' },
-              { name: 'Adonis', category: 'sido' }
-          ]
+            language: '시도',
+            libs: [
+                { name: 'Vue.js', category: 'sido' },
+                { name: 'Adonis', category: 'sido' }
+            ]
           },
           {
-          language: '구군',
-          libs: [
-              { name: 'Rails', category: 'gugun1' },
-              { name: 'Rails', category: 'gugun2' },
-              { name: 'Rails', category: 'gugun3' },
-              { name: 'Rails', category: 'gugun4' },
-              { name: 'Rails', category: 'gugun5' },
-          ]
+            language: '구군',
+            libs: [
+                { name: 'Rails', category: 'gugun1' },
+                { name: 'Rails', category: 'gugun2' },
+                { name: 'Rails', category: 'gugun3' },
+                { name: 'Rails', category: 'gugun4' },
+                { name: 'Rails', category: 'gugun5' },
+            ]
           },
       ],
       value: [],

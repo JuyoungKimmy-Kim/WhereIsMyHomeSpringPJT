@@ -23,6 +23,9 @@ public interface UserDao {
 	// 이메일로 찾기 
 	User selectByEmail(String email);
 	
+	// seq로 찾기
+	User selectBySeq(int userSeq);
+	
 	// refresh토큰 등록 or 삭제
 	int updateToken();
 	

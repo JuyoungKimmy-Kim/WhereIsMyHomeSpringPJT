@@ -2,11 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycom.myhome.code.CodeDao"> <!-- @Mapper annotation 있는 dao -->
 	
-	<!-- 전체 회원 수 -->
+	<!-- 유저 코드로 얻기 -->
 	<select id="selectByCode" parameterType="map" resultType="com.mycom.myhome.code.Code">
 		SELECT group_code, code, description
 		FROM code
 		WHERE group_code = #{groupCode} and code = #{code}
+	</select>
+	
+	<!-- description으로 코드얻기 -->
+	<select id="selectByDescription" parameterType="map" resultType="com.mycom.myhome.code.Code">
+		SELECT group_code, code, description
+		FROM code
+		WHERE description = #{description}
 	</select>
 	
 </mapper>

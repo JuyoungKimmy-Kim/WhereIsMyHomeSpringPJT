@@ -16,6 +16,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 col-6">유저</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 col-1">관리</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 col-1">가입일자</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 col-1">권한</th>
                         <th class="text-secondary text-xxs opacity-7 col-1"></th>
                         </tr>
                     </thead>
@@ -39,12 +40,12 @@
                             <td class="align-middle text-center">
                                 <span class="text-secondary text-xs font-weight-bold">{{user.regDate}}</span>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle text-center">
                                 <div class="btn-group dropdown">
-                                    <a class="text-secondary font-weight-bold text-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Edit</a>
+                                    <a class="text-secondary font-weight-bold text-xs dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">수정</a>
                                     <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
-                                        <li><a class="dropdown-item border-radius-md" href="javascript:;">옵션1</a></li>
-                                        <li><a class="dropdown-item border-radius-md" href="javascript:;">옵션2</a></li>
+                                        <li><a class="dropdown-item border-radius-md" @click="updateRole(user, '관리자')">관리자</a></li>
+                                        <li><a class="dropdown-item border-radius-md" @click="updateRole(user, '일반회원')">일반회원</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -96,7 +97,7 @@ export default {
         ...mapState(userStore, ["userResult"]),
     },
     methods: {
-        ...mapActions(userStore, ["getUserInfo"]),
+        ...mapActions(userStore, ["getUserInfo", "updateInfo"]),
         async getUserListCount(){
             await totalCount(
                 ({data})=>{
@@ -106,7 +107,6 @@ export default {
                     console.log(error);
                 }
             )
-
         },
         async callUserList(){
             await userList(this.limit, this.offset,
@@ -126,6 +126,10 @@ export default {
             this.currentPageIndex = pageIndex;
             this.callUserList();
         },
+        async updateRole(user, role){
+            user.role = role;
+            await this.updateInfo(user);
+        }
     },
     async mounted(){
         

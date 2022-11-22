@@ -6,4 +6,5 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface CodeDao {
 	Code selectByCode(@Param("groupCode") String groupCode, @Param("code") String code);
+	Code selectByDescription(String description);
 }

@@ -37,6 +37,13 @@
 		WHERE email = #{email}
 	</select>
 	
+	<!-- Seq로 찾기 -->
+	<select id="selectBySeq" parameterType="int" resultType="com.mycom.myhome.user.User">
+		SELECT seq, name, password, email, profile_image_url, reg_dt, code, token
+		FROM users
+		WHERE seq = #{userSeq}
+	</select>
+	
 	<!-- refresh 토큰 업데이트 ( 등록 / 삭제 ) -->
 	<update id="updateToken" parameterType="string">
 		UPDATE users
