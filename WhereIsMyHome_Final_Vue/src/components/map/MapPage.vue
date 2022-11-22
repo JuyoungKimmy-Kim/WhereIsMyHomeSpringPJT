@@ -1,48 +1,53 @@
 <template>
-    <div id="mapWrapper">
-        <div id="map"></div>
-        <div id="menu_wrap">
-        <div v-for="(place, index) in kakao.placeList" :key="index">
-            <section class="py-0">
-            <div class="container">
-                <div class="row justify-space-between py-1">
-                <div class="card shadow-lg">
-                    <div class="card-body">
-                    <!-- card detail start -->
-                    <div v-if="isDetailMode">
-                        <div v-if="indexCheck(index)">
-                        <card-detail></card-detail>
-                        </div>
-                    </div>
-                    <!-- card detail end -->
-
-                    <h4>{{ place.aptName }}</h4>
-                    <p>면적 {{ place.area }} m2 / {{ place.dealAmount }} 만원 &nbsp;&nbsp;</p>
-                    <i
-                        v-if="!isDetailMode"
-                        class="material-icons opacity-6 me-2 text-md"
-                        @click="setCardDetailMode(place, index)"
-                        >expand_more</i
-                    >
-
-                    <div v-if="isDetailMode">
-                        <div v-if="indexCheck(index)">
-                        <p>
-                            거래 연도: {{ place.dealYear }}-{{ place.dealMonth }}-{{ place.dealDay }}
-                        </p>
-                        <p></p>
-
-                        <i class="material-icons opacity-6 me-2 text-md" @click="setCardDetailMode()"
-                            >expand_less</i
-                        >
-                        </div>
-                    </div>
-                    </div>
-                </div>
+    <div id="mapWrapper" class="container position-relative mx-0 px-0">
+        <div id="map" class="position-absolute z-index-0"></div>
+        <div class="row margin-top position-absolute">
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-12 hidden-xs empty-block"></div>
                 </div>
             </div>
-            </section>
         </div>
+        <div id="list_wrap" class="row margin-top" style="width: 100%;height: 100vh;">
+            <div class="col-sm-6 block-contain max-height-vh-90">
+                <div class="row">
+                    <div class="col-sm-12 col-md-3 px-0 max-height-vh-80 overflow-y-auto">
+                        <div v-for="(place, index) in kakao.placeList" :key="index">
+                            <div class="container ps-5 pe-4">
+                                <div class="row justify-space-between py-1">
+                                    <div class="card shadow-lg px-0" @click="setCardDetailMode(place, index)">
+                                        <div class="card-body px-3 py-3">
+
+                                            <h4>{{ place.aptName }}</h4>
+                                            <p>면적 {{ place.area }} m <sup>2</sup> / {{ place.dealAmount }} 만원 &nbsp;&nbsp;</p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 px-0 max-height-vh-90">
+                        <div class="container ps-3 pe-0">
+                            <div class="row justify-space-between py-1">
+                                <div class="card shadow-lg px-0" v-if="isDetailMode">
+                                    <div class="card-body px-3 py-3">
+                                        
+                                        <card-detail></card-detail>
+                                        
+                                        <div>
+                                            <p>
+                                                거래 연도: {{ placeNow.dealYear }}-{{ placeNow.dealMonth }}-{{ placeNow.dealDay }}
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -68,6 +73,7 @@ export default {
                 zoomControl: null,
                 markers: [],
                 placeList: [],
+                placeNow:{},
                 selectedMarker: null,
             },
         };
@@ -100,114 +106,129 @@ export default {
     },
     methods: {
         initMap() {
-        const container = document.getElementById("map");
-        const options = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667),
-            level: 5,
-        };
-        //지도 객체를 등록합니다.
-        //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
-        this.kakao.map = new kakao.maps.Map(container, options);
-        this.kakao.ps = new kakao.maps.services.Places();
-        this.kakao.infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-        this.kakao.mapTypeControl = new kakao.maps.MapTypeControl();
-        this.kakao.map.addControl(this.kakao.mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-        this.kakao.zoomControl = new kakao.maps.ZoomControl();
-        this.kakao.map.addControl(this.kakao.zoomControl, kakao.maps.ControlPosition.RIGHT);
-        // 검색된 동이 있을 경우
-        if (this.map.dong != null) {
-            this.getPropertyList();
-            this.displayPlaces(this.kakao.placeList);
-        }
-        },
-        displayPlaces(places) {
-        var listEl = document.getElementById("placesList"),
-            menuEl = document.getElementById("menu_wrap"),
-            fragment = document.createDocumentFragment(),
-            bounds = new kakao.maps.LatLngBounds(),
-            listStr = "";
-        // 검색 결과 목록에 추가된 항목들을 제거합니다
-        this.removeAllChildNods(listEl);
-        // 지도에 표시되고 있는 마커를 제거합니다
-        this.removeMarker();
-        for (var i = 0; i < places.length; i++) {
-            // 마커를 생성하고 지도에 표시합니다
-            var placePosition = new kakao.maps.LatLng(places[i].lat, places[i].lng),
-            marker = this.addMarker(placePosition, i),
-            itemEl = this.getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-            // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-            // LatLngBounds 객체에 좌표를 추가합니다
-            bounds.extend(placePosition);
-            // 마커와 검색결과 항목에 mouseover 했을때
-            // 해당 장소에 인포윈도우에 장소명을 표시합니다
-            // mouseout 했을 때는 인포윈도우를 닫습니다
-            let $this = this;
-            (function (marker, title) {
-            kakao.maps.event.addListener(marker, "mouseover", function () {
-                $this.displayInfowindow(marker, title);
-            });
-            kakao.maps.event.addListener(marker, "mouseout", function () {
-                $this.kakao.infowindow.close();
-            });
-            kakao.maps.event.addListener(marker, "click", function() {
-                $this.showDetailCard (marker, places[i]);
-            });
-            itemEl.onmouseover = function () {
-                $this.displayInfowindow(marker, title);
+            const container = document.getElementById("map");
+            const options = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667),
+                level: 5,
             };
-            itemEl.onmouseout = function () {
-                this.kakao.infowindow.close();
-            };
-            })(marker, places[i].aptName);
-            fragment.appendChild(itemEl);
-        }
-        // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
-        console.dir(fragment);
-        // listEl.appendChild(fragment);
-        menuEl.scrollTop = 0;
-        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-        this.kakao.map.setBounds(bounds);
-        },
-        getListItem(index, places) {
-        var el = document.createElement("li"),
-            itemStr =
-            '<span class="markerbg marker_' +
-            (index + 1) +
-            '"></span>' +
-            '<div class="info">' +
-            "   <h5>" +
-            places.AptName +
-            "</h5>";
-        if (places.road_address_name) {
-            itemStr +=
-            "    <span>" +
-            places.road_address_name +
-            "</span>" +
-            '   <span class="jibun gray">' +
-            places.address_name +
-            "</span>";
-        } else {
-            itemStr += "    <span>" + places.address_name + "</span>";
-        }
-        itemStr += '  <span class="tel">' + places.phone + "</span>" + "</div>";
-        el.innerHTML = itemStr;
-        el.className = "item";
-        return el;
+            //지도 객체를 등록합니다.
+            //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
+            this.kakao.map = new kakao.maps.Map(container, options);
+            this.kakao.ps = new kakao.maps.services.Places();
+            this.kakao.infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+            this.kakao.mapTypeControl = new kakao.maps.MapTypeControl();
+            this.kakao.map.addControl(this.kakao.mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+            this.kakao.zoomControl = new kakao.maps.ZoomControl();
+            this.kakao.map.addControl(this.kakao.zoomControl, kakao.maps.ControlPosition.RIGHT);
+            // 검색된 동이 있을 경우
+            if (this.map.dong != null) {
+                this.getPropertyList();
+                this.displayPlaces(this.kakao.placeList);
+            }
+            },
+            displayPlaces(places) {
+            var listEl = document.getElementById("placesList"),
+                menuEl = document.getElementById("list_wrap"),
+                fragment = document.createDocumentFragment(),
+                bounds = new kakao.maps.LatLngBounds(),
+                listStr = "";
+            // 검색 결과 목록에 추가된 항목들을 제거합니다
+            this.removeAllChildNods(listEl);
+            // 지도에 표시되고 있는 마커를 제거합니다
+            this.removeMarker();
+            for (var i = 0; i < places.length; i++) {
+
+                            const image = require("@/assets/img/apt.png");
+                const test = document.createElement("div");
+                test.addEventListener("click", () => {
+                    this.clickEvent(places[i]);
+                });
+                test.innerHTML = `
+                    <div id = "mapMarker" class = "text-center">
+                        <div>
+                            <span class="bg-primary rounded p-1 font-weight-bold text-white text-md">
+                            ${places[i].aptName}
+                            </span>
+                        </div>
+                        <img src =${image} width ="96" height="96">
+                        <div>
+                            <span class="bg-success rounded p-1 font-weight-bold text-white text-md">
+                        ${places[i].dealAmount}
+                            </span>
+                        </div>
+                    </div>`;
+                // 마커를 생성하고 지도에 표시합니다
+                var placePosition = new kakao.maps.LatLng(places[i].lat, places[i].lng),
+                marker = this.addMarker(placePosition, i, test),
+                itemEl = this.getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+                // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+                // LatLngBounds 객체에 좌표를 추가합니다
+                bounds.extend(placePosition);
+                // 마커와 검색결과 항목에 mouseover 했을때
+                // 해당 장소에 인포윈도우에 장소명을 표시합니다
+                // mouseout 했을 때는 인포윈도우를 닫습니다
+                let $this = this;
+                (function (marker, title) {
+                kakao.maps.event.addListener(marker, "mouseover", function () {
+                    $this.displayInfowindow(marker, title);
+                });
+                kakao.maps.event.addListener(marker, "mouseout", function () {
+                    $this.kakao.infowindow.close();
+                });
+                kakao.maps.event.addListener(marker, "click", function() {
+                    $this.showDetailCard (marker, places[i]);
+                });
+                itemEl.onmouseover = function () {
+                    $this.displayInfowindow(marker, title);
+                };
+                itemEl.onmouseout = function () {
+                    this.kakao.infowindow.close();
+                };
+                })(marker, places[i].aptName);
+                fragment.appendChild(itemEl);
+            }
+            // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
+            console.dir(fragment);
+            // listEl.appendChild(fragment);
+            menuEl.scrollTop = 0;
+            // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+            this.kakao.map.setBounds(bounds);
+            },
+            getListItem(index, places) {
+            var el = document.createElement("li"),
+                itemStr =
+                '<span class="markerbg marker_' +
+                (index + 1) +
+                '"></span>' +
+                '<div class="info">' +
+                "   <h5>" +
+                places.AptName +
+                "</h5>";
+            if (places.road_address_name) {
+                itemStr +=
+                "    <span>" +
+                places.road_address_name +
+                "</span>" +
+                '   <span class="jibun gray">' +
+                places.address_name +
+                "</span>";
+            } else {
+                itemStr += "    <span>" + places.address_name + "</span>";
+            }
+            itemStr += '  <span class="tel">' + places.phone + "</span>" + "</div>";
+            el.innerHTML = itemStr;
+            el.className = "item";
+            return el;
         },
         // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
         addMarker(position, idx, title) {
-        var imageSrc ="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png", // 마커 이미지 url, 스프라이트 이미지를 씁니다
-            imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
-            imgOptions = {
-                spriteSize: new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
-                spriteOrigin: new kakao.maps.Point(0, idx * 46 + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-                offset: new kakao.maps.Point(13, 37), // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-            },
-            markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-            marker = new kakao.maps.Marker({
-                position: position, // 마커의 위치
-                image: markerImage,
-            });
+            
+
+                var marker = new kakao.maps.CustomOverlay({
+                    position: position,
+                    content: title,
+                    clickable: true,
+                });
             marker.setMap(this.kakao.map); // 지도 위에 마커를 표출합니다
             this.kakao.markers.push(marker); // 배열에 생성된 마커를 추가합니다
         //     kakao.maps.event.addListener(marker, 'click', function() {
@@ -248,6 +269,7 @@ export default {
         showDetailCard (marker, place, idx) {
             this.$store.commit("mapStore/SET_PROPERTY", place);
 
+            
             this.isDetailMode=!this.isDetailMode;
             this.currentIndex=idx;
         },
@@ -263,9 +285,15 @@ export default {
         },
         setCardDetailMode(place, index) {
             this.$store.commit("mapStore/SET_PROPERTY", place);
-
-            this.isDetailMode = !this.isDetailMode;
-            this.currentIndex = index;
+            console.log(place.no);
+            if(this.placeNow == null || this.placeNow.no != place.no){
+                this.placeNow = place;
+                this.isDetailMode = true;
+                this.currentIndex = index;
+            }else{
+                this.placeNow = null
+                this.isDetailMode = false;
+            }
         },
         async getPropertyList(){
             await propertyList(this.map.dong.name, this.map.gugun.code,
@@ -284,6 +312,9 @@ export default {
 
 <style scoped src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
+.container {
+    max-width: 100%;
+}
 #map {
     width: 100%;
     height: 100vh;
@@ -319,16 +350,7 @@ export default {
     font-size: 12px;
     border-radius: 10px;
 }
-#card-detail {
-    position: absolute;
-    top: 130px;
-    left: 0;
-    bottom: 0;
-    width: 500;
-    overflow-y: auto;
-    z-index: 1;
-    font-size: 12px;
-}
+
 #menu_wrap hr {
     display: block;
     height: 1px;
