@@ -8,7 +8,7 @@
             <div class="bg-gradient-info shadow-info border-radius-lg py-3 pe-1 text-center py-4">
                 <h4 class="font-weight-bolder text-white mt-1 mb-0">로그인</h4>
                 <p class="mb-1 text-sm text-white">다시 돌아온걸 환영합니다.</p>
-                <a @click="kakaoLogin()" id="cusom-login-btn" class="cursor-pointer">
+                <a @click="kakaoAccessToken()" id="cusom-login-btn" class="cursor-pointer">
                     <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222">
                 </a>  
             </div>
@@ -79,8 +79,18 @@ export default {
                 this.$alertify.error(this.userResult.message);
             }
         },
-        // kakaoLogin(){
-        // },
+        kakaoAccessToken(){
+            let $this = this;
+            window.Kakao.Auth.login({
+                success: function(authObj) {
+                    window.Kakao.Auth.setAccessToken(authObj.access_token);
+                    $this.kakaoLogin();
+                },
+                fail: function(err) {
+                    alert(JSON.stringify(err))
+                },
+            })
+        },
         kakaoLogin(){
             window.Kakao.API.request({
                 url: '/v2/user/me',
@@ -90,6 +100,7 @@ export default {
                 let userName = response.properties.nickname;
                 let userProfileimgUrl = response.properties.thumbnail_image;
 
+                console.log(userEmail)
                 let kakaoInfo = {
                     email: userEmail,
                     name: userName,

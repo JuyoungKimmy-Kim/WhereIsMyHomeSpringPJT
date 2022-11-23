@@ -16,4 +16,8 @@ async function propertyList(dongName, gugunName, success, fail){
     await http.get(`/property/${dongName}/${gugunName}`).then(success).catch(fail);
 }
 
-export {sidoList, gugunList, dongList, propertyList};
+async function stationList(success, fail) {
+    await http.get("/stations").then(success).catch(fail);
+}
+
+export {sidoList, gugunList, dongList, propertyList, stationList};
