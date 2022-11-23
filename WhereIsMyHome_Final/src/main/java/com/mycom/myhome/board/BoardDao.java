@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.mycom.myhome.address.PropertyDetailDto;
+
 @Mapper
 public interface BoardDao {
 	
@@ -27,4 +29,7 @@ public interface BoardDao {
 	int deleteReadCount(int boardId);
 	int deleteFile(int boardId);
 	int delete(int boardId);
+	
+	List<Integer>  findHouseNoByUserSeq(int userSeq);
+	PropertyDetailDto findByHouseNo(int houseNo);
 }

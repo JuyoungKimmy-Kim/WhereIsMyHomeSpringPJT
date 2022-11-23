@@ -80,6 +80,7 @@ public class UserServiceImpl implements UserService{
 			
 			return UserDto.Response.builder()
 					.result(Status.SUCCESS)
+					.seq(user.getSeq())
 					.name(user.getName())
 					.email(user.getEmail())
 					.profileImageUrl(user.getProfileImageUrl())
@@ -97,9 +98,13 @@ public class UserServiceImpl implements UserService{
 	// 회원가입
 	@Override
 	public UserDto.Response processNewUser(UserDto.Request dto) {
+		if(dto.getProfileImageUrl() == null) 
+			dto.setProfileImageUrl("/no_img.png");
+		
 		User entity = dto.toEntity();
 		String email = entity.getEmail();
-
+		
+		
 		logger.info(dto.toString());
 		// insert 실패해도 seq오르는거 방지
 		User user = dao.selectByEmail(email);
@@ -152,6 +157,7 @@ public class UserServiceImpl implements UserService{
 				
 				return UserDto.Response.builder()
 						.result(Status.SUCCESS)
+						.seq(user.getSeq())
 						.name(user.getName())
 						.email(user.getEmail())
 						.profileImageUrl(user.getProfileImageUrl())
@@ -224,6 +230,7 @@ public class UserServiceImpl implements UserService{
 		
 		return UserDto.Response.builder()
 				.result(Status.SUCCESS)
+				.seq(user.getSeq())
 				.name(user.getName())
 				.email(user.getEmail())
 				.profileImageUrl(user.getProfileImageUrl())

@@ -18,12 +18,12 @@
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0">
                             <thead>
-                                <tr>
-                                    <th scope="col" class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2 px-3">#</th>
-                                    <th scope="col" class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2 col-5">제목</th>
-                                    <th scope="col" class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2">작성자</th>
-                                    <th scope="col" class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2">작성일자</th>   
-                                    <th scope="col" class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-1">조회 수</th>  
+                                <tr bgcolor="#2F4858">
+                                    <th scope="col" class="text-white text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2 px-3">#</th>
+                                    <th scope="col" class="text-white text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2 col-5">제목</th>
+                                    <th scope="col" class="text-white text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2">작성자</th>
+                                    <th scope="col" class="text-white text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2">작성일자</th>   
+                                    <th scope="col" class="text-white text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-1">조회 수</th>  
                                     <th class="text-secondary text-xxs opacity-7"></th>
                                 </tr>
                             </thead>
@@ -142,7 +142,11 @@ export default {
             this.boardInsertModal.show();
         },
         async showDetail(boardId){
-            await this.postDetail({boardId: boardId, userEmail:this.userInfo.userEmail});
+            await this.postDetail({
+                boardId: boardId, 
+                userEmail: this.userInfo.userEmail
+            });
+
             if(this.boardResult.status == "SUCCESS"){
                 if(this.boardDetailModal == null){
                     this.boardDetailModal = new Modal(document.getElementById("boardDetailModal"));

@@ -1,6 +1,7 @@
 package com.mycom.myhome.board;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.mycom.myhome.address.PropertyDetailDto;
 import com.mycom.myhome.user.User;
 import com.mycom.myhome.user.UserDao;
 
@@ -153,6 +155,22 @@ public class BoardServiceImpl implements BoardService{
 		}
 		
 		return BoardResultDto.ofFail("게시물 삭제에 실패하였습니다.");
+	}
+	
+	@Override
+	public List<PropertyDetailDto> getWishList(int userSeq) {
+		List<Integer> houseNoList = dao.findHouseNoByUserSeq(userSeq);
+		List<PropertyDetailDto> wishList = new ArrayList<>();
+		
+		houseNoList.forEach((item)->{
+			PropertyDetailDto house = dao.findByHouseNo(item);
+			if(house != null) {
+				System.out.println(house);
+				wishList.add(house);
+			}
+		});
+		
+		return wishList;
 	}
 
 }

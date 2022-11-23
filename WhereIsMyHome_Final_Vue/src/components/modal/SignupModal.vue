@@ -90,7 +90,6 @@ export default {
       options: [],
       sidoOptions: [],
       gugunOptions: [],
-      dongOptions: [],
       inputValue: [],
       sido: null,
       gugun: null,
@@ -120,7 +119,7 @@ export default {
     },
     // 길이가 3 이상이면 이름 valid
     validateName() {
-        if (this.user.name.length >= 3) {
+        if (this.user.name != null && this.user.name.length >= 3) {
           this.valid.name = "green";
         }else{
           this.valid.name = "red";
@@ -159,25 +158,30 @@ export default {
     },
     async listMapping(){
       this.options = [];
-      if(this.sido == null || this.sidoOptions.length == 0){
+      if(this.sido == null){
+        if(this.sidoOptions.length == 0){
           this.map.sidoList.forEach(element => {
             this.sidoOptions.push(
                 { name: element.name, code: element.code, category: "sido" },
             )
           });
-      
+        }
+
         this.options = this.sidoOptions;
+        this.gugunOptions = [];
       }
 
-      if(this.sido != null && (this.gugun == null || this.gugunOptions.length == 0)){
-        await this.getGugunList(this.sido);
+      if(this.sido != null && this.gugun == null ){
+        if(this.gugunOptions.length == 0){
+          await this.getGugunList(this.sido);
 
-        this.map.gugunList.forEach(element => {
-          this.gugunOptions.push(
-              { name: element.name, code: element.code, category: "gugun"},
-          )
-        });
-        this.options = this.gugunOptions;
+          this.map.gugunList.forEach(element => {
+            this.gugunOptions.push(
+                { name: element.name, code: element.code, category: "gugun"},
+            )
+          });
+        }
+        this.options = [...this.gugunOptions];
       }
     
     },
@@ -193,7 +197,8 @@ export default {
     },
     removeSidoGugunDong({code}){
       if(code.length == 2){
-        this.options = this.sidoOptions;
+        this.gugunOptions = [];
+        this.options = [...this.sidoOptions];
 
         this.sido = null;
         this.gugun = null;
@@ -203,7 +208,7 @@ export default {
           this.inputValue.pop();
         }
       }else if(code.length == 5){
-        this.options = this.gugunOptions;
+        this.options = [...this.gugunOptions];
 
         this.gugun = null;
         this.dong = null;

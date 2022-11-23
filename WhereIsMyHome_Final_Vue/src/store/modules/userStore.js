@@ -42,9 +42,11 @@ const userStore = {
         },
         SET_USER_INFO(state, payload){
             state.userInfo = {
+                seq:payload.seq,
                 name:payload.name,
                 email:payload.email,
                 profileImageUrl:payload.profileImageUrl,
+                gugunCode: payload.gugunCode
             };   
             
             if(payload.profileImageUrl == "/no_img.png"){

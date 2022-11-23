@@ -94,6 +94,7 @@
 <script>
 import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
+import { propertyListByRegionCode, propertyListByDongName} from '@/common/map.js'
 
 const userStore = "userStore";
 const mapStore = "mapStore";
@@ -103,6 +104,7 @@ export default{
   data() {
     return {
       isOpen: false,
+      removed: false,
       options: [],
       sidoOptions: [],
       gugunOptions: [],
@@ -157,45 +159,51 @@ export default{
       let dong = this.map.dong;
       let property = this.map.property;
 
-      if(Object.keys(property).length == 0){
-        console.log("get Property");
-        this.options = [];
-      }
-
-      if(Object.keys(dong).length == 0 || this.map.dongList.length == 0){
-        await this.getDongList({
-          sido: this.map.sido, 
-          gugun: this.map.gugun
-        });
-
-        this.map.dongList.forEach(element => {
-          this.dongOptions.push(
-              { name: element.name, code: element.code, category: "dong"},
-          )
-        });
-        this.options = this.dongOptions;
-      }
-
-      if(Object.keys(gugun).length == 0 || this.map.gugunList.length == 0){
-        await this.getGugunList(this.map.sido);
-
-        this.map.gugunList.forEach(element => {
-          this.gugunOptions.push(
-              { name: element.name, code: element.code, category: "gugun"},
-          )
-        });
-        this.options = this.gugunOptions;
-      }
-      
-      if(Object.keys(sido).length == 0 || this.sidoOptions.length == 0){
+      if(Object.keys(sido).length == 0){
+        if(this.sidoOptions.length == 0){
           this.map.sidoList.forEach(element => {
             this.sidoOptions.push(
                 { name: element.name, code: element.code, category: "sido" },
             )
           });
-      
-        this.options = this.sidoOptions;
+        }
+        
+        this.gugunOptions = [];
+        this.options = [...this.sidoOptions];
+      }else if(Object.keys(gugun).length == 0){
+        if(this.gugunOptions.length == 0){
+          await this.getGugunList(this.map.sido);
+
+          this.map.gugunList.forEach(element => {
+            this.gugunOptions.push(
+                { name: element.name, code: element.code, category: "gugun"},
+            )
+          });
+        }
+        
+        this.dongOptions = [];
+        this.options = [...this.gugunOptions];
+      }else if(Object.keys(dong).length == 0){
+        if(this.dongOptions.length == 0){
+          await this.getDongList({
+            sido: this.map.sido, 
+            gugun: this.map.gugun
+          });
+
+          this.map.dongList.forEach(element => {
+            this.dongOptions.push(
+                { name: element.name, code: element.code, category: "dong"},
+            )
+          });
+        }
+
+        this.options = [...this.dongOptions];
       }
+
+      // if(Object.keys(property).length == 0){
+      //   console.log("get Property");
+      //   this.options = [];
+      // }
       
       
       if(Object.keys(this.map.sido).length != 0)this.inputValue.push(this.map.sido);
@@ -203,46 +211,91 @@ export default{
       if(Object.keys(this.map.dong).length != 0)this.inputValue.push(this.map.dong);
     },
     async setSidoGugunDong(){
-      console.log("input")
-      await this.inputValue.forEach(item=>{
-        if(item.code.length == 2){
-          this.$store.commit("mapStore/SET_SIDO", item);
-        }else if(item.code.length == 5){
-          this.$store.commit("mapStore/SET_GUGUN", item);
-        }else{
-          this.$store.commit("mapStore/SET_DONG", item);
-        }
-      })
+      if(this.removed){
+        this.removed = false;
+        return;
+      }
+      
+      let item = this.inputValue.at(-1);
+      if(item.code.length == 2){
+        this.$store.commit("mapStore/SET_SIDO", item);
+        this.getListBySidoCode(); 
+      }else if(item.code.length == 5){
+        this.$store.commit("mapStore/SET_GUGUN", item);
+        this.getListByGugunCode();
+      }else{
+        this.$store.commit("mapStore/SET_DONG", item);
+        this.getListByDongName();
+      }
+      
     },
     removeSidoGugunDong({code}){
-      console.log("remove")
-      let tmp = this.inputValue;
+      this.removed = true;
+      console.log("remove");
+
       if(code.length == 2){
         this.$store.commit("mapStore/SET_SIDO", {});
         this.$store.commit("mapStore/SET_GUGUN", {});
         this.$store.commit("mapStore/SET_DONG", {});
+        this.getListBySidoCode(); 
 
+        this.gugunOptions = [];
+        this.options = [...this.sidoOptions];
         for(let i = 0; i < this.inputValue.length; i++){
           this.inputValue.pop();
         }
       }else if(code.length == 5){
         this.$store.commit("mapStore/SET_GUGUN", {});
         this.$store.commit("mapStore/SET_DONG", {});
-  
-        this.options = this.gugunOptions;
+        this.getListBySidoCode();
+
+
+        this.dongOptions = [];
+        this.options = [...this.gugunOptions];
 
         for(let i = 0; i < this.inputValue.length - 1; i++){
           this.inputValue.pop();
         }
       }else if(code.length == 10){
         this.$store.commit("mapStore/SET_DONG", {});
+        this.getListByGugunCode();
 
-        this.options = this.dongOptions;
+        this.options = [...this.dongOptions];
 
         for(let i = 0; i < this.inputValue.length - 2; i++){
           this.inputValue.pop();
         }
       }
+    },
+    async getListBySidoCode(){
+      await propertyListByRegionCode(this.map.sido.code,
+        ({data})=>{
+          this.$store.commit("mapStore/SET_PROPERTY_LIST", data);
+        },
+        (error)=>{
+          console.log(error);
+        }
+      );
+    },
+    async getListByGugunCode(){
+      await propertyListByRegionCode(this.map.gugun.code,
+        ({data})=>{
+          this.$store.commit("mapStore/SET_PROPERTY_LIST", data);
+        },
+        (error)=>{
+          console.log(error);
+        }
+      );
+    },
+    async getListByDongName(){
+      await propertyListByDongName(this.map.dong.name, this.map.gugun.code,
+        ({data})=>{
+          this.$store.commit("mapStore/SET_PROPERTY_LIST", data);
+        },
+        (error)=>{
+          console.log(error);
+        }
+      );
     }
   },
   computed:{

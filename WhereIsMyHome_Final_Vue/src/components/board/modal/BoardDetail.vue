@@ -163,7 +163,7 @@ export default {
 
 <style scoped>
 .modal-body *{
-     /* 드래그 방지 */
+     /* 드래그 가능 */
     -ms-user-select: text;
     -moz-user-select: text;
     -webkit-user-select: text;

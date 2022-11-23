@@ -74,6 +74,7 @@ export default {
       this.$refs.signup_modal.sido = null;
       this.$refs.signup_modal.gugun = null;
       this.$refs.signup_modal.dong = null;
+      this.$refs.signup_modal.inputValue = [];
       this.$refs.signup_modal.valid = {
         name: "",
         email: "",

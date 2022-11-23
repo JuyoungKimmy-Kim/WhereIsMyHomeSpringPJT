@@ -6,7 +6,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.webresources.FileResource;
@@ -34,6 +36,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.mycom.myhome.address.PropertyDetailDto;
+import com.mycom.myhome.common.NaverNewsApi;
 
 import lombok.RequiredArgsConstructor;
 
@@ -143,5 +148,19 @@ public class BoardController {
 		}
 		
 		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@GetMapping("/boards/wish/{userSeq}")
+	public ResponseEntity<List<PropertyDetailDto>> getWishList(@PathVariable int userSeq) {
+		List<PropertyDetailDto> result = service.getWishList(userSeq);
+		
+		return ResponseEntity.ok(result);
+	}
+	
+	@GetMapping("/boards/news")
+	public ResponseEntity<StringBuffer> getNews(){
+		StringBuffer news = NaverNewsApi.getNews();
+		System.out.println(news);
+		return ResponseEntity.ok(news);
 	}
 }

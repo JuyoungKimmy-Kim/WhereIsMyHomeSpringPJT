@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface PropertyDao {
 	public List<PropertyDto> searchByDong(String dongName);
 	public List<PropertyDto> searchByGugunCode(String gugunCode);
-	//public List<PropertyDto> searchByGugun(String gugunName);
+	public List<PropertyDto> searchBySidoCode(String sidoCode);
 	public List<PropertyDto> searchByApt(String aptName);
 }

@@ -2,7 +2,6 @@
   <div>
     <!-- <b-modal id="modal-lg" size="lg" ref="my-modal" hide-footer title="로드뷰" no-enforce-focus> -->
     <div id="roadview" class="map"></div>
-    <br><br>
     <!-- </b-modal> -->
   </div>
 </template>

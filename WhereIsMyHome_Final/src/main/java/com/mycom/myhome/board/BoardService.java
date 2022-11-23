@@ -1,6 +1,11 @@
 package com.mycom.myhome.board;
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.mycom.myhome.address.PropertyDetailDto;
 
 public interface BoardService {
 	
@@ -15,4 +20,6 @@ public interface BoardService {
 	public BoardResultDto update(BoardParamDto paramDto);
 	
 	public BoardResultDto delete(int boardId);
+	
+	public List<PropertyDetailDto> getWishList(int userSeq);
 }

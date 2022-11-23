@@ -11,30 +11,34 @@ const mapStore = {
             sido:{},
             gugun:{},
             dong:{},
-            property: [],
+            property: {},
+            propertyList:[],
         },
     },
     mutations:{
         SET_SIDO_LIST(state, list) {
-            state.map.sidoList=list;
+            state.map.sidoList= [...list];
         },
         SET_SIDO(state, payload) {
             state.map.sido = payload;
         },
         SET_GUGUN_LIST(state, list) {
-            state.map.gugunList=list;
+            state.map.gugunList= [...list];
         },
         SET_GUGUN(state, payload) {
             state.map.gugun = payload;
         },
         SET_DONG_LIST(state, list) {
-            state.map.dongList=list;
+            state.map.dongList= [...list];
         },
         SET_DONG(state, payload) {
             state.map.dong = payload;
         },
         SET_PROPERTY (state, payload) {
             state.map.property=payload;
+        },
+        SET_PROPERTY_LIST(state, payload){
+            state.map.propertyList= [...payload];
         }
     },
     actions:{
