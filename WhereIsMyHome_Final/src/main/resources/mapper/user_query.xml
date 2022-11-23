@@ -4,8 +4,8 @@
 	
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="com.mycom.myhome.user.User">
-		INSERT INTO users(name, password, email, reg_dt, profile_image_url)
-		VALUES(#{name}, #{password}, #{email}, now(), #{profileImageUrl})
+		INSERT INTO users(name, password, email, reg_dt, profile_image_url, gugun_code)
+		VALUES(#{name}, #{password}, #{email}, now(), #{profileImageUrl}, #{gugunCode})
 	</insert>
 	
 	<!-- 회원정보 수정 -->
@@ -23,7 +23,7 @@
 	
 	<!-- 회원 목록 -->
 	<select id="selectAll" parameterType="map" resultType="com.mycom.myhome.user.User">
-		SELECT seq, name, email, profile_image_url, reg_dt, code
+		SELECT seq, name, email, profile_image_url, reg_dt, code, gugun_code
 		FROM users
 		ORDER BY seq
 		DESC
@@ -32,14 +32,14 @@
 	
 	<!-- 이메일로 찾기 -->
 	<select id="selectByEmail" parameterType="string" resultType="com.mycom.myhome.user.User">
-		SELECT seq, name, password, email, profile_image_url, reg_dt, code, token
+		SELECT seq, name, password, email, profile_image_url, reg_dt, code, token, gugun_code
 		FROM users
 		WHERE email = #{email}
 	</select>
 	
 	<!-- Seq로 찾기 -->
 	<select id="selectBySeq" parameterType="int" resultType="com.mycom.myhome.user.User">
-		SELECT seq, name, password, email, profile_image_url, reg_dt, code, token
+		SELECT seq, name, password, email, profile_image_url, reg_dt, code, token, gugun_code
 		FROM users
 		WHERE seq = #{userSeq}
 	</select>

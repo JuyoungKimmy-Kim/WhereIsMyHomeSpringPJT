@@ -30,8 +30,21 @@
                 </div>
                 <div class="input-group input-group-static mb-4">
                     <label class="typo__label">관심지역</label>
-                    <multiselect v-model="value" :options="options" :multiple="true" group-values="libs" group-label="language" :group-select="true" placeholder="Type to search" track-by="name" label="name">
-                        <span slot="noResult">목록이 존재하지 않습니다.</span>
+                    <multiselect 
+                      v-model="inputValue" 
+                      :maxHeight="300" 
+                      :limit="3" 
+                      :options="options" 
+                      :multiple="true"  
+                      placeholder="검색어를 입력하세요."
+                      label="name"
+                      track-by="code"
+                      @input="setSidoGugunDong"
+                      @remove="removeSidoGugunDong"
+                      @open="listMapping"
+                      @close="isOpen = false"
+                      >
+                    <span slot="noOptions">검색하신 내용 혹은 목록이 존재하지 않습니다.</span>
                     </multiselect>
                 </div>
                 <div class="text-center">
@@ -51,6 +64,7 @@ import Multiselect from 'vue-multiselect';
 import {mapState, mapActions} from "vuex";
 
 const userStore = "userStore";
+const mapStore = "mapStore";
 
 
 export default {
@@ -65,6 +79,7 @@ export default {
         password:'',
         password2:'',
         profileImageUrl:'',
+        gugunCode: null,
       },
       valid:{
         name: "",
@@ -72,23 +87,22 @@ export default {
         password: "",
         password2: "",
       },
-      options: [
-        {
-          language: '시도',
-          libs: [
-            { name: 'Vue.js', category: 'Front-end' },
-            { name: 'Adonis', category: 'Backend' }
-          ]
-        },
-      ],
-      value: []
+      options: [],
+      sidoOptions: [],
+      gugunOptions: [],
+      dongOptions: [],
+      inputValue: [],
+      sido: null,
+      gugun: null,
     }
   },
   computed:{
     ...mapState(userStore, ["userResult"]),
+    ...mapState(mapStore, ["map"])
   },
   methods : {
     ...mapActions(userStore, ["signUpUser"]),
+    ...mapActions(mapStore, ["getGugunList"]),
     async callSignUp(){
       await this.signUpUser(this.user);
 
@@ -102,7 +116,7 @@ export default {
       this.$store.commit("userStore/CLEAR_RESULT_MESSAGE");
     },
     activateButton(){
-      return this.valid.name == "green" && this.valid.email == "green" && this.valid.password == "green" && this.valid.password2 == "green";
+      return this.valid.name == "green" && this.valid.email == "green" && this.valid.password == "green" && this.valid.password2 == "green" && this.user.gugunCode != null;
     },
     // 길이가 3 이상이면 이름 valid
     validateName() {
@@ -142,7 +156,63 @@ export default {
           /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
         if (regexp.test(this.user.email)) this.valid.email = "green";
         else this.valid.email = "red";
-      },
+    },
+    async listMapping(){
+      this.options = [];
+      if(this.sido == null || this.sidoOptions.length == 0){
+          this.map.sidoList.forEach(element => {
+            this.sidoOptions.push(
+                { name: element.name, code: element.code, category: "sido" },
+            )
+          });
+      
+        this.options = this.sidoOptions;
+      }
+
+      if(this.sido != null && (this.gugun == null || this.gugunOptions.length == 0)){
+        await this.getGugunList(this.sido);
+
+        this.map.gugunList.forEach(element => {
+          this.gugunOptions.push(
+              { name: element.name, code: element.code, category: "gugun"},
+          )
+        });
+        this.options = this.gugunOptions;
+      }
+    
+    },
+    async setSidoGugunDong(){
+      await this.inputValue.forEach(item=>{
+        if(item.code.length == 2){
+          this.sido = item;
+        }else if(item.code.length == 5){
+          this.gugun = item;
+          this.user.gugunCode = this.gugun.code;
+        }
+      })
+    },
+    removeSidoGugunDong({code}){
+      if(code.length == 2){
+        this.options = this.sidoOptions;
+
+        this.sido = null;
+        this.gugun = null;
+        this.dong = null;
+
+        for(let i = 0; i < this.inputValue.length; i++){
+          this.inputValue.pop();
+        }
+      }else if(code.length == 5){
+        this.options = this.gugunOptions;
+
+        this.gugun = null;
+        this.dong = null;
+
+        for(let i = 0; i < this.inputValue.length - 1; i++){
+          this.inputValue.pop();
+        }
+      }
+    }
   },
   watch:{
     'user.name'(){

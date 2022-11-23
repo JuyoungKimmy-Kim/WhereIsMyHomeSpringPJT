@@ -125,21 +125,21 @@ export default {
         "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=741cfff0b0e1d74a405abcb9f34aee54&libraries=services";
       document.head.appendChild(script);
     }
+
+    this.getPropertyList();
+    this.displayPlaces(this.kakao.placeList);
     this.$store.commit("IS_MAP_VIEW", true);
   },
   destroyed() {
+    
+    this.$store.commit("mapStore/SET_SIDO", {});
+    this.$store.commit("mapStore/SET_GUGUN", {});
+    this.$store.commit("mapStore/SET_DONG", {});
     this.$store.commit("IS_MAP_VIEW", false);
   },
   // gugun, dong 변경 시 --> watch를 통해 변화 감지 --> db 다시 접근해 property List 받아옴
   computed: {
     ...mapState(mapStore, ["map"]),
-  },
-  watch: {
-    //selectedGugun: function () {},
-    selectedDong: function () {
-      this.getPropertyList();
-      this.displayPlaces(this.kakao.placeList);
-    },
   },
   methods: {
     initMap() {
@@ -160,10 +160,11 @@ export default {
       this.kakao.map.addControl(this.kakao.zoomControl, kakao.maps.ControlPosition.RIGHT);
 
       // 검색된 동이 있을 경우
-      if (this.map.value.dong.name.length != 0) {
-        this.getPropertyList();
-        this.displayPlaces(this.kakao.placeList);
-      }
+      console.log(this.map.value)
+      // if (this.map.value.dong != {}) {
+      //   this.getPropertyList();
+      //   this.displayPlaces(this.kakao.placeList);
+      // }
 
       this.getStationList();
 
@@ -494,9 +495,10 @@ export default {
       this.displayPlaces(this.options.stationList);
     },
     async getPropertyList() {
+      if(this.map.gugun == null || this.map.dong == null) return;
       await propertyList(
-        this.map.value.dong.name,
-        this.map.value.gugun.code,
+        this.map.dong.name,
+        this.map.gugun.code,
         ({ data }) => {
           this.kakao.placeList = data;
           console.log("getPropertyList >> " + data);
@@ -508,14 +510,14 @@ export default {
       );
     },
     async getStationList() {
-        await stationList (
-          ({ data }) => {
-            this.options.stationList=data;
-          },
-          (error) => {
-            console.log (error);
-          }
-        );
+      await stationList (
+        ({ data }) => {
+          this.options.stationList=data;
+        },
+        (error) => {
+          console.log (error);
+        }
+      );
     },
   },
 };

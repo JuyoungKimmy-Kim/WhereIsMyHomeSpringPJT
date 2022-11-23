@@ -68,9 +68,12 @@ export default {
         password: "",
         password2: "",
         profileImageUrl: "",
+        gugunCode: null,
       };
 
-
+      this.$refs.signup_modal.sido = null;
+      this.$refs.signup_modal.gugun = null;
+      this.$refs.signup_modal.dong = null;
       this.$refs.signup_modal.valid = {
         name: "",
         email: "",

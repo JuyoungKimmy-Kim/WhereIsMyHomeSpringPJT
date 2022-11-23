@@ -22,6 +22,7 @@ public class User {
 	private LocalDateTime regDt;
 	private String code;
 	private String token;
+	private String gugunCode;
 	
 	public void setRegDt(Date regDt) {
 		// Mybatis가 LocalDateTime을 지원하지 않기 때문에 Date로 먼저 받아서 처리한다.( Mybatis Date Mapping )
@@ -29,11 +30,12 @@ public class User {
 	}
 	
 	@Builder
-	public User(String name, String password, String email, String profileImageUrl, String code) {
+	public User(String name, String password, String email, String profileImageUrl, String code, String gugunCode) {
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.profileImageUrl = profileImageUrl;
 		this.code = code;
+		this.gugunCode = gugunCode;
 	}
 }
