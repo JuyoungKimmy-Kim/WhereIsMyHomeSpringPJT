@@ -8,11 +8,9 @@ const mapStore = {
             gugunList : [],
             dongList : [],
             
-            value :{
-                sido:{},
-                gugun:{},
-                dong:{},
-            },
+            sido:{},
+            gugun:{},
+            dong:{},
             property: [],
         },
     },
@@ -21,19 +19,19 @@ const mapStore = {
             state.map.sidoList=list;
         },
         SET_SIDO(state, payload) {
-            state.map.value.sido = payload;
+            state.map.sido = payload;
         },
         SET_GUGUN_LIST(state, list) {
             state.map.gugunList=list;
         },
         SET_GUGUN(state, payload) {
-            state.map.value.gugun = payload;
+            state.map.gugun = payload;
         },
         SET_DONG_LIST(state, list) {
             state.map.dongList=list;
         },
         SET_DONG(state, payload) {
-            state.map.value.dong = payload;
+            state.map.dong = payload;
         },
         SET_PROPERTY (state, payload) {
             state.map.property=payload;
@@ -58,11 +56,11 @@ const mapStore = {
             }
             )
         },
-        async getDongList({commit, state}, gugunValue){
-            await dongList(state.map.value.sido.code, gugunValue.code,
+        async getDongList({commit}, {sido, gugun}){
+            await dongList(sido.code, gugun.code,
                 ({data})=>{
                     commit("SET_DONG_LIST", data);
-                    commit("SET_GUGUN", gugunValue);
+                    commit("SET_GUGUN", gugun);
                 },
                 (error)=>{
                     console.log(error)

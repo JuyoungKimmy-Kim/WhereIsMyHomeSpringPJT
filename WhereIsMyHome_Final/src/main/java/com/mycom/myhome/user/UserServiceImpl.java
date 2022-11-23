@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService{
 						.profileImageUrl(item.getProfileImageUrl())
 						.regDt(item.getRegDt())
 						.role(role)
+						.gugunCode(item.getGugunCode())
 						.build()
 					);
 		});
@@ -84,6 +85,7 @@ public class UserServiceImpl implements UserService{
 					.profileImageUrl(user.getProfileImageUrl())
 					.regDt(user.getRegDt())
 					.role(role)
+					.gugunCode(user.getGugunCode())
 					.accessToken(accessToken)
 					.refreshToken(refreshToken)
 					.build();
@@ -155,6 +157,7 @@ public class UserServiceImpl implements UserService{
 						.profileImageUrl(user.getProfileImageUrl())
 						.regDt(user.getRegDt())
 						.role(role)
+						.gugunCode(user.getGugunCode())
 						.accessToken(accessToken)
 						.build();
 			}
@@ -226,6 +229,7 @@ public class UserServiceImpl implements UserService{
 				.profileImageUrl(user.getProfileImageUrl())
 				.regDt(user.getRegDt())
 				.role(role)
+				.gugunCode(user.getGugunCode())
 				.accessToken(accessToken)
 				.refreshToken(refreshToken)
 				.build();

@@ -10,6 +10,7 @@
             :searchable="true"
             :close-on-select="true"
             :show-labels="false"
+            @input="selectSido"
             placeholder="시/도 선택"
           >
           </multiselect>
@@ -22,6 +23,7 @@
             :searchable="true"
             :close-on-select="true"
             :show-labels="false"
+            @input="selectGugun"
             :disabled="map.gugunList.length == 0"
             placeholder="구/군 선택"
           >
@@ -35,6 +37,7 @@
             :searchable="true"
             :close-on-select="true"
             :show-labels="false"
+            @input="selectDong"
             :disabled="map.dongList.length == 0"
             placeholder="동 선택"
           >
@@ -80,9 +83,13 @@ export default {
   computed: {
     ...mapState(mapStore, ["map"]),
   },
-  watch : {
-    sidoValue() {
-      if(this.sidoValue == null || this.sidoValue.code != this.map.value.sido.code){
+  methods:{
+    ...mapActions(mapStore, ["getSidoList", "getGugunList", "getDongList"]),
+    gotoMap() {
+      this.$router.push("/map");
+    },
+    selectSido(){
+      if(this.sidoValue == null || this.sidoValue.code != this.map.sido.code){
         this.gugunValue = "";
         this.dongValue = "";
         this.$store.commit("mapStore/SET_GUGUN", {});
@@ -95,28 +102,26 @@ export default {
         this.getGugunList(this.sidoValue);
       }
     },
-    gugunValue() {
-      if(this.gugunValue  == null || this.gugunValue.code != this.map.value.gugun.code){
+    selectGugun(){
+      if(this.gugunValue  == null || this.gugunValue.code != this.map.gugun.code){
         this.dongValue = "";
         this.$store.commit("mapStore/SET_DONG", {});
       }
       if(this.gugunValue != null) {
-      console.log ('gugun value 변경 -->  dong List 출력');
-        this.getDongList(this.gugunValue);
+        console.log ('gugun value 변경 -->  dong List 출력');
+
+        this.getDongList({
+          sido: this.sidoValue, 
+          gugun: this.gugunValue
+        });
       }
     },
-    dongValue() {
+    selectDong(){
       if(this.dongValue != null){
         console.log ('dong value 변경 --> store 저장')
         this.$store.commit("mapStore/SET_DONG", this.dongValue);
       }
     }
-  },
-  methods: {
-    ...mapActions(mapStore, ["getSidoList", "getGugunList", "getDongList"]),
-    gotoMap() {
-      this.$router.push("/map");
-    },
   },
   async created(){
     await this.getSidoList();

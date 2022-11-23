@@ -8,12 +8,13 @@
         <div class="row py-0">
           <div class="col-lg-9 mx-auto py-3">
             <div class="row container-fluid px-0">
-              <div class="col-md-6 position-relative">
+              <div class="col-md-6 position-relative" style="display: flex; flex-direction: column;">
+                <h4 class="row justify-content-center" style="flex:1">오늘의 뉴스</h4>
                 <news-section></news-section>
                 <hr class="vertical dark">
               </div>
-              <div class="col-md-6 justify-content-end">
-                <h4 class="row justify-content-center">공지사항</h4>
+              <div class="col-md-6 justify-content-end" style="display: flex; flex-direction: column;">
+                <h4 class="row justify-content-center" style="flex:1">공지사항</h4>
                 <notice-fragment @show-this-notice="showDetail"></notice-fragment>
               </div>
             </div>

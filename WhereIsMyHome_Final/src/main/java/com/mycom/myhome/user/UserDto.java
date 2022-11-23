@@ -28,6 +28,7 @@ public class UserDto {
 		private String code;
 		private String role;
 		private String profileImageUrl;
+		private String gugunCode;
 		
 		public User toEntity() {
 			return User.builder()
@@ -36,6 +37,7 @@ public class UserDto {
 					.password(password)
 					.profileImageUrl(profileImageUrl)
 					.code(code)
+					.gugunCode(gugunCode)
 					.build();
 		}
 	}
@@ -58,6 +60,9 @@ public class UserDto {
 		private String role;
 		private String accessToken;
 		private String refreshToken;
+		private String gugunCode;
+		
+		
 		private long count;
 	}
 

@@ -1,41 +1,13 @@
 <template>
 <div id="newSection" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <section id="card">
-                <div class="container">
-                    <div class="row justify-space-between py-2">
-                    <div class="mx-auto">
-                        <div class="card card-background" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')">
-                        <div class="full-background"></div>
-                        <div class="card-body body-left">
-                            <div class="content-left py-4">
-                                <h4 class="card-title text-white">"중국 부동산 판매, 내년에도 10~15% 하락할 것"</h4>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <div class="carousel-item">
-            <section id="card">
-                <div class="container">
-                    <div class="row justify-space-between py-2">
-                    <div class="mx-auto">
-                        <div class="card card-background" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')">
-                        <div class="full-background"></div>
-                        <div class="card-body body-left">
-                            <div class="content-left py-4">
-                                <h4 class="card-title text-white">“부동산 시장 현안 대응 방안 발표한 정부”… 직접적 수혜 받는 천왕역 모아엘가 트레뷰 주목</h4>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </section>
+        <div :class="[index == 0 ? 'carousel-item active' : 'carousel-item']" v-for="(news, index) in newsList" :key="index">
+            <img :src=news.image_url class="d-block w-100" :alt=news.image_alt>
+            <div class="carousel-caption d-none d-md-block">
+                <a :href=news.url target='_blank'>
+                    <h4>{{news.title}}</h4>
+                </a>
+            </div>    
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#newSection" data-bs-slide="prev">
@@ -50,22 +22,60 @@
 </template>
 
 <script>
-export default {
+import http from '@/common/axios';
+import cheerio from 'cheerio';
 
+
+export default {
+    data() {
+        return {
+            newsList:[],
+        }
+    },
+    mounted() {
+        http.get("https://cors-anywhere.herokuapp.com/https://news.naver.com/main/list.naver?mode=LS2D&mid=shm&sid1=101&sid2=260",{
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With'
+            }
+        })
+        .then(html => {
+            this.newsList = [];
+            const $ = cheerio.load(html.data);
+            const $bodyList = $("ul.type06_headline").children("li")
+            
+            for(let i = 0; i < 2; i++){
+                
+                let $this = $bodyList.get(i);
+                this.newsList[i] = {
+                    title: $($this).find('dt.photo a img').attr('alt'),
+                    url: $($this).find('dt.photo a').attr('href'),
+                    image_url: $($this).find('dt.photo a img').attr('src'),
+                    image_alt: $($this).find('dt.photo a img').attr('alt'),
+                };
+            }
+
+            const data = this.newsList.filter(n => n.title);
+            return data;
+        })
+        .then(res => {
+            console.log(res)
+        })
+        .catch(error=>{
+            console.log(error)
+        });
+    },
 };
 </script>
 
 <style scoped>
-.card-title {
-    width:300px;
-    display:-webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-.card.card-background .card-body .content-center, .card.card-background .card-body .content-left{
-    display: flex;
-    padding-top: 60px;
-    padding-bottom: 60px;
+a h4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: auto;
+  background-color:white;
 }
 </style>

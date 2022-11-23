@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from '@/routers'
 import store from '@/store'
 
+
 Vue.use(VueAlertify);
 
 //css

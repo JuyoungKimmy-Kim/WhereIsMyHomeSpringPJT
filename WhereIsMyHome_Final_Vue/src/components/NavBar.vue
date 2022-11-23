@@ -17,19 +17,22 @@
           </button>
 
           <!-- map이면 표시 -->
-          <div id="multiSelect" class="w-100" v-if="$store.state.isMapView">
+          <div id="multiSelect" class="w-100" v-if="isMapView">
               <multiselect 
-                v-model="value" 
+                v-model="inputValue" 
                 :maxHeight="300" 
                 :limit="4" 
-                :options="filteredOptions" 
-                :multiple="true" 
-                group-values="libs"
-                group-label="language" 
+                :options="options" 
+                :multiple="true"  
                 placeholder="검색어를 입력하세요."
-                track-by="category" 
-                label="name">
-                  <span slot="noResult">검색하신 내용이 존재하지 않습니다.</span>
+                label="name"
+                track-by="code"
+                @input="setSidoGugunDong"
+                @remove="removeSidoGugunDong"
+                @open="listMapping"
+                @close="isOpen = false"
+                >
+              <span slot="noOptions">검색하신 내용 혹은 목록이 존재하지 않습니다.</span>
               </multiselect>
           </div>
           
@@ -93,35 +96,24 @@ import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
 
 const userStore = "userStore";
+const mapStore = "mapStore";
 
 export default{
   components:{Multiselect},
   data() {
     return {
-      options: [
-          {
-            language: '시도',
-            libs: [
-                { name: 'Vue.js', category: 'sido' },
-                { name: 'Adonis', category: 'sido' }
-            ]
-          },
-          {
-            language: '구군',
-            libs: [
-                { name: 'Rails', category: 'gugun1' },
-                { name: 'Rails', category: 'gugun2' },
-                { name: 'Rails', category: 'gugun3' },
-                { name: 'Rails', category: 'gugun4' },
-                { name: 'Rails', category: 'gugun5' },
-            ]
-          },
-      ],
-      value: [],
+      isOpen: false,
+      options: [],
+      sidoOptions: [],
+      gugunOptions: [],
+      dongOptions: [],
+      
+      inputValue:[],
     }
   },
   methods: {
     ...mapActions(userStore, ["logoutConfirm", "getUserInfo"]),
+    ...mapActions(mapStore, ["getGugunList", "getDongList"]),
     showLogin(){
       this.$emit("show-login");
     },
@@ -155,25 +147,122 @@ export default{
           this.$router.push("/");
       }
       this.$store.commit("userStore/CLEAR_RESULT_MESSAGE");
+    },
+    async listMapping(){
+      this.isOpen = true;
+      this.inputValue = [];
+
+      let sido = this.map.sido;
+      let gugun = this.map.gugun;
+      let dong = this.map.dong;
+      let property = this.map.property;
+
+      if(Object.keys(property).length == 0){
+        console.log("get Property");
+        this.options = [];
+      }
+
+      if(Object.keys(dong).length == 0 || this.map.dongList.length == 0){
+        await this.getDongList({
+          sido: this.map.sido, 
+          gugun: this.map.gugun
+        });
+
+        this.map.dongList.forEach(element => {
+          this.dongOptions.push(
+              { name: element.name, code: element.code, category: "dong"},
+          )
+        });
+        this.options = this.dongOptions;
+      }
+
+      if(Object.keys(gugun).length == 0 || this.map.gugunList.length == 0){
+        await this.getGugunList(this.map.sido);
+
+        this.map.gugunList.forEach(element => {
+          this.gugunOptions.push(
+              { name: element.name, code: element.code, category: "gugun"},
+          )
+        });
+        this.options = this.gugunOptions;
+      }
+      
+      if(Object.keys(sido).length == 0 || this.sidoOptions.length == 0){
+          this.map.sidoList.forEach(element => {
+            this.sidoOptions.push(
+                { name: element.name, code: element.code, category: "sido" },
+            )
+          });
+      
+        this.options = this.sidoOptions;
+      }
+      
+      
+      if(Object.keys(this.map.sido).length != 0)this.inputValue.push(this.map.sido);
+      if(Object.keys(this.map.gugun).length != 0)this.inputValue.push(this.map.gugun);
+      if(Object.keys(this.map.dong).length != 0)this.inputValue.push(this.map.dong);
+    },
+    async setSidoGugunDong(){
+      console.log("input")
+      await this.inputValue.forEach(item=>{
+        if(item.code.length == 2){
+          this.$store.commit("mapStore/SET_SIDO", item);
+        }else if(item.code.length == 5){
+          this.$store.commit("mapStore/SET_GUGUN", item);
+        }else{
+          this.$store.commit("mapStore/SET_DONG", item);
+        }
+      })
+    },
+    removeSidoGugunDong({code}){
+      console.log("remove")
+      let tmp = this.inputValue;
+      if(code.length == 2){
+        this.$store.commit("mapStore/SET_SIDO", {});
+        this.$store.commit("mapStore/SET_GUGUN", {});
+        this.$store.commit("mapStore/SET_DONG", {});
+
+        for(let i = 0; i < this.inputValue.length; i++){
+          this.inputValue.pop();
+        }
+      }else if(code.length == 5){
+        this.$store.commit("mapStore/SET_GUGUN", {});
+        this.$store.commit("mapStore/SET_DONG", {});
+  
+        this.options = this.gugunOptions;
+
+        for(let i = 0; i < this.inputValue.length - 1; i++){
+          this.inputValue.pop();
+        }
+      }else if(code.length == 10){
+        this.$store.commit("mapStore/SET_DONG", {});
+
+        this.options = this.dongOptions;
+
+        for(let i = 0; i < this.inputValue.length - 2; i++){
+          this.inputValue.pop();
+        }
+      }
     }
   },
   computed:{
     ...mapState(userStore, ["isLogin", "userInfo", "userResult"]),
-    filteredOptions(){
-      return this.options.filter(el=>{
-        let sidoCount = this.value.filter(el => el.category == "sido").length;
-        if(sidoCount == 0){
-          return el.language == "시도";
-        }
-        let gugunCount = this.value.filter(el => el.category.indexOf("gugun") != -1).length;
-        if(gugunCount < 2){
-          return el.language == "구군";
-        }
-      });
-    },
+    ...mapState(mapStore, ["map"]),
+    isMapView(){
+      return this.$store.state.isMapView;
+    }
   },
+  watch:{
+    isMapView(value, oldValue){
+      if(value){
+        this.listMapping();
+      }
+    }
+  },
+
 }
 </script>
+
 
 <style scoped src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
