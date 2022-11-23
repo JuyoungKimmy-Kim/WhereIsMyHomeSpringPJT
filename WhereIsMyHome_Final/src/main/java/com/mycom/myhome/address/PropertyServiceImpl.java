@@ -11,6 +11,8 @@ public class PropertyServiceImpl implements PropertyService {
 
 	@Autowired
 	PropertyDao dao;
+	@Autowired
+	PropertyDetailDao detailDao;
 	
 	@Override
 	public List<PropertyDto> searchByDong(String dongName, String gugunCode) {
@@ -18,7 +20,7 @@ public class PropertyServiceImpl implements PropertyService {
 		try {
 			list=dao.searchByDong(dongName);
 			if (list.size()==0) {
-				list=dao.searchByGugunCode(gugunCode);
+				list=dao.searchByGugun(gugunCode);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,6 +36,32 @@ public class PropertyServiceImpl implements PropertyService {
 		try {
 			list=dao.searchByApt(aptName);
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+	@Override
+	public List<PropertyDto> searchByGugun(String gugunCode) {
+		List<PropertyDto> list=null;
+		
+		try {
+			list=dao.searchByGugun(gugunCode);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+	@Override
+	public List<PropertyDetailDto> propertyDetail(String houseNo) {
+		List<PropertyDetailDto> list=null;
+		try {
+			list=detailDao.propertyDetail(houseNo);
+		} catch (Exception e) {
+			System.out.println("Error");
 			e.printStackTrace();
 		}
 		return list;

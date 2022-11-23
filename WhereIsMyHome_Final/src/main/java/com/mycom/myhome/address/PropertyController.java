@@ -22,9 +22,26 @@ public class PropertyController {
 	
 	@GetMapping("/property/{dongName}/{gugunCode}")
 	private List<PropertyDto> searchByDong(@PathVariable String dongName, @PathVariable String gugunCode) {
-		System.out.println("PropertyController - House List - Search By Dong");
-		System.out.println(dongName + " " +gugunCode);
+		System.out.println("PropertyController - Search By Dong");
 		return service.searchByDong(dongName, gugunCode);
+	}
+	
+	@GetMapping("/property/{gugunCode}")
+	private List<PropertyDto> searchByGugun(@PathVariable String gugunCode) {
+		System.out.println("PropertyController - Search By Gugun");
+		return service.searchByGugun(gugunCode);
+	}
+	
+	@GetMapping("/apt/{aptName}")
+	private List<PropertyDto> searchByApt(@PathVariable String aptName) {
+		System.out.println("PropertyController - Search By AptName");
+		return service.searchByApt(aptName);
+	}
+	
+	@GetMapping ("/propertyDetail/{houseNo}")
+	private List<PropertyDetailDto> propertyDetail (@PathVariable String houseNo) {
+		System.out.println("PropertyController - Property Detail");
+		return service.propertyDetail(houseNo);
 	}
 }
 
