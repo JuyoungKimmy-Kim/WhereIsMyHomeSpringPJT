@@ -30,7 +30,6 @@
 
 <script>
 
-import {mapState} from "vuex";
 const boardStore = "boardStore";
 
 export default {
