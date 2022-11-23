@@ -3,32 +3,25 @@
 <mapper namespace="com.mycom.myhome.address.PropertyDao"> <!--  @Mapper annotation 있는 dao -->
 	<!-- 동 이름으로 집 정보 받아오기-->
 	<select id="searchByDong" resultType="com.mycom.myhome.address.PropertyDto">
-		select hd.no, hd.dong, hd.code, hd.AptName, hd.dealAmount, hd.dealYear,
-			   hd.dealMonth, hd.dealDay, hd.area,
-			   hi.lat, hi.lng
-		  from housedeal hd join houseinfo hi
-		 where hd.AptName=hi.AptName and hd.dong=#{dongName}
-		 limit 50
+		select no, dong, AptName, code, buildYear, jibun, lat, lng
+		  from houseinfo
+		 where dong=#{dongName}
 	</select>
 	
 	<!--  구군 코드 정보로 집 정보 받아오기  -->
 	<select id="searchByGugunCode" resultType="com.mycom.myhome.address.PropertyDto">
-		select hd.no, hd.dong, hd.code, hd.AptName, hd.dealAmount, hd.dealYear,
-			   hd.dealMonth, hd.dealDay, hd.area,
-			   hi.lat, hi.lng
-		  from housedeal hd join houseinfo hi
-		 where hd.AptName=hi.AptName and hd.code=#{gugunCode}
-		 limit 50
+		select no, dong, AptName, code, buildYear, jibun, lat, lng
+		  from houseinfo
+		 where code=#{gugunCode}
+		 limit 100
 	</select>
 	
 	<!--  아파트 이름으로 정보 받아오기 -->
 	<select id="searchByApt" resultType="com.mycom.myhome.address.PropertyDto">
-		select hd.no, hd.dong, hd.code, hd.AptName, hd.dealAmount, hd.dealYear,
-			   hd.dealMonth, hd.dealDay, hd.area,
-			   hi.lat, hi.lng
-		  from housedeal hd join houseinfo hi
-		 where hd.AptName = hi.AptName
-		   and hd.AptName like concat('%',#{aptName},'%')
+		select no, dong, AptName, code, buildYear, jibun, lat, lng
+		  from houseinfo
+		 where AptName like concat('%',#{aptName},'%')
+		 limit 100
 	</select>
 
 </mapper>	
