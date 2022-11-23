@@ -1,11 +1,16 @@
 package com.mycom.myhome.user;
 
+import java.util.List;
+
 public interface UserService {
 	
-	public UserResultDto login(UserParamDto paramDto);
-	public UserResultDto signup(UserParamDto paramDto);
-	public UserResultDto info(String email, String accessToken);
-	public UserResultDto deleteRefreshToken(String userEmail);
-	public UserResultDto getRefreshToken(UserParamDto paramDto, String token);
-	public UserResultDto update(UserParamDto paramDto);
+	public UserDto.Response getTotalCount();
+	public List<UserDto.Response> getUserList(int limit, int offset);
+	public UserDto.Response loginProcess(UserDto.Request paramDto);
+	public UserDto.Response processNewUser(UserDto.Request paramDto);
+	public UserDto.Response modifyProcess(UserDto.Request paramDto);
+	public UserDto.Response tokenValidationProcess(String email, String accessToken);
+	public UserDto.Response getRefreshToken(UserDto.Request paramDto, String token);
+	public UserDto.Response logoutProcess(String userEmail);
+	public UserDto.Response validateUser(UserDto.Request paramDto);
 }

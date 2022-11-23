@@ -82,7 +82,7 @@ export default {
   },
   watch : {
     sidoValue() {
-      if(this.sidoValue == null || this.sidoValue.code != this.map.sido.code){
+      if(this.sidoValue == null || this.sidoValue.code != this.map.value.sido.code){
         this.gugunValue = "";
         this.dongValue = "";
         this.$store.commit("mapStore/SET_GUGUN", {});
@@ -91,11 +91,12 @@ export default {
 
       if(this.sidoValue != null){
         console.log ('sido value 변경 -->  gugun List 출력');
+        this.$store.commit("mapStore/SET_SIDO", this.sidoValue);
         this.getGugunList(this.sidoValue);
       }
     },
     gugunValue() {
-      if(this.gugunValue  == null || this.gugunValue.code != this.map.gugun.code){
+      if(this.gugunValue  == null || this.gugunValue.code != this.map.value.gugun.code){
         this.dongValue = "";
         this.$store.commit("mapStore/SET_DONG", {});
       }

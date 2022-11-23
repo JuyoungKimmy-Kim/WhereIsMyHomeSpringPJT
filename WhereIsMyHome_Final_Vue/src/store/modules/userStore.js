@@ -1,61 +1,73 @@
 import jwtDecode from "jwt-decode";
-import { signup, login, findByEmail, logout, tokenRegeneration, update } from "@/common/user";
+import { login, signUp, modifyInfo, validateToken, logout, createAccessToken } from "@/common/user";
 
+import util from '@/common/utils';
 
 const userStore = {
     namespaced: true,
     state:{
+        // alertify를 위함
         userResult:{
             status: "",
             message: "",
         },
         isLogin: false,
-        userInfo: {
-            userSeq:"",
-            userName:"",
-            userEmail:"",
-            userProfileImgUrl:"",
-            regDt:"",
-            userClsf:"",
-        },
+        userInfo: {},
         validToken: null,
     },
     mutations:{
         SET_IS_LOGIN(state, payload) {
             state.isLogin = payload;
         },
-        SET_RESULT_MESSAGE(state, payload){
-            if(payload == null){
-                state.userResult = {};
-            }else{
-                state.userResult = {
-                    status: payload.status,
-                    message: payload.message
-                }
+        CLEAR_RESULT_MESSAGE(state){
+            state.userResult = {}
+        },
+        SET_RESULT_MESSAGE_SUCCESS(state, payload){
+            state.userResult = {
+                status: "SUCCESS",
+                message: payload
+            }
+        },
+        SET_RESULT_MESSAGE_FAIL(state, payload){
+            state.userResult = {
+                status: "FAIL",
+                message: payload
             }
         },
         SET_VALID_TOKEN(state, payload){
             state.validToken = payload;
         },
+        CLEAR_USER_INFO(state){
+            state.userInfo = {};
+        },
         SET_USER_INFO(state, payload){
-            if(payload == null){
-                state.userInfo = {
-                    userName:"",
-                    userEmail:"",
-                    userProfileImgUrl:"",
-                    regDt:"",
-                    userClsf:"",
-                };   
-            }else{
-                state.userInfo = payload;
+            state.userInfo = {
+                name:payload.name,
+                email:payload.email,
+                profileImageUrl:payload.profileImageUrl,
+            };   
+            
+            if(payload.profileImageUrl == "/no_img.png"){
+                state.userInfo.profileImageUrl = require("@/assets/img/profile/no_img.png");
             }
+
+            if(payload.regDt != null){
+                state.userInfo.regDate = util.makeDateStr(payload.regDt.date.year, payload.regDt.date.month, payload.regDt.date.day, '/');
+            }
+
+            if(payload.role != null){
+                state.userInfo.role = payload.role;
+            }
+            
         }
     },
     actions:{
-        async signUp({commit}, user){
-            await signup(user,
+        async signUpUser({commit}, user){
+            await signUp(user,
                 ({data})=>{ // SUCCESS
-                    commit("SET_RESULT_MESSAGE", {status: data.result, message: data.message});
+                    if(data.result == "SUCCESS"){
+                        commit("SET_RESULT_MESSAGE_SUCCESS", "회원가입에 성공하셨습니다!!");
+                    }
                 },
                 (error)=>{ // FAIL
                     console.log(error);
@@ -68,25 +80,31 @@ const userStore = {
                     if(data.result == "SUCCESS"){
                         commit("SET_IS_LOGIN", true);
                         commit("SET_VALID_TOKEN", true);
-                        commit("SET_RESULT_MESSAGE", {status: data.result, message: data.message});
+                        commit("SET_USER_INFO", data);
+                        commit("SET_RESULT_MESSAGE_SUCCESS", "로그인에 성공하였습니다!!");
                         sessionStorage.setItem("access-token", data.accessToken);
                         sessionStorage.setItem("refresh-token", data.refreshToken);
                     }else{
                         commit("SET_IS_LOGIN", false);
                         commit("SET_VALID_TOKEN", false);
-                        commit("SET_RESULT_MESSAGE",  {status: data.result, message: data.message});
+                        commit("SET_RESULT_MESSAGE_FAIL", "");
                     }
                 }),(error) => {
                     console.log(error);
                 }
         },
         async logoutConfirm({commit, state}){
-            await logout(state.userInfo.userEmail,
+            const params = {
+                email: state.userInfo.email
+            }
+
+            await logout(params,
                     ({data})=>{
                         if(data.result == "SUCCESS"){
                             commit("SET_IS_LOGIN", false);
                             commit("SET_VALID_TOKEN", false);
-                            commit("SET_RESULT_MESSAGE", {status: data.result, message: data.message});
+                            commit("CLEAR_USER_INFO");
+                            commit("SET_RESULT_MESSAGE_SUCCESS", "로그아웃이 완료되었습니다.");
                         }else{
                             console.log("유저 정보 없음!!!");
                         }
@@ -97,64 +115,81 @@ const userStore = {
                 )
         },
         async getUserInfo({commit, dispatch}, token){
+            if(token == null){
+                console.log("아직 로그인하지 않음");
+                return;
+            }
+
             const decodedToken = jwtDecode(token);
-            await findByEmail(decodedToken.userEmail, 
+            const params = {
+                email: decodedToken.email
+            };
+            
+            await validateToken(params, 
                 ({data})=>{
                     if(data.result == "SUCCESS"){
-                        commit("SET_RESULT_MESSAGE", {status: "SUCCESS", message: "토큰 검증 완료"});
-                        commit("SET_USER_INFO", data.userInfo);
+                        commit("SET_USER_INFO", data);
+                        commit("SET_RESULT_MESSAGE_SUCCESS","");
                     }else{
-                        commit("SET_USER_INFO", null);
+                        commit("CLEAR_USER_INFO");
                         commit("SET_IS_LOGIN", false);
                         commit("SET_VALID_TOKEN", false);
-                        
-                        console.log("유저 정보 없음!!!!");
+                        commit("SET_RESULT_MESSAGE_FAIL", "토큰이 만료되었습니다.");
                     }
                 },
                 async (error)=>{
-                    console.log("토큰만료 >> " + error);
+                    console.log("AccessToken을 찾을 수 없습니다. >> " + error);
                     commit("SET_VALID_TOKEN", false);
-                    await dispatch("accessTokenRegeneration");
+                    await dispatch("generateAccessToken");
                 });
         },
-        async accessTokenRegeneration({commit, state}){
+        async generateAccessToken({commit, state}){
             console.log("= 토큰 재발급 = ");
-            await tokenRegeneration(
+            await createAccessToken(
                 state.userInfo,
                 ({data})=>{
                     if(data.result == "SUCCESS"){
                         sessionStorage.setItem("access-token", data.accessToken);
-                        commit("SET_RESULT_MESSAGE", {status: "Fail", message: "다시 시도 해주세요."});
                         commit("SET_VALID_TOKEN", true);
+                        this.getUserInfo(data.accessToken);
                     }
                 },
                 async (error)=>{
                     if(error.response.status == 401){
-                        console.log("AccessToken 갱신 실패");
-                        await logout(state.userInfo.userEmail,
+                        console.log("AccessToken 발급 실패");
+
+                        
+                        const params = {
+                            email: state.userInfo.email
+                        };
+
+                        await logout(params,
                             ({data})=>{
                                 if(data.result == "SUCCESS") console.log("리프레시 토큰 제거 성공");
 
-                                commit("SET_RESULT_MESSAGE", {status: "Fail", message: "RefreshToken 기간 만료!!! 다시 로그인해 주세요."});
+                                commit("SET_RESULT_MESSAGE_FAIL", "토큰이 만료되었습니다! 다시 로그인해 주세요.");
                                 commit("SET_IS_LOGIN", false);
                                 commit("SET_VALID_TOKEN", false);
-                                commit("SET_USER_INFO", null);
                             },
                             (error)=>{
                                 console.log(error);
                                 commit("SET_IS_LOGIN", false);
-                                commit("SET_USER_INFO", null);
                             }
                         )
+                        commit("CLEAR_USER_INFO");
                     }
                 }
             )
         },
-        async passwordUpdate({commit}, user){
-            await update(user, 
+        async updateInfo({commit}, user){
+            await modifyInfo(user, 
                 ({data})=>{
-                    commit("SET_USER_INFO", data.userInfo);
-                    commit("SET_RESULT_MESSAGE", {status: data.result, message: data.message});
+                    if(data.result == "SUCCESS"){
+                        commit("SET_RESULT_MESSAGE_SUCCESS", "회원정보 수정이 완료되었습니다.");
+                        commit("SET_USER_INFO", data.user);
+                    }else{
+                        commit("SET_RESULT_MESSAGE_FAIL", "회원정보 수정에 실패하였습니다.");
+                    }
                 },
                 (error)=>{
                     console.log(error);

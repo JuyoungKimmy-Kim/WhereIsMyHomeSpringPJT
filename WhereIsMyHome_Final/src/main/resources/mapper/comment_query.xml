@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycom.myhome.comment.CommentDao"> <!-- @Mapper annotation 있는 dao -->
+	
+	<select id="selectByboardId" parameterType="int" resultType="com.mycom.myhome.comment.Comment">
+		SELECT no, user_seq, board_id, content, reg_dt, heart
+		FROM comment
+		WHERE board_id = #{boardId}
+	</select>
+	
+	<insert id="insertComment" parameterType="com.mycom.myhome.comment.Comment">
+		INSERT INTO comment(user_seq, board_id, content, reg_dt)
+		VALUES(#{userSeq}, #{boardId}, #{content}, now())
+	</insert>
+	
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM comment
+		WHERE no = #{no}
+	</delete>
+	
+	<delete id="deleteHeart" parameterType="int">
+		DELETE FROM heart
+		WHERE comment_no = #{no}
+	</delete>
+	
+	<update id="updateHeartByNo" parameterType="int">
+		UPDATE comment
+		SET heart = heart + 1
+		WHERE no = #{no}
+	</update>
+	
+	<select id="selectByInfo" parameterType="com.mycom.myhome.comment.Comment" resultType="int">
+		SELECT count(*)
+		FROM heart
+		WHERE comment_no = #{no} and board_id = #{boardId} and user_seq = #{userSeq}
+	</select>
+	
+	<insert id="insertByInfo" parameterType="com.mycom.myhome.comment.Comment">
+		INSERT INTO heart(comment_no, board_id, user_seq)
+		VALUES(#{no}, #{boardId}, #{userSeq})
+	</insert>
+</mapper>
+
+
+
+

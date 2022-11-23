@@ -6,19 +6,22 @@
         <div class="card bg-gray-200 shadow border-0 mb-0">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
             <div class="bg-gradient-info shadow-info border-radius-lg py-3 pe-1 text-center py-4">
-            <h4 class="font-weight-bolder text-white mt-1 mb-0">로그인</h4>
-            <p class="mb-1 text-sm text-white">다시 돌아온걸 환영합니다.</p>
+                <h4 class="font-weight-bolder text-white mt-1 mb-0">로그인</h4>
+                <p class="mb-1 text-sm text-white">다시 돌아온걸 환영합니다.</p>
+                <a @click="kakaoAccessToken()" id="cusom-login-btn" class="cursor-pointer">
+                    <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222">
+                </a>  
             </div>
         </div>
         <div class="card-body">
             <form role="form text-start">
             <div class="input-group input-group-static mb-4">
                 <label>이메일</label>
-                <input type="email" class="form-control" v-model="user.userEmail" @keyup.enter="confirm" placeholder="john@email.com">
+                <input type="email" class="form-control" v-model="user.email" @keyup.enter="confirm" placeholder="john@email.com">
             </div>
             <div class="input-group input-group-static mb-4">
                 <label>비밀번호</label>
-                <input type="password" class="form-control" v-model="user.userPassword" @keyup.enter="confirm" placeholder="•••••••••••••">
+                <input type="password" class="form-control" v-model="user.password" @keyup.enter="confirm" placeholder="•••••••••••••">
             </div>
 
             <div class="form-check form-switch d-flex align-items-center">
@@ -45,17 +48,16 @@
 </template>
 
 <script>
+import http from '@/common/axios'
 import { mapState, mapActions } from "vuex";
-
-
 const userStore = "userStore";
 
 export default {
     data() {
         return {
             user:{
-                userEmail: "",
-                userPassword: ""
+                email: "",
+                password: ""
             }
         }
     },
@@ -63,30 +65,75 @@ export default {
         ...mapState(userStore, ["isLogin", "userResult"]),
     },
     methods: {
-        ...mapActions(userStore, ["loginConfirm", "getUserInfo"]),
+        ...mapActions(userStore, ["loginConfirm"]),
         showRegister(){
             this.$emit("show-signUp");
         },
         async confirm(){
             await this.loginConfirm(this.user);
-            console.log(this.userResult);
-            if(this.userResult.status == "FAIL"){
-                this.$alertify.error(this.userResult.message);
-            }
             
             if(this.isLogin){
                 this.$alertify.success(this.userResult.message);
-
-                let token = sessionStorage.getItem("access-token");
-                await this.getUserInfo(token);
-                if(this.userResult.status != "SUCCESS"){
-                    this.$alertify.error(this.userResult.message);
-                }
-                this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
                 this.$emit("close-this-modal");
+            }else{
+                this.$alertify.error(this.userResult.message);
             }
+        },
+        kakaoAccessToken(){
+            let $this = this;
+            window.Kakao.Auth.login({
+                success: function(authObj) {
+                    window.Kakao.Auth.setAccessToken(authObj.access_token);
+                    $this.kakaoLogin();
+                },
+                fail: function(err) {
+                    alert(JSON.stringify(err))
+                },
+            })
+        },
+        kakaoLogin(){
+            window.Kakao.API.request({
+                url: '/v2/user/me',
+            })
+            .then((response)=>{
+                let userEmail = response.kakao_account.email;
+                let userName = response.properties.nickname;
+                let userProfileimgUrl = response.properties.thumbnail_image;
+
+                console.log(userEmail)
+                let kakaoInfo = {
+                    email: userEmail,
+                    name: userName,
+                    profileImageUrl: userProfileimgUrl
+                }
+                this.validateServer(kakaoInfo);
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+        },
+        async validateServer(kakaoInfo){
+            await http.post("/login/kakao", kakaoInfo)
+                .then(({data})=>{
+                    if(data.result == "SUCCESS"){
+                        
+                        this.$store.commit("userStore/SET_IS_LOGIN", true);
+                        this.$store.commit("userStore/SET_VALID_TOKEN", true);
+                        this.$store.commit("userStore/SET_USER_INFO", data);
+
+                        this.$alertify.success("로그인에 성공하였습니다!!");
+                        sessionStorage.setItem("access-token", data.accessToken);
+                        sessionStorage.setItem("refresh-token", data.refreshToken);
+
+                        this.$emit("close-this-modal");
+                    }else{
+                        this.$store.commit("userStore/SET_USER_INFO", kakaoInfo);
+                        this.$emit("show-signUp");
+                    }
+                })
+                .catch(error=> console.log(error))
         }
-    },
+    }
 }
 </script>
 

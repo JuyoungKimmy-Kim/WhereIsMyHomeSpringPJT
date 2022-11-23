@@ -1,4 +1,4 @@
-import {listCount, detail, insert, update, deletePost} from '@/common/board.js';
+import {detail, insert, update, deletePost} from '@/common/board.js';
 import util from '@/common/utils.js';
 
 
@@ -10,7 +10,6 @@ const boardStore = {
             message: "",
         },
         post:{},
-        totalListItemCount: 0,
         sameUser: false,
     },
     mutations:{
@@ -27,34 +26,18 @@ const boardStore = {
         SET_POST(state, payload){
             state.post = payload.board;
             
-            let date = new Date(state.post.regDt);
-                        
-            state.post.regDate = util.makeDateStr(date.getFullYear(), date.getMonth() + 1, date.getDate(), "/");
-            state.post.regTime = util.makeTimeStr(date.getHours(), date.getMinutes(), date.getSeconds(), ":");
-
+            state.post.regDate = util.makeDateStr(state.post.regDt.date.year, state.post.regDt.date.month, state.post.regDt.date.day, "/");
+            state.post.regTime = util.makeTimeStr(state.post.regDt.time.hour, state.post.regDt.time.minute,state.post.regDt.time.second, ":");
+            
             if(payload.fileList != null){
                 state.post.fileList = payload.fileList;
             }
-        },
-        SET_TOTAL_LIST_ITEM_COUNT(state, payload){
-            state.totalListItemCount = payload;
         },
         SET_SAME_USER(state, payload){
             state.sameUser = payload.sameUser;
         }
     },
     actions:{
-        async getTotalCount({commit}, boardClsf){
-            await listCount(boardClsf,
-                ({data})=>{
-                    if(data.result == "SUCCESS"){
-                        commit("SET_TOTAL_LIST_ITEM_COUNT", data.listCount);
-                    }
-                },
-                (error)=>{
-                    console.log(error);
-                })
-        },
         async postDetail({commit}, payload){
             await detail(payload.boardId, payload.userEmail,
                 ({data})=>{

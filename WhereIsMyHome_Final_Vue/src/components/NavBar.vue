@@ -57,15 +57,6 @@
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link
-                  to="/qna"
-                  class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-                >
-                  <i class="material-icons opacity-6 me-2 text-md">question_answer</i>
-                  Q&A
-                </router-link>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" v-if="!isLogin"  @click="showLogin">
                   <i class="material-icons opacity-6 me-2 text-md">people</i>
                   로그인
@@ -75,13 +66,15 @@
               <li class="nav-item dropdown">
                   <a class="nav-link ps-2 d-flex cursor-pointer align-items-center dropdown-toggle" id="dropdownUserMenu" data-bs-toggle="dropdown" aria-expanded="false" 
                     v-if="isLogin" >
-                    <i class="material-icons opacity-6 me-2 text-md">image</i>
-                    {{userInfo.userName}}
+                    <a class="avatar avatar-xs rounded-circle opacity-6 me-2 text-md">
+                      <img alt="Image placeholder" :src=userInfo.profileImageUrl>
+                    </a>
+                    {{userInfo.name}}
                   </a>
                   <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownUserMenu">
                     <li><a class="dropdown-item border-radius-md" @click="doLogout">로그아웃</a></li>
                     <li><a class="dropdown-item border-radius-md" @click="tokenCheck('myinfo')">내 정보</a></li>
-                    <li v-if="this.userInfo.userClsf == '001'">
+                    <li v-if="this.userInfo.role == '관리자'">
                       <a class="dropdown-item border-radius-md" @click="tokenCheck('manage')">사용자 관리</a></li>
                     <li><a class="dropdown-item border-radius-md" @click="tokenCheck('wishlist')">찜 목록</a></li>
                   </ul>
@@ -107,21 +100,21 @@ export default{
     return {
       options: [
           {
-          language: '시도',
-          libs: [
-              { name: 'Vue.js', category: 'sido' },
-              { name: 'Adonis', category: 'sido' }
-          ]
+            language: '시도',
+            libs: [
+                { name: 'Vue.js', category: 'sido' },
+                { name: 'Adonis', category: 'sido' }
+            ]
           },
           {
-          language: '구군',
-          libs: [
-              { name: 'Rails', category: 'gugun1' },
-              { name: 'Rails', category: 'gugun2' },
-              { name: 'Rails', category: 'gugun3' },
-              { name: 'Rails', category: 'gugun4' },
-              { name: 'Rails', category: 'gugun5' },
-          ]
+            language: '구군',
+            libs: [
+                { name: 'Rails', category: 'gugun1' },
+                { name: 'Rails', category: 'gugun2' },
+                { name: 'Rails', category: 'gugun3' },
+                { name: 'Rails', category: 'gugun4' },
+                { name: 'Rails', category: 'gugun5' },
+            ]
           },
       ],
       value: [],
@@ -130,7 +123,6 @@ export default{
   methods: {
     ...mapActions(userStore, ["logoutConfirm", "getUserInfo"]),
     showLogin(){
-      console.log("NAVBER");
       this.$emit("show-login");
     },
     showInfo() {
@@ -139,14 +131,14 @@ export default{
     doLogout(){
       this.$alertify.confirm("로그아웃 하시겠습니까?", async ()=>{
         await this.logoutConfirm();
-        sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
-        sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
         if(this.userResult.status == "SUCCESS"){
-            this.$alertify.success(this.userResult.message);
+          sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+          sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+          this.$alertify.success(this.userResult.message);
         }else{
-            this.$alertify.error(this.userResult.message);
+          this.$alertify.error(this.userResult.message);
         }
-        this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
+        this.$store.commit("userStore/CLEAR_RESULT_MESSAGE");
       });
     },
     async tokenCheck(message){
@@ -162,7 +154,7 @@ export default{
         if(this.$route.path != "/")
           this.$router.push("/");
       }
-      this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
+      this.$store.commit("userStore/CLEAR_RESULT_MESSAGE");
     }
   },
   computed:{

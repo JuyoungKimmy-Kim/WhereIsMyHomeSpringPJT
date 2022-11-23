@@ -1,11 +1,18 @@
 package com.mycom.myhome.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mycom.myhome.Status;
+import com.mycom.myhome.code.Code;
+import com.mycom.myhome.code.CodeDao;
+import com.mycom.myhome.common.Status;
+import com.mycom.myhome.user.UserDto.Request;
+import com.mycom.myhome.user.UserDto.Response;
 import com.mycom.myhome.user.jwt.JwtService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,85 +25,210 @@ public class UserServiceImpl implements UserService{
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 	
 	private final UserDao dao;
+	private final CodeDao codeDao;
 	
 	private final JwtService jwtService;
 	
+	private final String groupCode = "001";
+	
 	
 	@Override
-	public UserResultDto update(UserParamDto paramDto) {
-		System.out.println(paramDto.toEntity());
-		int result = dao.updateByEmail(paramDto.toEntity());
-		if(result == 1) {
-			User findUser = dao.findByEmail(paramDto.getUserEmail());
-			return UserResultDto.ofSuccess("회원정보 수정이 완료되었습니다.", UserResultDto.setInfo(findUser), null, null);
-		}
-		
-		return UserResultDto.ofFail("회원정보 수정에 실패하였습니다. 다시 시도해주세요.");
+	public UserDto.Response getTotalCount() {
+		int totalCount = dao.selectTotalCount();
+		return UserDto.Response.builder().count(totalCount).build();
 	}
 	
+	@Override
+	public List<UserDto.Response> getUserList(int limit, int offset) {
+		List<User> userList = dao.selectAll(limit, offset);
+		
+		List<UserDto.Response> list = new ArrayList<>();
+		userList.forEach(item->{
+			String userCode = item.getCode();
+			Code code = codeDao.selectByCode(groupCode, userCode);
+			
+			String role = code.getDescription();
+			list.add(
+					UserDto.Response.builder()
+						.name(item.getName())
+						.email(item.getEmail())
+						.profileImageUrl(item.getProfileImageUrl())
+						.regDt(item.getRegDt())
+						.role(role)
+						.build()
+					);
+		});
+		
+		return list;
+	}
 	
 	//로그인
-	public UserResultDto login(UserParamDto paramDto) {
-		logger.info(paramDto.toEntity().toString());
-		User findUser = dao.findByMatch(paramDto.toEntity());
-		if(findUser != null) {
-			logger.info("login 성공!! >> " + findUser.toString());
+	@Override
+	public UserDto.Response loginProcess(UserDto.Request dto) {
+		String email = dto.getEmail();
+		User user = dao.selectByEmail(email);
+		
+		if(user != null) {
+			String accessToken = jwtService.createAccessToken("email", email);
+			String refreshToken = jwtService.createRefreshToken("email", email);
+				
+			dao.updateToken(refreshToken, email);
 			
-			String accessToken = jwtService.createAccessToken("userEmail", findUser.getUserEmail());
-			String refreshToken = jwtService.createRefreshToken("userEmail", findUser.getUserEmail());
+			Code code = codeDao.selectByCode(groupCode, user.getCode());
+			String role = code.getDescription();
 			
-			dao.updateRefreshToken(findUser.getUserEmail(), refreshToken);
-			
-			return UserResultDto.ofSuccess("로그인이 완료되었습니다.", null, accessToken, refreshToken);
+			return UserDto.Response.builder()
+					.result(Status.SUCCESS)
+					.name(user.getName())
+					.email(user.getEmail())
+					.profileImageUrl(user.getProfileImageUrl())
+					.regDt(user.getRegDt())
+					.role(role)
+					.accessToken(accessToken)
+					.refreshToken(refreshToken)
+					.build();
 		}
-		return UserResultDto.ofFail("아이디 또는 비밀번호를 다시 확인해주세요.");
+			
+		return null;
 	}
 	
 	// 회원가입
-	public UserResultDto signup(UserParamDto paramDto) {
-		User user = paramDto.toEntity();
-		
+	@Override
+	public UserDto.Response processNewUser(UserDto.Request dto) {
+		User entity = dto.toEntity();
+		String email = entity.getEmail();
+
+		logger.info(dto.toString());
 		// insert 실패해도 seq오르는거 방지
-		User findUser = dao.findByEmail(user.getUserEmail());
-		if(findUser != null) {
-			return UserResultDto.ofFail("이미 가입된 회원입니다.");
+		User user = dao.selectByEmail(email);
+		if(user == null) {
+			logger.info(entity.toString());
+			dao.insert(entity);
+			return UserDto.Response.builder()
+					.result(Status.SUCCESS).build();
 		}
-		
-		dao.signup(user);
-		return UserResultDto.ofSuccess("회원가입에 성공하였습니다.", null, null, null);
+
+		// 중복 유저
+		return UserDto.Response.builder().result(Status.FAIL).build();
 	}
 	
-	// 이메일을 가지고 현재 토큰이 유효한지 확인
-	public UserResultDto info(String email, String accessToken) {
+	@Override
+	public UserDto.Response modifyProcess(UserDto.Request dto) {
+		String email = dto.getEmail();
+		User user = dao.selectByEmail(email);
+		
+		if(user != null) {
+			String role = dto.getRole();
+			if(role == null) {
+				String code = user.getCode();
+				dto.setCode(code);
+			}else {
+				Code findCode = codeDao.selectByDescription(role);
+				String code= findCode.getCode();
+				dto.setCode(code);
+			}
+			
+			User entity = dto.toEntity();
+			dao.updateByEmail(entity);
+			
+			return UserDto.Response.builder()
+					.result(Status.SUCCESS).build();
+		}
+		
+		// 존재하지 않는 유저
+		return UserDto.Response.builder().result(Status.FAIL).build();
+	}
+	
+	// 현재 가지고있는 토큰이 유효한지 확인
+	public UserDto.Response tokenValidationProcess(String email, String accessToken) {
 		if(jwtService.checkToken(accessToken)) {
-			User findUser = dao.findByEmail(email);
-			if(findUser != null) {
-				return UserResultDto.ofSuccess("유저정보를 얻어오는데 성공하였습니다.", UserResultDto.setInfo(findUser), null, null);
+			User user = dao.selectByEmail(email);
+			if(user != null) {
+
+				Code code = codeDao.selectByCode(groupCode, user.getCode());
+				String role = code.getDescription();
+				
+				return UserDto.Response.builder()
+						.result(Status.SUCCESS)
+						.name(user.getName())
+						.email(user.getEmail())
+						.profileImageUrl(user.getProfileImageUrl())
+						.regDt(user.getRegDt())
+						.role(role)
+						.accessToken(accessToken)
+						.build();
 			}
 		}
 		
-		return UserResultDto.ofUnauthorized("유저정보를 얻어오는데 실패하였습니다.");
+		// exception handler 생기면 없어질 코드
+		return UserDto.Response.builder().result(Status.FAIL).build();
 	}
 	
 	// refresh 토큰 다시 받기
-	public UserResultDto getRefreshToken(UserParamDto paramDto, String token) {
-		String email = paramDto.getUserEmail();
-		String dbToken = dao.getRefreshToken(email);
+	public UserDto.Response getRefreshToken(UserDto.Request dto, String token) {
 		if(jwtService.checkToken(token)) {
+			
+			String email = dto.getEmail();
+			User user = dao.selectByEmail(email);
+			
+			String dbToken = user.getToken();
 			if(token.contentEquals(dbToken)) {
-				String accessToken = jwtService.createAccessToken("userEmail", email);
-				return UserResultDto.ofSuccess("토큰 재발급 성공", null, accessToken, null);
+				String accessToken = jwtService.createAccessToken("email", email);
+				// accessToken 반환
+				return UserDto.Response.builder()
+						.result(Status.SUCCESS)
+						.accessToken(accessToken)
+						.build();
 			}
 		}
 
-		return UserResultDto.ofUnauthorized("리프레시 토큰 만료");
+		// exception handler 생기면 없어질 코드
+		return UserDto.Response.builder().result(Status.UNAUTHORIZED).build();
 	}
 	
 	// refresh 토큰 삭제
-	public UserResultDto deleteRefreshToken(String userEmail) {
-		int result = dao.updateRefreshToken(userEmail, null);
-		if(result == 1) return UserResultDto.ofSuccess("로그아웃에 성공하였습니다.", null, null, null);
-		return UserResultDto.ofFail("리프레시 토큰 삭제 실패");
+	public UserDto.Response logoutProcess(String userEmail) {
+		User user = dao.selectByEmail(userEmail);
+		user.setToken(null);
+		
+		dao.updateByEmail(user);
+		
+		return UserDto.Response.builder().result(Status.SUCCESS).build();
+	}
+
+	
+	@Override
+	public UserDto.Response validateUser(UserDto.Request paramDto){
+		String email = paramDto.getEmail();
+		User user = dao.selectByEmail(email);
+		if(user == null) {
+			return UserDto.Response.builder()
+					.result(Status.FAIL)
+					.email(paramDto.getEmail())
+					.name(paramDto.getName())
+					.profileImageUrl(paramDto.getProfileImageUrl())
+					.build();
+		}
+		
+
+		String accessToken = jwtService.createAccessToken("email", email);
+		String refreshToken = jwtService.createRefreshToken("email", email);
+		
+		dao.updateToken(refreshToken, email);
+		
+		Code code = codeDao.selectByCode(groupCode, user.getCode());
+		String role = code.getDescription();
+		
+		return UserDto.Response.builder()
+				.result(Status.SUCCESS)
+				.name(user.getName())
+				.email(user.getEmail())
+				.profileImageUrl(user.getProfileImageUrl())
+				.regDt(user.getRegDt())
+				.role(role)
+				.accessToken(accessToken)
+				.refreshToken(refreshToken)
+				.build();
 	}
 	
 	

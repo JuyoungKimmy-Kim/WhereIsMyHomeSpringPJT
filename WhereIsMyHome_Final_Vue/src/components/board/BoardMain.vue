@@ -9,7 +9,7 @@
 
             <!-- 관리자에게만 보여야함 v-show or v-if -->
             <div class="row justify-content-md-end">
-                <button type="button" class="btn bg-gradient-success w-auto btn-sm me-2"  v-if="userInfo.userClsf == '001'" @click="showInsertModal">글 쓰기</button>
+                <button type="button" class="btn bg-gradient-success w-auto btn-sm me-2"  v-if="userInfo.role == '관리자'" @click="showInsertModal">글 쓰기</button>
             </div>
 
             <div class="row justify-content-center pb-5">
@@ -19,11 +19,11 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 col-2 px-3">#</th>
-                                    <th scope="col" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 col-5">제목</th>
-                                    <th scope="col" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 col-2">작성자</th>
-                                    <th scope="col" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 col-2">작성일자</th>   
-                                    <th scope="col" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 col-1">조회 수</th>  
+                                    <th scope="col" class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2 px-3">#</th>
+                                    <th scope="col" class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2 col-5">제목</th>
+                                    <th scope="col" class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2">작성자</th>
+                                    <th scope="col" class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2">작성일자</th>   
+                                    <th scope="col" class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-1">조회 수</th>  
                                     <th class="text-secondary text-xxs opacity-7"></th>
                                 </tr>
                             </thead>
@@ -58,14 +58,14 @@
                 </div>
                             
                 <!-- 페이지네이션 -->
-                <pagination-ui @call-move-page ="movePage" :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex"></pagination-ui>
+                <pagination-ui @call-move-page ="movePage" :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :totalListItemCount="totalListItemCount"></pagination-ui>
             </div>
         </div>
     </section>
     </div>
 
     <board-insert-modal @close-this-modal="closeInsertModal" ref="insert_modal"></board-insert-modal>
-    <board-detail-modal @close-this-modal="closeDetailModal" @show-this-update="showUpdate"></board-detail-modal>
+    <board-detail-modal @close-this-modal="closeDetailModal" @show-this-update="showUpdate" ref="detail_modal"></board-detail-modal>
     <board-update-modal @close-this-modal="closeUpdateModal" ref="update_modal"></board-update-modal>
 </div>
 </template>
@@ -75,11 +75,11 @@ import HeaderPage from '@/components/HeaderPage.vue'
 import PaginationUi from '@/components/PaginationUI.vue'
 
 import { Modal } from "bootstrap";
-import BoardInsertModal from '@/components/modal/board/BoardInsert.vue'
-import boardDetailModal from '@/components/modal/board/BoardDetail.vue'
-import boardUpdateModal from '@/components/modal/board/BoardUpdate.vue'
+import BoardInsertModal from '@/components/board/modal/BoardInsert.vue'
+import BoardDetailModal from '@/components/board/modal/BoardDetail.vue'
+import BoardUpdateModal from '@/components/board/modal/BoardUpdate.vue'
 
-import {list} from '@/common/board.js';
+import {list, listCount} from '@/common/board.js';
 import util from '@/common/utils.js';
 import {mapState, mapActions} from 'vuex';
 
@@ -92,8 +92,8 @@ export default {
         PaginationUi,
 
         BoardInsertModal,
-        boardDetailModal,
-        boardUpdateModal
+        BoardDetailModal,
+        BoardUpdateModal
     },
     data() {
         return {
@@ -107,6 +107,7 @@ export default {
             listRowCount: 10,
             pageLinkCount: 10,
             currentPageIndex: 1,
+            totalListItemCount: 0,
         }
     },
     methods:{
@@ -115,10 +116,8 @@ export default {
             await list(this.limit, this.offset, ({data})=>{
                 if(data.result == "SUCCESS"){
                     data.list.forEach(el => {
-                        let date = new Date(el.regDt);
-                        
-                        el.regDate = util.makeDateStr(date.getFullYear(), date.getMonth() + 1, date.getDate(), "/");
-                        el.regTime = util.makeTimeStr(date.getHours(), date.getMinutes(), date.getSeconds(), ":");
+                        el.regDate = util.makeDateStr(el.regDt.date.year, el.regDt.date.month, el.regDt.date.day, "/");
+                        el.regTime = util.makeTimeStr(el.regDt.time.hour, el.regDt.time.minute, el.regDt.time.second, ":");
                     });
                     this.list = data.list;
                 }else{
@@ -149,6 +148,7 @@ export default {
                     this.boardDetailModal = new Modal(document.getElementById("boardDetailModal"));
                 }
                 
+                this.$refs.detail_modal.hideCollapse();
                 this.boardDetailModal.show();
             }else{
                 this.$alertify.error(this.boardResult.message);
@@ -170,6 +170,17 @@ export default {
                 this.$alertify.error(this.boardResult.message);
             }
         },
+        async getTotalCount(clsf){
+            await listCount(clsf,
+                ({data})=>{
+                    if(data.result == "SUCCESS"){
+                        this.totalListItemCount = data.listCount;
+                    }
+                },
+                (error)=>{
+                    console.log(error);
+                })
+        },
         closeInsertModal(){
             this.boardInsertModal.hide();
             this.callList();
@@ -189,7 +200,7 @@ export default {
     },
     computed:{
         ...mapState(userStore, ["userInfo"]),
-        ...mapState(boardStore, ["boardList", "boardResult", "totalListItemCount", "post"]),
+        ...mapState(boardStore, ["boardList", "boardResult", "post"]),
     },
     async mounted() {
         await this.getTotalCount("001");

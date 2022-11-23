@@ -4,8 +4,8 @@
         <tr>
             <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-3 ps-3">#</th>
             <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-8 ps-2">제목</th>
-            <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-1 ps-2">작성 날짜</th>
-            <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-1 ps-2">조회 수</th>
+            <th scope="col" class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">작성 날짜</th>
+            <th scope="col" class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">조회 수</th>
         </tr>
         </thead>
         <tbody>
@@ -20,10 +20,10 @@
                 <td>
                     <a class="text-s font-weight-bold mb-0 cursor-pointer" @click="gotoNotice(post.boardId)">{{post.title}}</a>
                 </td>
-                <td>
+                <td class="align-middle text-center">
                     <span class="text-secondary text-s font-weight-bold">{{post.regDate}}</span>
                 </td>
-                <td>
+                <td class="align-middle text-center">
                     <span class="text-secondary text-s font-weight-bold">{{post.readCount}}</span>
                 </td>
             </tr>
@@ -51,10 +51,8 @@ export default {
                 console.log(data);
                 if(data.result == "SUCCESS"){
                     data.list.forEach(el => {
-                        let date = new Date(el.regDt);
-                        
-                        el.regDate = util.makeDateStr(date.getFullYear(), date.getMonth() + 1, date.getDate(), "/");
-                        el.regTime = util.makeTimeStr(date.getHours(), date.getMinutes(), date.getSeconds(), ":");
+                        el.regDate = util.makeDateStr(el.regDt.date.year, el.regDt.date.month, el.regDt.date.day, "/");
+                        el.regTime = util.makeTimeStr(el.regDt.time.hour, el.regDt.time.minute, el.regDt.time.second, ":");
                     });
                     this.list = data.list;
                 }else{
