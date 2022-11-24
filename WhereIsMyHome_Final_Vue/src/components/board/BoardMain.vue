@@ -18,12 +18,12 @@
                     <div class="table-responsive">
                         <table class="table align-items-center mb-0">
                             <thead>
-                                <tr>
-                                    <th scope="col" class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2 px-3">#</th>
-                                    <th scope="col" class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2 col-5">제목</th>
-                                    <th scope="col" class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2">작성자</th>
-                                    <th scope="col" class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2">작성일자</th>   
-                                    <th scope="col" class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-1">조회 수</th>  
+                                <tr bgcolor="#2F4858">
+                                    <th scope="col" class="text-white text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2 px-3">#</th>
+                                    <th scope="col" class="text-white text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2 col-5">제목</th>
+                                    <th scope="col" class="text-white text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2">작성자</th>
+                                    <th scope="col" class="text-white text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-2">작성일자</th>   
+                                    <th scope="col" class="text-white text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 col-1">조회 수</th>  
                                     <th class="text-secondary text-xxs opacity-7"></th>
                                 </tr>
                             </thead>
@@ -99,6 +99,8 @@ export default {
         return {
             boardInsertModal: null,
             boardDetailModal: null,
+            boardUpdateModal: null,
+            
 
             list: [],
 
@@ -119,7 +121,8 @@ export default {
                         el.regDate = util.makeDateStr(el.regDt.date.year, el.regDt.date.month, el.regDt.date.day, "/");
                         el.regTime = util.makeTimeStr(el.regDt.time.hour, el.regDt.time.minute, el.regDt.time.second, ":");
                     });
-                    this.list = data.list;
+                    this.list = [...data.list];
+                    console.log(this.list);
                 }else{
                     this.list = [];
                     this.$alertify.error(data.message);
@@ -142,7 +145,11 @@ export default {
             this.boardInsertModal.show();
         },
         async showDetail(boardId){
-            await this.postDetail({boardId: boardId, userEmail:this.userInfo.userEmail});
+            await this.postDetail({
+                boardId: boardId, 
+                userEmail: this.userInfo.email
+            });
+
             if(this.boardResult.status == "SUCCESS"){
                 if(this.boardDetailModal == null){
                     this.boardDetailModal = new Modal(document.getElementById("boardDetailModal"));
@@ -156,7 +163,7 @@ export default {
             this.$store.commit("boardStore/SET_RESULT_MESSAGE", null);
         },
         async showUpdate(boardId){
-            await this.postDetail({boardId: boardId, userEmail:this.userInfo.userEmail});
+            await this.postDetail({boardId: boardId, userEmail:this.userInfo.email});
             if(this.boardResult.status == "SUCCESS"){
                 if(this.update_modal == null){
                     this.boardUpdateModal = new Modal(document.getElementById("boardUpdateModal"));
@@ -165,7 +172,9 @@ export default {
                 this.$refs.update_modal.title = this.post.title;
                 this.$refs.update_modal.content = this.post.content;
                 this.$refs.update_modal.CKEditor.setData(this.post.content);
+                
                 this.boardUpdateModal.show();
+                this.boardDetailModal.hide();
             }else{
                 this.$alertify.error(this.boardResult.message);
             }
@@ -181,16 +190,17 @@ export default {
                     console.log(error);
                 })
         },
-        closeInsertModal(){
+        async closeInsertModal(){
+            await this.callList();
             this.boardInsertModal.hide();
-            this.callList();
         },
-        closeDetailModal(){
+        async closeDetailModal(){
+            await this.callList();
             this.boardDetailModal.hide();
-            this.callList();
         },
         closeUpdateModal(){
             this.boardUpdateModal.hide();
+            this.showDetail(this.post.boardId);
         },
         movePage(pageIndex){
             this.offset = (pageIndex - 1) * this.listRowCount;
@@ -205,6 +215,7 @@ export default {
     async mounted() {
         await this.getTotalCount("001");
         await this.callList();
+
     },
 }
 </script>

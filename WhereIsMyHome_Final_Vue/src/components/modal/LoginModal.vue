@@ -51,6 +51,7 @@
 import http from '@/common/axios'
 import { mapState, mapActions } from "vuex";
 const userStore = "userStore";
+const mapStore = "mapStore";
 
 export default {
     data() {
@@ -62,10 +63,12 @@ export default {
         }
     },
     computed:{
-        ...mapState(userStore, ["isLogin", "userResult"]),
+        ...mapState(userStore, ["isLogin", "userResult", "userInfo"]),
+        ...mapState(mapStore, ["map"])
     },
     methods: {
         ...mapActions(userStore, ["loginConfirm"]),
+        ...mapActions(mapStore, ["getGugunList"]),
         showRegister(){
             this.$emit("show-signUp");
         },
@@ -114,7 +117,7 @@ export default {
         },
         async validateServer(kakaoInfo){
             await http.post("/login/kakao", kakaoInfo)
-                .then(({data})=>{
+                .then(  ({data})=>{
                     if(data.result == "SUCCESS"){
                         
                         this.$store.commit("userStore/SET_IS_LOGIN", true);
@@ -133,7 +136,6 @@ export default {
                 })
                 .catch(error=> console.log(error))
         },
-        
     }
 }
 </script>

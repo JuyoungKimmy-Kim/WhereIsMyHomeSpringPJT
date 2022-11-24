@@ -13,6 +13,7 @@
 		<mapper resource="mapper/comment_query.xml"/>
 		<mapper resource="mapper/address_query.xml"/>
 		<mapper resource="mapper/property_query.xml"/>
+		<mapper resource="mapper/property_detail_query.xml"/>
 		<mapper resource="mapper/code_query.xml"/>
 		<mapper resource="mapper/station_query.xml"/>
 	</mappers>

@@ -9,7 +9,7 @@ async function listCount(boardClsf, success, fail){
 }
 
 async function detail(boardId, userEmail, success, fail){
-    await http.get(`/boards/${boardId}?userEmail=${userEmail}`, ).then(success).catch(fail);
+    await http.get(`/boards/${boardId}?userEmail=${userEmail}`).then(success).catch(fail);
 }
 
 async function insert(post, success, fail){
@@ -24,5 +24,8 @@ async function deletePost(boardId, success, fail){
     await http.delete(`/boards/${boardId}`).then(success).catch(fail);
 }
 
+async function getWishList(userSeq, success, fail){
+    await http.get(`/boards/wish/${userSeq}`).then(success).catch(fail);
+}
 
-export {list, listCount, detail, insert, update, deletePost};
+export {list, listCount, detail, insert, update, deletePost, getWishList};

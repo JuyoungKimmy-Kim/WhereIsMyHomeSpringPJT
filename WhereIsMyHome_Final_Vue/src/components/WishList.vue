@@ -11,142 +11,36 @@
                 <div class="card">
                 <div class="table-responsive" style="overflow-x: hidden">
                     <table class="table align-items-center mb-0">
-                    <thead>
-                        <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">매물</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">가격</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">지도에서 확인하기</th>
-                        <th class="text-secondary text-xxs opacity-7">목록에서 삭제</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                            <div>
-                                <img src="@/assets/img/apt/송정삼정그린코아더시티.jpg" class="avatar avatar-sm me-3">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-xs">부산광역시 강서구 송정동</h6>
-                                <p class="text-xs text-secondary mb-0">송정삼정그린코아 더시티 오피스텔</p>
-                            </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">단위 (만원)</p>
-                            <p class="text-xs text-secondary mb-0">6,000</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <!--<span class="text-secondary text-xs font-weight-bold">23/04/18</span>-->
-                            <i class="material-icons opacity-6 me-2 text-md"> <router-link to="/map">
-                                    arrow_forward</router-link></i>
-                        </td>
-                        <td class="align-middle">
-                            <i class="material-icons opacity-6 me-2 text-md">close</i>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                            <div>
-                                <img src="@/assets/img/apt/송정삼정그린코아더시티.jpg" class="avatar avatar-sm me-3">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-xs">부산광역시 강서구 송정동</h6>
-                                <p class="text-xs text-secondary mb-0">송정삼정그린코아 더시티 오피스텔</p>
-                            </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">단위 (만원)</p>
-                            <p class="text-xs text-secondary mb-0">6,000</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <!--<span class="text-secondary text-xs font-weight-bold">23/04/18</span>-->
-                            <i class="material-icons opacity-6 me-2 text-md"> <router-link to="/map">
-                                    arrow_forward</router-link></i>
-                        </td>
-                        <td class="align-middle">
-                            <i class="material-icons opacity-6 me-2 text-md">close</i>
-                        </td>
-                        </tr>
-                                                <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                            <div>
-                                <img src="@/assets/img/apt/송정삼정그린코아더시티.jpg" class="avatar avatar-sm me-3">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-xs">부산광역시 강서구 송정동</h6>
-                                <p class="text-xs text-secondary mb-0">송정삼정그린코아 더시티 오피스텔</p>
-                            </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">단위 (만원)</p>
-                            <p class="text-xs text-secondary mb-0">6,000</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <!--<span class="text-secondary text-xs font-weight-bold">23/04/18</span>-->
-                            <i class="material-icons opacity-6 me-2 text-md"> <router-link to="/map">
-                                    arrow_forward</router-link></i>
-                        </td>
-                        <td class="align-middle">
-                            <i class="material-icons opacity-6 me-2 text-md">close</i>
-                        </td>
-                        </tr>
-                                                <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                            <div>
-                                <img src="@/assets/img/apt/송정삼정그린코아더시티.jpg" class="avatar avatar-sm me-3">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-xs">부산광역시 강서구 송정동</h6>
-                                <p class="text-xs text-secondary mb-0">송정삼정그린코아 더시티 오피스텔</p>
-                            </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">단위 (만원)</p>
-                            <p class="text-xs text-secondary mb-0">6,000</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <!--<span class="text-secondary text-xs font-weight-bold">23/04/18</span>-->
-                            <i class="material-icons opacity-6 me-2 text-md"> <router-link to="/map">
-                                    arrow_forward</router-link></i>
-                        </td>
-                        <td class="align-middle">
-                            <i class="material-icons opacity-6 me-2 text-md">close</i>
-                        </td>
-                        </tr>
-                                                <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                            <div>
-                                <img src="@/assets/img/apt/송정삼정그린코아더시티.jpg" class="avatar avatar-sm me-3">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-xs">부산광역시 강서구 송정동</h6>
-                                <p class="text-xs text-secondary mb-0">송정삼정그린코아 더시티 오피스텔</p>
-                            </div>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">단위 (만원)</p>
-                            <p class="text-xs text-secondary mb-0">6,000</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <!--<span class="text-secondary text-xs font-weight-bold">23/04/18</span>-->
-                            <i class="material-icons opacity-6 me-2 text-md"> <router-link to="/map">
-                                    arrow_forward</router-link></i>
-                        </td>
-                        <td class="align-middle">
-                            <i class="material-icons opacity-6 me-2 text-md">close</i>
-                        </td>
-                        </tr>
+                        <thead>
+                            <tr bgcolor="#2F4858">
+                            <th class="text-white text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 col-8">매물</th>
+                            <th class="text-white text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 col-3">가격</th>
+                            <th class="text-white text-secondary text-xxs opacity-7 text-center col-1">목록에서 삭제</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(property, index) in list" :key="index">
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                    <div>
+                                        <img src="@/assets/img/apt/송정삼정그린코아더시티.jpg" class="avatar avatar-sm me-3">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <a class="text-sm font-weight-bold mb-0 cursor-pointer">property.aptName</a>
+                                        <p class="text-xs text-secondary mb-0">property.buildYear</p>
+                                    </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">단위 (만원)</p>
+                                    <p class="text-xs text-secondary mb-0">property.dealAmount</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <button type="button" class="btn btn-outline-danger btn-sm me-2">삭제</button>
+                                </td>
+                            </tr>
 
-                    </tbody>
+                        </tbody>
                     </table>
                 </div>
                 </div>
@@ -159,10 +53,36 @@
 </template>
 
 <script>
+import http from '@/common/axios'
 import HeaderPage from '@/components/HeaderPage.vue'
+
+import {getWishList} from '@/common/board'
+import {mapState} from 'vuex'
+
 export default {
     components:{
         HeaderPage
+    },
+    data() {
+        return {
+            list: [],
+        }
+    },
+    async mounted(){
+
+        this.list = [];
+
+        const seq = this.userInfo.seq;
+        await getWishList(seq,
+            ({data})=>{
+                data.forEach(element => {
+                    this.list.push(element);
+                });
+            }
+        );
+    },
+    computed:{
+        ...mapState("userStore", ["userInfo"])
     }
 }
 </script>

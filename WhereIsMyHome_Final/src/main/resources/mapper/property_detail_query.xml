@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycom.myhome.property.PropertyDetailDao"> <!--  @Mapper annotation 있는 dao -->
+	<!-- 동 이름으로 집 정보 받아오기-->
+	<select id="propertyDetail" resultType="com.mycom.myhome.property.PropertyDetailDto">
+		select no, dong, AptName, code, dealAmount, buildYear, dealYear, dealMonth, dealDay,
+			   area, floor, jibun, house_no
+	  	from housedeal
+		where house_no=#{houseNo}
+		order by binary(AptName) 
+		limit 50
+	</select>
+	
+	<!-- 구군 코드로 가장 저렴한 집 3개  받아오기 -->	
+	<select id="cheapestProperty" resultType="com.mycom.myhome.property.PropertyDetailDto">
+		select no, dong, AptName, code, dealAmount, buildYear, dealYear, dealMonth, dealDay,
+			   area, floor, jibun, house_no
+	  	from housedeal
+		where code=#{gugunCode}
+		order by dealAmount
+		limit 3
+	</select>
+</mapper>

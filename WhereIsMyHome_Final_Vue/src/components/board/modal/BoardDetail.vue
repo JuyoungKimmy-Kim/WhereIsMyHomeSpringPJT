@@ -56,9 +56,9 @@
                 </section>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal" @click="closeModal">닫기</button>
-                <button type="button" class="btn bg-gradient-warning" v-if="userInfo != null && userInfo.userSeq == post.userSeq" @click="showUpdate(post.boardId)">수정</button>
-                <button type="button" class="btn bg-gradient-danger" v-if="userInfo != null && userInfo.userSeq == post.userSeq" @click="deleteThisPost(post.boardId)">삭제</button>
+                <button type="button" class="btn btn-link text-black ml-auto" @click="closeModal()">닫기</button>
+                <button type="button" class="btn bg-gradient-warning" v-if="userInfo != null && userInfo.seq == post.userSeq" @click="showUpdate(post.boardId)">수정</button>
+                <button type="button" class="btn bg-gradient-danger" v-if="userInfo != null && userInfo.seq == post.userSeq" @click="deleteThisPost(post.boardId)">삭제</button>
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@ export default {
           }
           
           this.$store.commit("boardStore/SET_RESULT_MESSAGE", null);
-          this.$store.commit("userStore/SET_RESULT_MESSAGE", null);
+          this.$store.commit("userStore/CLEAR_RESULT_MESSAGE"); 
         },
       );
       
@@ -163,7 +163,7 @@ export default {
 
 <style scoped>
 .modal-body *{
-     /* 드래그 방지 */
+     /* 드래그 가능 */
     -ms-user-select: text;
     -moz-user-select: text;
     -webkit-user-select: text;

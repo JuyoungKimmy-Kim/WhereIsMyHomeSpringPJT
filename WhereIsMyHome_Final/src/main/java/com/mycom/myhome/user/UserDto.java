@@ -52,7 +52,7 @@ public class UserDto {
 	public static class Response {
 		private Status result;
 		
-		private int userSeq;
+		private int seq;
 		private String name;
 		private String email;
 		private String profileImageUrl;

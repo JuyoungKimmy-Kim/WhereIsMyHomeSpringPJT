@@ -67,10 +67,10 @@ const boardStore = {
             await update(post,
                 ({data})=>{
                     if(data.result == "SUCCESS"){
-                        commit("SET_POST", data.post);
+                        commit("SET_POST", data);
                     }
                     
-                    commit("SET_RESULT_MESSAGE", data);                   
+                    commit("SET_RESULT_MESSAGE", data);              
                 },
                 (error=>{
                     console.log(error);

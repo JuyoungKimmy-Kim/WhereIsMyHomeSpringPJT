@@ -33,23 +33,23 @@ public class UserServiceImpl implements UserService{
 	
 	
 	@Override
-	public UserDto.Response getTotalCount() {
+	public Response getTotalCount() {
 		int totalCount = dao.selectTotalCount();
-		return UserDto.Response.builder().count(totalCount).build();
+		return Response.builder().count(totalCount).build();
 	}
 	
 	@Override
-	public List<UserDto.Response> getUserList(int limit, int offset) {
+	public List<Response> getUserList(int limit, int offset) {
 		List<User> userList = dao.selectAll(limit, offset);
 		
-		List<UserDto.Response> list = new ArrayList<>();
+		List<Response> list = new ArrayList<>();
 		userList.forEach(item->{
 			String userCode = item.getCode();
 			Code code = codeDao.selectByCode(groupCode, userCode);
 			
 			String role = code.getDescription();
 			list.add(
-					UserDto.Response.builder()
+					Response.builder()
 						.name(item.getName())
 						.email(item.getEmail())
 						.profileImageUrl(item.getProfileImageUrl())
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService{
 	
 	//로그인
 	@Override
-	public UserDto.Response loginProcess(UserDto.Request dto) {
+	public Response loginProcess(Request dto) {
 		String email = dto.getEmail();
 		User user = dao.selectByEmail(email);
 		
@@ -78,8 +78,9 @@ public class UserServiceImpl implements UserService{
 			Code code = codeDao.selectByCode(groupCode, user.getCode());
 			String role = code.getDescription();
 			
-			return UserDto.Response.builder()
+			return Response.builder()
 					.result(Status.SUCCESS)
+					.seq(user.getSeq())
 					.name(user.getName())
 					.email(user.getEmail())
 					.profileImageUrl(user.getProfileImageUrl())
@@ -96,26 +97,30 @@ public class UserServiceImpl implements UserService{
 	
 	// 회원가입
 	@Override
-	public UserDto.Response processNewUser(UserDto.Request dto) {
+	public Response processNewUser(Request dto) {
+		if(dto.getProfileImageUrl() == null) 
+			dto.setProfileImageUrl("/no_img.png");
+		
 		User entity = dto.toEntity();
 		String email = entity.getEmail();
-
+		
+		
 		logger.info(dto.toString());
 		// insert 실패해도 seq오르는거 방지
 		User user = dao.selectByEmail(email);
 		if(user == null) {
 			logger.info(entity.toString());
 			dao.insert(entity);
-			return UserDto.Response.builder()
+			return Response.builder()
 					.result(Status.SUCCESS).build();
 		}
 
 		// 중복 유저
-		return UserDto.Response.builder().result(Status.FAIL).build();
+		return Response.builder().result(Status.FAIL).build();
 	}
 	
 	@Override
-	public UserDto.Response modifyProcess(UserDto.Request dto) {
+	public Response modifyProcess(Request dto) {
 		String email = dto.getEmail();
 		User user = dao.selectByEmail(email);
 		
@@ -133,16 +138,16 @@ public class UserServiceImpl implements UserService{
 			User entity = dto.toEntity();
 			dao.updateByEmail(entity);
 			
-			return UserDto.Response.builder()
+			return Response.builder()
 					.result(Status.SUCCESS).build();
 		}
 		
 		// 존재하지 않는 유저
-		return UserDto.Response.builder().result(Status.FAIL).build();
+		return Response.builder().result(Status.FAIL).build();
 	}
 	
 	// 현재 가지고있는 토큰이 유효한지 확인
-	public UserDto.Response tokenValidationProcess(String email, String accessToken) {
+	public Response tokenValidationProcess(String email, String accessToken) {
 		if(jwtService.checkToken(accessToken)) {
 			User user = dao.selectByEmail(email);
 			if(user != null) {
@@ -150,8 +155,9 @@ public class UserServiceImpl implements UserService{
 				Code code = codeDao.selectByCode(groupCode, user.getCode());
 				String role = code.getDescription();
 				
-				return UserDto.Response.builder()
+				return Response.builder()
 						.result(Status.SUCCESS)
+						.seq(user.getSeq())
 						.name(user.getName())
 						.email(user.getEmail())
 						.profileImageUrl(user.getProfileImageUrl())
@@ -164,11 +170,11 @@ public class UserServiceImpl implements UserService{
 		}
 		
 		// exception handler 생기면 없어질 코드
-		return UserDto.Response.builder().result(Status.FAIL).build();
+		return Response.builder().result(Status.FAIL).build();
 	}
 	
 	// refresh 토큰 다시 받기
-	public UserDto.Response getRefreshToken(UserDto.Request dto, String token) {
+	public Response getRefreshToken(Request dto, String token) {
 		if(jwtService.checkToken(token)) {
 			
 			String email = dto.getEmail();
@@ -178,7 +184,7 @@ public class UserServiceImpl implements UserService{
 			if(token.contentEquals(dbToken)) {
 				String accessToken = jwtService.createAccessToken("email", email);
 				// accessToken 반환
-				return UserDto.Response.builder()
+				return Response.builder()
 						.result(Status.SUCCESS)
 						.accessToken(accessToken)
 						.build();
@@ -186,26 +192,26 @@ public class UserServiceImpl implements UserService{
 		}
 
 		// exception handler 생기면 없어질 코드
-		return UserDto.Response.builder().result(Status.UNAUTHORIZED).build();
+		return Response.builder().result(Status.UNAUTHORIZED).build();
 	}
 	
 	// refresh 토큰 삭제
-	public UserDto.Response logoutProcess(String userEmail) {
+	public Response logoutProcess(String userEmail) {
 		User user = dao.selectByEmail(userEmail);
 		user.setToken(null);
 		
 		dao.updateByEmail(user);
 		
-		return UserDto.Response.builder().result(Status.SUCCESS).build();
+		return Response.builder().result(Status.SUCCESS).build();
 	}
 
 	
 	@Override
-	public UserDto.Response validateUser(UserDto.Request paramDto){
+	public Response validateUser(Request paramDto){
 		String email = paramDto.getEmail();
 		User user = dao.selectByEmail(email);
 		if(user == null) {
-			return UserDto.Response.builder()
+			return Response.builder()
 					.result(Status.FAIL)
 					.email(paramDto.getEmail())
 					.name(paramDto.getName())
@@ -222,8 +228,9 @@ public class UserServiceImpl implements UserService{
 		Code code = codeDao.selectByCode(groupCode, user.getCode());
 		String role = code.getDescription();
 		
-		return UserDto.Response.builder()
+		return Response.builder()
 				.result(Status.SUCCESS)
+				.seq(user.getSeq())
 				.name(user.getName())
 				.email(user.getEmail())
 				.profileImageUrl(user.getProfileImageUrl())

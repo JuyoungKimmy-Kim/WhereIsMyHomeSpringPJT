@@ -2,10 +2,11 @@
 <div id="newSection" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div :class="[index == 0 ? 'carousel-item active' : 'carousel-item']" v-for="(news, index) in newsList" :key="index">
-            <img :src=news.image_url class="d-block w-100" :alt=news.image_alt>
+            <img :src=news.url class="d-block w-100">
             <div class="carousel-caption d-none d-md-block">
-                <a :href=news.url target='_blank'>
-                    <h4>{{news.title}}</h4>
+                <a :href=news.link target='_blank'>
+                    <h4 v-html=news.title></h4>
+                    <p v-html=news.description></p>
                 </a>
             </div>    
         </div>
@@ -23,7 +24,6 @@
 
 <script>
 import http from '@/common/axios';
-import cheerio from 'cheerio';
 
 
 export default {
@@ -33,49 +33,27 @@ export default {
         }
     },
     mounted() {
-        http.get("https://cors-anywhere.herokuapp.com/https://news.naver.com/main/list.naver?mode=LS2D&mid=shm&sid1=101&sid2=260",{
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With'
-            }
-        })
-        .then(html => {
-            this.newsList = [];
-            const $ = cheerio.load(html.data);
-            const $bodyList = $("ul.type06_headline").children("li")
-            
-            for(let i = 0; i < 2; i++){
-                
-                let $this = $bodyList.get(i);
-                this.newsList[i] = {
-                    title: $($this).find('dt.photo a img').attr('alt'),
-                    url: $($this).find('dt.photo a').attr('href'),
-                    image_url: $($this).find('dt.photo a img').attr('src'),
-                    image_alt: $($this).find('dt.photo a img').attr('alt'),
-                };
-            }
+        http.get("/boards/news")
+        .then(({data})=>{
+            data.items.forEach(el=>{
+                this.newsList.push(el)
+            });
 
-            const data = this.newsList.filter(n => n.title);
-            return data;
+            
+        this.newsList[0].url = "https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=450&h=300";
+        this.newsList[1].url = "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=450&h=300"
         })
-        .then(res => {
-            console.log(res)
-        })
-        .catch(error=>{
-            console.log(error)
-        });
+
     },
 };
 </script>
 
 <style scoped>
-a h4 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: auto;
-  background-color:white;
+a h4,p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: auto;
+    background-color:white;
 }
 </style>

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mycom.myhome.board.file.BoardFile;
 import com.mycom.myhome.common.Status;
 
 import lombok.AllArgsConstructor;
