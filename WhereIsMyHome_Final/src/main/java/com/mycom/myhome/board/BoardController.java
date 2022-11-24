@@ -37,8 +37,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.mycom.myhome.address.PropertyDetailDto;
+import com.mycom.myhome.board.file.BoardFile;
+import com.mycom.myhome.board.file.BoardFileResultDto;
 import com.mycom.myhome.common.NaverNewsApi;
+import com.mycom.myhome.property.PropertyDetailDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -131,7 +133,7 @@ public class BoardController {
 	@PutMapping("/boards")
 	public ResponseEntity<BoardResultDto> update(@RequestBody BoardParamDto paramDto){
 		BoardResultDto resultDto = service.update(paramDto);
-
+		System.out.println(resultDto);
 		if(resultDto != null) {
 			return new ResponseEntity<>(resultDto,HttpStatus.OK);
 		}
@@ -154,6 +156,12 @@ public class BoardController {
 	public ResponseEntity<List<PropertyDetailDto>> getWishList(@PathVariable int userSeq) {
 		List<PropertyDetailDto> result = service.getWishList(userSeq);
 		
+		return ResponseEntity.ok(result);
+	}
+	
+	@GetMapping("/boards/wish")
+	public ResponseEntity<List<PropertyDetailDto>> modifyMyArea(@RequestParam int houseNo, @RequestParam int userSeq){
+		List<PropertyDetailDto> result = service.modifyMyArea(houseNo, userSeq);
 		return ResponseEntity.ok(result);
 	}
 	

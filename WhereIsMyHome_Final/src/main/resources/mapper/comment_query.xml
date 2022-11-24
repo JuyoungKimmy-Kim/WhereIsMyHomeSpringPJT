@@ -13,14 +13,24 @@
 		VALUES(#{userSeq}, #{boardId}, #{content}, now())
 	</insert>
 	
-	<delete id="deleteComment" parameterType="int">
+	<delete id="deleteCommentByNo" parameterType="int">
 		DELETE FROM comment
 		WHERE no = #{no}
 	</delete>
 	
-	<delete id="deleteHeart" parameterType="int">
+	<delete id="deleteHeartByNo" parameterType="int">
 		DELETE FROM heart
 		WHERE comment_no = #{no}
+	</delete>
+	
+	<delete id="deleteCommentByBoardId" parameterType="int">
+		DELETE FROM comment
+		WHERE board_id = #{boardId}
+	</delete>
+	
+	<delete id="deleteHeartByBoardId" parameterType="int">
+		DELETE FROM heart
+		WHERE board_id = #{boardId}
 	</delete>
 	
 	<update id="updateHeartByNo" parameterType="int">

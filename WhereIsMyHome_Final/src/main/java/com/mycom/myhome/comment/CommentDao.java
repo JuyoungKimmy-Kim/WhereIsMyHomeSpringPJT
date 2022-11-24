@@ -11,8 +11,10 @@ public interface CommentDao {
 	
 	int insertComment(Comment comment);
 	
-	int deleteComment(int no);
-	int deleteHeart(int no);
+	int deleteCommentByNo(int no);
+	int deleteHeartByNo(int no);
+	int deleteCommentByBoardId(int boardId);
+	int deleteHeartByBoardId(int boardId);
 	
 	int updateHeartByNo(Comment comment);
 	

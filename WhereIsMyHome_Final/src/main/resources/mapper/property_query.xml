@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mycom.myhome.address.PropertyDao"> <!--  @Mapper annotation 있는 dao -->
+<mapper namespace="com.mycom.myhome.property.PropertyDao"> <!--  @Mapper annotation 있는 dao -->
 	<!-- 동 이름으로 집 정보 받아오기-->
-	<select id="searchByDong" resultType="com.mycom.myhome.address.PropertyDto">
+	<select id="searchByDong" resultType="com.mycom.myhome.property.PropertyDto">
 		select no, dong, AptName, code, buildYear, jibun, lat, lng
 		  from houseinfo
-		 where dong=#{dongName}
+		 where dong=#{dongName} and code = #{gugunCode}
 		 order by binary(AptName) 
 		 limit 50
 	</select>
 	
 	<!--  구군 코드 정보로 집 정보 받아오기  -->
-	<select id="searchByGugunCode" resultType="com.mycom.myhome.address.PropertyDto">
+	<select id="searchByGugunCode" resultType="com.mycom.myhome.property.PropertyDto">
 		select no, dong, AptName, code, buildYear, jibun, lat, lng
 		  from houseinfo
 		 where code=#{gugunCode}
@@ -20,7 +20,7 @@
 	</select>
 	
 	<!--  시도 코드로 정보 받아오기 -->
-	<select id="searchBySidoCode" resultType="com.mycom.myhome.address.PropertyDto">
+	<select id="searchBySidoCode" resultType="com.mycom.myhome.property.PropertyDto">
 		select no, dong, AptName, code, buildYear, jibun, lat, lng
 		  from houseinfo
 		 where code like concat(#{sidoCode},'%')
@@ -29,7 +29,7 @@
 	</select>
 	
 	<!--  아파트 이름으로 정보 받아오기 -->
-	<select id="searchByApt" resultType="com.mycom.myhome.address.PropertyDto">
+	<select id="searchByApt" resultType="com.mycom.myhome.property.PropertyDto">
 		select no, dong, AptName, code, buildYear, jibun, lat, lng
 		  from houseinfo
 		 where AptName like concat('%',#{aptName},'%')

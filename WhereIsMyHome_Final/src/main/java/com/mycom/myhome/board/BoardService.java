@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.mycom.myhome.address.PropertyDetailDto;
+import com.mycom.myhome.board.file.BoardFileResultDto;
+import com.mycom.myhome.property.PropertyDetailDto;
 
 public interface BoardService {
 	
@@ -22,4 +23,5 @@ public interface BoardService {
 	public BoardResultDto delete(int boardId);
 	
 	public List<PropertyDetailDto> getWishList(int userSeq);
+	public List<PropertyDetailDto> modifyMyArea(int houseNo, int userSeq);
 }

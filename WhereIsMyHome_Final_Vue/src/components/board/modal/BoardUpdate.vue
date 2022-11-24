@@ -66,7 +66,7 @@ export default {
                 this.$alertify.error(this.userResult.message);
             }
 
-            this.$store.commit("userStore/SET_RESULT_MESSAGE", null); 
+            this.$store.commit("userStore/CLEAR_RESULT_MESSAGE"); 
 
 
             if(!this.validToken){
@@ -77,7 +77,7 @@ export default {
             const post = {
                 title: this.title,
                 content: this.CKEditor.getData(),
-                userEmail: this.userInfo.userEmail,
+                userEmail: this.userInfo.email,
                 boardId: this.post.boardId,
             };
             

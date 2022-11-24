@@ -5,7 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.mycom.myhome.address.PropertyDetailDto;
+import com.mycom.myhome.board.file.BoardFile;
+import com.mycom.myhome.property.PropertyDetailDto;
 
 @Mapper
 public interface BoardDao {
@@ -32,4 +33,6 @@ public interface BoardDao {
 	
 	List<Integer>  findHouseNoByUserSeq(int userSeq);
 	PropertyDetailDto findByHouseNo(int houseNo);
+	int insertInterestArea(@Param("houseNo") int houseNo, @Param("userSeq") int userSeq);
+	int deleteByNoSeq(@Param("houseNo") int houseNo, @Param("userSeq") int userSeq);
 }

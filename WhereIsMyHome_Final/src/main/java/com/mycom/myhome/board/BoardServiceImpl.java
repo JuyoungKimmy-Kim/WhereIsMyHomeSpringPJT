@@ -12,7 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.mycom.myhome.address.PropertyDetailDto;
+import com.mycom.myhome.board.file.BoardFile;
+import com.mycom.myhome.board.file.BoardFileResultDto;
+import com.mycom.myhome.comment.CommentDao;
+import com.mycom.myhome.property.PropertyDetailDto;
 import com.mycom.myhome.user.User;
 import com.mycom.myhome.user.UserDao;
 
@@ -25,7 +28,10 @@ public class BoardServiceImpl implements BoardService{
 
 	private final UserDao userDao;
 	
+	private final CommentDao commentDao;
+	
 	private final BoardDao dao;
+	
 	
 	@Value("${app.fileupload.uploadDir}")
 	private String uploadFolder;
@@ -50,12 +56,13 @@ public class BoardServiceImpl implements BoardService{
 				dao.insertReadCount(boardId, findUser.getSeq());
 				dao.addReadCount(boardId);
 			}
-		}
-		
-		if(board != null) {
+			
+			board = dao.detail(boardId);
+			System.out.println("detail" + board.toString());
 			List<BoardFile> fileList = dao.getFileList(boardId);
 			return BoardResultDto.ofSuccess("게시글을 불러왔습니다.", board, null, 0, fileList);
 		}
+		
 		return BoardResultDto.ofFail("게시글을 불러오는데 실패하였습니다.");
 	}
 
@@ -146,9 +153,15 @@ public class BoardServiceImpl implements BoardService{
                 file.delete();
             }
         }
+
+        System.out.println("ERROR");
         
         dao.deleteFile(boardId);
         dao.deleteReadCount(boardId);
+        commentDao.deleteHeartByBoardId(boardId);
+        commentDao.deleteCommentByBoardId(boardId);
+        
+        System.out.println("ERROR");
 		int result = dao.delete(boardId);
 		if(result == 1) {
 			return BoardResultDto.ofSuccess("게시물이 삭제되었습니다.", null, null, 0, null);
@@ -171,6 +184,19 @@ public class BoardServiceImpl implements BoardService{
 		});
 		
 		return wishList;
+	}
+	
+	@Override
+	public List<PropertyDetailDto> modifyMyArea(int houseNo, int userSeq){
+		List<Integer> houseNoList = dao.findHouseNoByUserSeq(userSeq);
+		
+		if(houseNoList.contains(houseNo)) {
+			dao.insertInterestArea(houseNo, userSeq);
+		}else {
+			dao.deleteByNoSeq(houseNo, userSeq);
+		}
+		
+		return getWishList(userSeq);
 	}
 
 }

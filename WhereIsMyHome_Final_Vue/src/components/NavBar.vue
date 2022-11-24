@@ -109,7 +109,8 @@ export default{
       sidoOptions: [],
       gugunOptions: [],
       dongOptions: [],
-      
+      propertyOptions: [],
+
       inputValue:[],
     }
   },
@@ -154,10 +155,10 @@ export default{
       this.isOpen = true;
       this.inputValue = [];
 
+      console.log(this.map);
       let sido = this.map.sido;
       let gugun = this.map.gugun;
       let dong = this.map.dong;
-      let property = this.map.property;
 
       if(Object.keys(sido).length == 0){
         if(this.sidoOptions.length == 0){
@@ -197,18 +198,15 @@ export default{
           });
         }
 
+        this.propertyOptions = [];
         this.options = [...this.dongOptions];
       }
-
-      // if(Object.keys(property).length == 0){
-      //   console.log("get Property");
-      //   this.options = [];
-      // }
       
       
       if(Object.keys(this.map.sido).length != 0)this.inputValue.push(this.map.sido);
       if(Object.keys(this.map.gugun).length != 0)this.inputValue.push(this.map.gugun);
       if(Object.keys(this.map.dong).length != 0)this.inputValue.push(this.map.dong);
+      
     },
     async setSidoGugunDong(){
       if(this.removed){
@@ -223,7 +221,7 @@ export default{
       }else if(item.code.length == 5){
         this.$store.commit("mapStore/SET_GUGUN", item);
         this.getListByGugunCode();
-      }else{
+      }else if(item.code.length == 10){
         this.$store.commit("mapStore/SET_DONG", item);
         this.getListByDongName();
       }
@@ -258,6 +256,7 @@ export default{
         }
       }else if(code.length == 10){
         this.$store.commit("mapStore/SET_DONG", {});
+        this.$store.commit("mapStore/SET_PROPERTY", {});
         this.getListByGugunCode();
 
         this.options = [...this.dongOptions];

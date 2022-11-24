@@ -64,8 +64,8 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public CommentDto.Response processRemoveComment(int no){
-		dao.deleteHeart(no);
-		int result = dao.deleteComment(no);
+		dao.deleteHeartByNo(no);
+		int result = dao.deleteCommentByNo(no);
 			
 		if(result == 1) {
 			return CommentDto.Response.builder()
