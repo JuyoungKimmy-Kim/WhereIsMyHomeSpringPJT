@@ -1,24 +1,32 @@
 <template>
   <div>
-    <!-- <b-modal id="modal-lg" size="lg" ref="my-modal" hide-footer title="로드뷰" no-enforce-focus> -->
-    <div id="roadview" class="map"></div>
-    <!-- </b-modal> -->
+    <!-- <button type="button" class="btn bg-gradient-light w-auto me-2" @click="showRoadView()">로드뷰 보기</button> -->
+            <div style="float:right;" class="text-info icon-move-right" @click="showRoadView()">로드뷰 보기
+              <i class="fas fa-arrow-right text-sm" aria-hidden="true"></i>
+            </div>
+    <div v-show="isRoadViewMode" id="roadview" class="map"></div>
   </div>
 </template>
 
 <script>
 import {mapState} from 'vuex';
-
 const mapStore = "mapStore";
-
 export default {
     data () {
         return {
+            isRoadViewMode:false,
             selectedProperty :'',
         } 
     },
     mounted() {
-        if (window.kakao && window.kakao.maps) {
+    },
+    methods: {
+        showRoadView() {
+            if (this.isRoadViewMode) {
+                this.isRoadViewMode=false;
+            } else {
+                this.isRoadViewMode=true;
+                        if (window.kakao && window.kakao.maps) {
             this.initMap();
         } else {
             const script = document.createElement("script");
@@ -26,8 +34,8 @@ export default {
             script.src ="//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=741cfff0b0e1d74a405abcb9f34aee54&libraries=services";
             document.head.appendChild(script);
         }
-    },
-    methods: {
+            }
+        },
         hideModal() {
             this.$refs["my-modal"].hide();
         },
@@ -64,5 +72,4 @@ export default {
     width: 100%;
     height: 250px;
 }
-
 </style>

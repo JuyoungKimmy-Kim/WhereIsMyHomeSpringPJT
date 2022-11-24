@@ -1,5 +1,6 @@
 import jwtDecode from "jwt-decode";
 import { login, signUp, modifyInfo, validateToken, logout, createAccessToken } from "@/common/user";
+import { getWishList } from '@/common/wishList';
 
 import util from '@/common/utils';
 
@@ -13,6 +14,7 @@ const userStore = {
         },
         isLogin: false,
         userInfo: {},
+        wishList: [],
         validToken: null,
     },
     mutations:{
@@ -61,6 +63,22 @@ const userStore = {
                 state.userInfo.role = payload.role;
             }
             
+        },
+        ADD_WISH_LIST(state, payload){
+            payload.forEach(el=> state.wishList.push(el.code));
+        },
+        REMOVE_WISH_LIST(state, payload){
+            let index = -1;
+            for(let i = 0; i < state.wishList.length; i++){
+                if(state.wishList[i] == payload){
+                    index = i + 1;
+                    break;
+                }
+            }
+            state.wishList = state.wishList.splice(index, 1);
+        },
+        CLEAR_WISH_LIST(state){
+            state.wishList = [];
         }
     },
     actions:{
@@ -86,6 +104,12 @@ const userStore = {
                         commit("SET_RESULT_MESSAGE_SUCCESS", "로그인에 성공하였습니다!!");
                         sessionStorage.setItem("access-token", data.accessToken);
                         sessionStorage.setItem("refresh-token", data.refreshToken);
+
+                        let seq = data.seq;
+                        getWishList(seq, ({data})=> {
+                            commit("CLEAR_WISH_LIST");
+                            commit("ADD_WISH_LIST", data)
+                        },(error)=>console.log(error));
                     }else{
                         commit("SET_IS_LOGIN", false);
                         commit("SET_VALID_TOKEN", false);

@@ -46,9 +46,13 @@
                                 <div class="card shadow-lg px-0" v-if="isDetailMode">
                                     <div class="card-body px-3 py-3">
                                         
-                                        <road-view></road-view>
                                         <chart-data></chart-data>
-                                        
+                                        <road-view></road-view>
+                                        <div>
+                                            <!-- <p>
+                                                거래 연도: {{ placeNow.dealYear }}-{{ placeNow.dealMonth }}-{{ placeNow.dealDay }}
+                                            </p> -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>

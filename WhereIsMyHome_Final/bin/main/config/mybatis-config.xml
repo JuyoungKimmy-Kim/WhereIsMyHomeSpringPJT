@@ -16,5 +16,6 @@
 		<mapper resource="mapper/property_detail_query.xml"/>
 		<mapper resource="mapper/code_query.xml"/>
 		<mapper resource="mapper/station_query.xml"/>
+		<mapper resource="mapper/wishlist_query.xml"/>
 	</mappers>
 </configuration>
