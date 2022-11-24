@@ -7,4 +7,5 @@ public interface PropertyService {
 	public List<PropertyDto> searchByRegion(String regionCode);
 	public List<PropertyDto> searchByApt(String aptName);
 	public List<PropertyDetailDto> propertyDetail(String houseNo);
+	public List<PropertyDetailDto> cheapestProperty(String gugunCode);
 }

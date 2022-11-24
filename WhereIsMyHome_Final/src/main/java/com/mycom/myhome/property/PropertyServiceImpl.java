@@ -66,5 +66,18 @@ public class PropertyServiceImpl implements PropertyService {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<PropertyDetailDto> cheapestProperty(String gugunCode) {
+		List<PropertyDetailDto> list=null;
+		try {
+			list=detailDao.cheapestProperty(gugunCode);
+			System.out.println(list.toString());
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 }

@@ -10,4 +10,14 @@
 		order by binary(AptName) 
 		limit 50
 	</select>
+	
+	<!-- 구군 코드로 가장 저렴한 집 3개  받아오기 -->	
+	<select id="cheapestProperty" resultType="com.mycom.myhome.property.PropertyDetailDto">
+		select no, dong, AptName, code, dealAmount, buildYear, dealYear, dealMonth, dealDay,
+			   area, floor, jibun, house_no
+	  	from housedeal
+		where code=#{gugunCode}
+		order by dealAmount
+		limit 3
+	</select>
 </mapper>

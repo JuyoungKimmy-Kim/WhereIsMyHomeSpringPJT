@@ -1,0 +1,26 @@
+2022-11-25 00:26:20.907  INFO 8616 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Starting WhereIsMyHomeFinalApplication using Java 1.8.0_332 on DESKTOP-58R1BVP with PID 8616 (C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final\bin\main started by FL4K in C:\Users\FL4K\Documents\GitHub\WhereIsMyHomeSpringPJT\WhereIsMyHome_Final)
+2022-11-25 00:26:20.913  INFO 8616 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-11-25 00:26:20.952  INFO 8616 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-11-25 00:26:20.953  INFO 8616 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-11-25 00:26:22.258  INFO 8616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-25 00:26:22.268  INFO 8616 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-25 00:26:22.269  INFO 8616 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-25 00:26:22.356  INFO 8616 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-25 00:26:22.356  INFO 8616 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1403 ms
+2022-11-25 00:26:23.247  INFO 8616 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-25 00:26:23.286  INFO 8616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-25 00:26:23.296  INFO 8616 --- [restartedMain] c.m.m.WhereIsMyHomeFinalApplication      : Started WhereIsMyHomeFinalApplication in 2.739 seconds (JVM running for 3.618)
+2022-11-25 00:26:35.211  INFO 8616 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-25 00:26:35.212  INFO 8616 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-25 00:26:35.213  INFO 8616 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-25 00:26:35.262  INFO 8616 --- [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-25 00:26:36.714  INFO 8616 --- [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-25 00:26:36.747 DEBUG 8616 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-25 00:26:36.756 DEBUG 8616 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-25 00:26:36.830 DEBUG 8616 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : <==      Total: 3
+2022-11-25 00:28:58.807 DEBUG 8616 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-25 00:28:58.808 DEBUG 8616 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-25 00:28:58.838 DEBUG 8616 --- [http-nio-8080-exec-1] com.mycom.myhome.board.BoardDao.list     : <==      Total: 3
+2022-11-25 00:30:30.135 DEBUG 8616 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==>  Preparing: SELECT board_id, user_seq, writer, title, content, reg_dt, read_count, board_clsf FROM board WHERE board_clsf = ? ORDER BY board_id DESC LIMIT ? OFFSET ?
+2022-11-25 00:30:30.136 DEBUG 8616 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : ==> Parameters: 001(String), 5(Integer), 0(Integer)
+2022-11-25 00:30:30.179 DEBUG 8616 --- [http-nio-8080-exec-4] com.mycom.myhome.board.BoardDao.list     : <==      Total: 3

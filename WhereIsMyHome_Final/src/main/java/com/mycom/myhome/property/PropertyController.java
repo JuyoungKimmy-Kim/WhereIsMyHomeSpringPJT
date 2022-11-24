@@ -46,4 +46,10 @@ public class PropertyController {
 		System.out.println("PropertyController - Property Detail");
 		return service.propertyDetail(houseNo);
 	}
+	
+	@GetMapping("/cheapestProperty/{gugunCode}")
+	private List<PropertyDetailDto> cheapestProperty (@PathVariable String gugunCode) {
+		System.out.println("PropertyController - Cheapest Property");
+		return service.cheapestProperty(gugunCode);
+	}
 }
