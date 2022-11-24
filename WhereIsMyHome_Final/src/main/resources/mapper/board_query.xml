@@ -79,32 +79,6 @@
 		FROM board_file
 		WHERE board_id= #{boardId}
 	</select>
-	
-	
-	
-	<select id="findHouseNoByUserSeq" parameterType="int" resultType="int">
-		SELECT house_no
-		FROM interest_area
-		WHERE user_seq = #{userSeq}
-	</select>
-	<select id="findByHouseNo" parameterType="int" resultType="com.mycom.myhome.property.PropertyDetailDto">
-		SELECT dong, aptname, buildyear, code,(
-			SELECT dealAmount
-			FROM housedeal
-			WHERE house_no = hi.no
-		) as dealAmount
-		FROM houseinfo hi
-		WHERE no = #{houseNo}
-	</select>
-	<insert id="insertInterestArea" parameterType="map">
-		INSERT INTO interest_area(house_no, user_seq)
-		VALUES(#{houseNo}, #{userSeq})
-	</insert>
-	<delete id="deleteByNoSeq" parameterType="map">
-		DELETE FROM interest_area
-		WHERE house_no = #{houseNo} 
-			and user_seq = #{userSeq}
-	</delete>
 </mapper>
 
 

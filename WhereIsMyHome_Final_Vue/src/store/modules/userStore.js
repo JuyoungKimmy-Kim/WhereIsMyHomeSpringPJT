@@ -104,7 +104,7 @@ const userStore = {
                         commit("SET_RESULT_MESSAGE_SUCCESS", "로그인에 성공하였습니다!!");
                         sessionStorage.setItem("access-token", data.accessToken);
                         sessionStorage.setItem("refresh-token", data.refreshToken);
-
+                        
                         let seq = data.seq;
                         getWishList(seq, ({data})=> {
                             commit("CLEAR_WISH_LIST");

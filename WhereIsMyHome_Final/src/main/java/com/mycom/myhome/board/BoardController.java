@@ -151,24 +151,11 @@ public class BoardController {
 		
 		return new ResponseEntity<>(resultDto, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
-	@GetMapping("/boards/wish/{userSeq}")
-	public ResponseEntity<List<PropertyDetailDto>> getWishList(@PathVariable int userSeq) {
-		List<PropertyDetailDto> result = service.getWishList(userSeq);
-		
-		return ResponseEntity.ok(result);
-	}
-	
-	@GetMapping("/boards/wish")
-	public ResponseEntity<List<PropertyDetailDto>> modifyMyArea(@RequestParam int houseNo, @RequestParam int userSeq){
-		List<PropertyDetailDto> result = service.modifyMyArea(houseNo, userSeq);
-		return ResponseEntity.ok(result);
-	}
+
 	
 	@GetMapping("/boards/news")
 	public ResponseEntity<StringBuffer> getNews(){
 		StringBuffer news = NaverNewsApi.getNews();
-		System.out.println(news);
 		return ResponseEntity.ok(news);
 	}
 }
