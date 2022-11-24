@@ -45,10 +45,15 @@
                             <div class="row justify-space-between py-1">
                                 <div class="card shadow-lg px-0" v-if="isDetailMode">
                                     <div class="card-body px-3 py-3">
-                                        
-                                        <road-view></road-view>
+
                                         <chart-data></chart-data>
-                                        
+                                        <road-view></road-view>
+                                        <div>
+                                            <!-- <p>
+                                                거래 연도: {{ placeNow.dealYear }}-{{ placeNow.dealMonth }}-{{ placeNow.dealDay }}
+                                            </p> -->
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -60,8 +65,9 @@
     </div>
 </template>
 
+
 <script>
-import { propertyListByRegionCode } from "@/common/map.js";
+import { propertyListByDongName, propertyListByRegionCode } from "@/common/map.js";
 import { stationList } from "@/common/map.js";
 import RoadView from "@/components/map/RoadView.vue";
 import ChartData from "@/components/map/ChartData.vue";
@@ -149,6 +155,11 @@ export default {
       this.removeMarker();
       this.isDetailMode = false;
 
+      if(this.openCardID != null){
+        document.getElementById(this.openCardID).style.backgroundColor ="";
+        this.openCardID = null;
+      }
+
       if(this.map.propertyList.length > 0){
         this.kakao.placeList = [...this.map.propertyList];
         this.displayPlaces(this.map.propertyList);
@@ -160,6 +171,10 @@ export default {
       var sidoCode = gugunCode.substr(0, 2);
       let sido = null;
       let gugun = null;
+
+      console.log("SET")
+      console.log(sidoCode);
+      console.log(gugunCode);
       this.map.sidoList.forEach(item=>{
         if(item.code == sidoCode){
           sido = {...item};
@@ -175,6 +190,7 @@ export default {
         }
       })
       this.$store.commit("mapStore/SET_GUGUN", gugun);
+
     },
     async initMap() {
       const container = document.getElementById("map");
@@ -215,13 +231,17 @@ export default {
       this.addCategoryClickEvent();
 
       let gugunCode = null;
-      if(Object.keys(this.userInfo).length > 0 && Object.keys(this.map.gugun).length === 0){
+      
+      if(Object.keys(this.map.gugun).length > 0) {
+        gugunCode = this.map.gugun.code;
+      }else if(Object.keys(this.userInfo).length > 0 && Object.keys(this.map.gugun).length === 0){
         gugunCode = this.userInfo.gugunCode
       }else{
-        gugunCode = "50110";
+        gugunCode = "11170";
       }
 
-      
+      console.log("GUGUNCODE")
+      console.log(gugunCode);
       this.setMapState(gugunCode);
       this.initPropertyList(gugunCode);
       this.displayPlaces(this.kakao.placeList);
@@ -564,7 +584,10 @@ export default {
         let targetDOM = null;
         if(this.openCardID != null){
           targetDOM = document.getElementById(this.openCardID);
-          targetDOM.style.backgroundColor="";
+          
+          if(targetDOM != null){
+            targetDOM.style.backgroundColor="";
+          }else this.openCardID = null;
         }
 
         if(this.placeNow == null || this.placeNow.no != place.no){
@@ -589,7 +612,7 @@ export default {
     showStation(){
       this.displayOptionPlaces(this.options.stationList, true);
     },
-    async initPropertyList(gugunCode) {      
+    async initPropertyList(gugunCode) { 
       await propertyListByRegionCode(gugunCode, 
         ({ data }) => {
           this.kakao.placeList = [...data];

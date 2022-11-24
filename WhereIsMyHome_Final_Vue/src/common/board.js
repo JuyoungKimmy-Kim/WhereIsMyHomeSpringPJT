@@ -24,8 +24,5 @@ async function deletePost(boardId, success, fail){
     await http.delete(`/boards/${boardId}`).then(success).catch(fail);
 }
 
-async function getWishList(userSeq, success, fail){
-    await http.get(`/boards/wish/${userSeq}`).then(success).catch(fail);
-}
 
-export {list, listCount, detail, insert, update, deletePost, getWishList};
+export {list, listCount, detail, insert, update, deletePost};

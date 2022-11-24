@@ -19,6 +19,7 @@ import com.mycom.myhome.property.PropertyDetailDto;
 import com.mycom.myhome.user.User;
 import com.mycom.myhome.user.UserDao;
 
+import ch.qos.logback.classic.Logger;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -58,12 +59,11 @@ public class BoardServiceImpl implements BoardService{
 			}
 			
 			board = dao.detail(boardId);
-			System.out.println("detail" + board.toString());
-			List<BoardFile> fileList = dao.getFileList(boardId);
-			return BoardResultDto.ofSuccess("게시글을 불러왔습니다.", board, null, 0, fileList);
 		}
-		
-		return BoardResultDto.ofFail("게시글을 불러오는데 실패하였습니다.");
+
+		System.out.println("detail" + board.toString());
+		List<BoardFile> fileList = dao.getFileList(boardId);
+		return BoardResultDto.ofSuccess("게시글을 불러왔습니다.", board, null, 0, fileList);
 	}
 
 	@Override
@@ -78,10 +78,12 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardResultDto insert(BoardParamDto paramDto) {
 		String userEmail = paramDto.getUserEmail();
+		System.out.println(userEmail);
 		User findUser = userDao.selectByEmail(userEmail);	
 		
 		if(findUser != null) {
 			int result = dao.insert(paramDto.toEntity(findUser.getName()));
+			System.out.println(result);
 			if(result == 1) {
 				Board board = dao.list(1,0,"001").get(0);
 				return BoardResultDto.ofSuccess("게시물이 등록되었습니다.", board, null, 0, null);
@@ -169,34 +171,4 @@ public class BoardServiceImpl implements BoardService{
 		
 		return BoardResultDto.ofFail("게시물 삭제에 실패하였습니다.");
 	}
-	
-	@Override
-	public List<PropertyDetailDto> getWishList(int userSeq) {
-		List<Integer> houseNoList = dao.findHouseNoByUserSeq(userSeq);
-		List<PropertyDetailDto> wishList = new ArrayList<>();
-		
-		houseNoList.forEach((item)->{
-			PropertyDetailDto house = dao.findByHouseNo(item);
-			if(house != null) {
-				System.out.println(house);
-				wishList.add(house);
-			}
-		});
-		
-		return wishList;
-	}
-	
-	@Override
-	public List<PropertyDetailDto> modifyMyArea(int houseNo, int userSeq){
-		List<Integer> houseNoList = dao.findHouseNoByUserSeq(userSeq);
-		
-		if(houseNoList.contains(houseNo)) {
-			dao.insertInterestArea(houseNo, userSeq);
-		}else {
-			dao.deleteByNoSeq(houseNo, userSeq);
-		}
-		
-		return getWishList(userSeq);
-	}
-
 }

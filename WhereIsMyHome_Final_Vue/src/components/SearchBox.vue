@@ -75,9 +75,9 @@ export default {
   },
   data() {
     return {
-      sidoValue: '',
-      gugunValue: '',
-      dongValue: '',
+      sidoValue: null,
+      gugunValue: null,
+      dongValue: null,
     };
   },
   computed: {
@@ -86,12 +86,15 @@ export default {
   methods:{
     ...mapActions(mapStore, ["getSidoList", "getGugunList", "getDongList"]),
     gotoMap() {
+      this.$store.commit("mapStore/SET_SIDO", this.sidoValue);
+      this.$store.commit("mapStore/SET_GUGUN", this.gugunValue);
+      this.$store.commit("mapStore/SET_DONG", this.dongValue);
       this.$router.push("/map");
     },
     selectSido(){
       if(this.sidoValue == null || this.sidoValue.code != this.map.sido.code){
-        this.gugunValue = "";
-        this.dongValue = "";
+        this.gugunValue = null;
+        this.dongValue = null;
         this.$store.commit("mapStore/SET_GUGUN", {});
         this.$store.commit("mapStore/SET_DONG", {});
       }
@@ -104,7 +107,7 @@ export default {
     },
     selectGugun(){
       if(this.gugunValue  == null || this.gugunValue.code != this.map.gugun.code){
-        this.dongValue = "";
+        this.dongValue = null;
         this.$store.commit("mapStore/SET_DONG", {});
       }
       if(this.gugunValue != null) {

@@ -31,8 +31,4 @@ public interface BoardDao {
 	int deleteFile(int boardId);
 	int delete(int boardId);
 	
-	List<Integer>  findHouseNoByUserSeq(int userSeq);
-	PropertyDetailDto findByHouseNo(int houseNo);
-	int insertInterestArea(@Param("houseNo") int houseNo, @Param("userSeq") int userSeq);
-	int deleteByNoSeq(@Param("houseNo") int houseNo, @Param("userSeq") int userSeq);
 }

@@ -21,7 +21,4 @@ public interface BoardService {
 	public BoardResultDto update(BoardParamDto paramDto);
 	
 	public BoardResultDto delete(int boardId);
-	
-	public List<PropertyDetailDto> getWishList(int userSeq);
-	public List<PropertyDetailDto> modifyMyArea(int houseNo, int userSeq);
 }

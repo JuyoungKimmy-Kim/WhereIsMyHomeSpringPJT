@@ -1,7 +1,7 @@
 export default ({
     type :'line',
     data : {
-        lables : ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        labels : ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets : [
             {
                 label : '월별 거래 금액 / 단위: 만원',

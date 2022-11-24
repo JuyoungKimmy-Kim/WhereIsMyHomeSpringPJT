@@ -1,7 +1,7 @@
 <template>
     <table class="table align-items-center mb-0">
         <thead>
-        <tr>
+        <tr >
             <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-3 ps-3">#</th>
             <th scope="col" class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 col-8 ps-2">제목</th>
             <th scope="col" class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">작성 날짜</th>
@@ -9,7 +9,7 @@
         </tr>
         </thead>
         <tbody>
-            <tr v-for="(post, index) in list" :key="index">
+            <tr id="myTr" v-for="(post, index) in list" :key="index">
                 <th scope="row">
                     <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
@@ -74,6 +74,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.table { 
+    height: 300px;
+}
 
+#myTr td{
+    max-height:40px;
+}
 </style>

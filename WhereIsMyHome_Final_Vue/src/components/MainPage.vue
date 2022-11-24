@@ -13,7 +13,7 @@
                 <news-section></news-section>
                 <hr class="vertical dark">
               </div>
-              <div class="col-md-6 justify-content-end" style="display: flex; flex-direction: column;">
+              <div class="col-md-6 position-relative" style="display: flex; flex-direction: column;">
                 <h4 class="row justify-content-center" style="flex:1">공지사항</h4>
                 <notice-fragment @show-this-notice="showDetail"></notice-fragment>
               </div>

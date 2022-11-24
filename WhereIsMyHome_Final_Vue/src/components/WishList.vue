@@ -26,17 +26,17 @@
                                         <img src="@/assets/img/apt/송정삼정그린코아더시티.jpg" class="avatar avatar-sm me-3">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center">
-                                        <a class="text-sm font-weight-bold mb-0 cursor-pointer">property.aptName</a>
-                                        <p class="text-xs text-secondary mb-0">property.buildYear</p>
+                                        <a class="text-sm font-weight-bold mb-0 cursor-pointer">{{property.aptname}}</a>
+                                        <p class="text-xs text-secondary mb-0">{{property.buildyear}}</p>
                                     </div>
                                     </div>
                                 </td>
                                 <td>
                                     <p class="text-xs font-weight-bold mb-0">단위 (만원)</p>
-                                    <p class="text-xs text-secondary mb-0">property.dealAmount</p>
+                                    <p class="text-xs text-secondary mb-0">{{property.dealAmount}}</p>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <button type="button" class="btn btn-outline-danger btn-sm me-2">삭제</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm me-2" @click="deleteThis(index, property.code)">삭제</button>
                                 </td>
                             </tr>
 
@@ -53,10 +53,10 @@
 </template>
 
 <script>
-import http from '@/common/axios'
 import HeaderPage from '@/components/HeaderPage.vue'
+import util from '@/common/utils'
 
-import {getWishList} from '@/common/board'
+import {deleteFavorite, getWishList} from '@/common/wishList'
 import {mapState} from 'vuex'
 
 export default {
@@ -76,14 +76,34 @@ export default {
         await getWishList(seq,
             ({data})=>{
                 data.forEach(element => {
+                    if(element.dealAmount > 0){
+                        element.dealAmount = util.numberToKorean(element.dealAmount);
+                    }
                     this.list.push(element);
                 });
+            },(error)=>{
+                console.log(error);
+                this.$router.push("/");
             }
         );
     },
     computed:{
         ...mapState("userStore", ["userInfo"])
-    }
+    },
+    methods: {
+        async deleteThis(index, no){
+            await deleteFavorite({
+                    houseNo: no,
+                    userSeq: this.userInfo.seq,
+                },
+                ({data})=>{
+                    if(data.result == "SUCCESS"){
+                        this.$store.commit("userStore/REMOVE_WISH_LIST", no);
+                        this.list.splice(index, 1);
+                    }
+                },(error)=>console.log(error));
+        }
+    },
 }
 </script>
 

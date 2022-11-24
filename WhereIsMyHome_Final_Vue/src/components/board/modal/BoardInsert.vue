@@ -64,7 +64,7 @@ export default {
         this.submitPost();
       }else{
         this.$alertify.error(this.userResult.message);
-        this.$store.commt("boardStore/SET_RESULT_MESSAGE", null); 
+        this.$store.commit("boardStore/SET_RESULT_MESSAGE", null); 
       }
     },
     async submitPost(){
@@ -72,7 +72,7 @@ export default {
         userSeq: this.userInfo.userSeq,
         title: this.title,
         content: this.CKEditor.getData(),
-        userEmail: this.userInfo.userEmail
+        userEmail: this.userInfo.email
       };
       
       await this.insertPost(post);
@@ -87,7 +87,7 @@ export default {
             this.$alertify.error(this.boardResult.message);
           }
 
-        this.$store.commt("boardStore/SET_RESULT_MESSAGE", null);
+        this.$store.commit("boardStore/SET_RESULT_MESSAGE", null);
       }, 1000);
     },
     clearUpload(){
