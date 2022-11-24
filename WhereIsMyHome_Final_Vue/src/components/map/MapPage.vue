@@ -21,14 +21,13 @@
                     <i
                         v-if="!isDetailMode"
                         class="material-icons opacity-6 me-2 text-md"
-                        @click="setCardDetailMode(place, index)"
-                        >expand_more</i
+                        @click="setCardDetailMode(place, index)">expand_more</i
                     >
 
                     <div v-if="isDetailMode">
                         <div v-if="indexCheck(index)">
                         <p>
-                            거래 연도: {{ place.dealYear }}-{{ place.dealMonth }}-{{ place.dealDay }}
+                            거래 연도: {{ place.dealYear }}/ {{ place.dealMonth }}/ {{ place.dealDay }}
                         </p>
                         <p></p>
 
@@ -135,13 +134,16 @@ export default {
             // 마커를 생성하고 지도에 표시합니다
             var placePosition = new kakao.maps.LatLng(places[i].lat, places[i].lng),
             marker = this.addMarker(placePosition, i),
-            itemEl = this.getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+            itemEl = this.getListItem(i, places[i]); 
+            // 검색 결과 항목 Element를 생성합니다
             // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
             // LatLngBounds 객체에 좌표를 추가합니다
             bounds.extend(placePosition);
+
             // 마커와 검색결과 항목에 mouseover 했을때
             // 해당 장소에 인포윈도우에 장소명을 표시합니다
             // mouseout 했을 때는 인포윈도우를 닫습니다
+            
             let $this = this;
             (function (marker, title) {
             kakao.maps.event.addListener(marker, "mouseover", function () {
@@ -151,7 +153,11 @@ export default {
                 $this.kakao.infowindow.close();
             });
             kakao.maps.event.addListener(marker, "click", function() {
-                $this.showDetailCard (marker, places[i]);
+                // console.log($this.kakao.placeList);
+                // console.log($this.kakao.placeList[marker.id]);
+                // console.log(marker.id);
+                $this.setCardDetailMode($this.kakao.placeList[marker.id], marker.id);
+                
             });
             itemEl.onmouseover = function () {
                 $this.displayInfowindow(marker, title);
@@ -196,8 +202,8 @@ export default {
         return el;
         },
         // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-        addMarker(position, idx, title) {
-        var imageSrc ="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png", // 마커 이미지 url, 스프라이트 이미지를 씁니다
+        addMarker(position, idx) {
+            var imageSrc ="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png", // 마커 이미지 url, 스프라이트 이미지를 씁니다
             imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
             imgOptions = {
                 spriteSize: new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
@@ -211,17 +217,12 @@ export default {
             });
             marker.setMap(this.kakao.map); // 지도 위에 마커를 표출합니다
             this.kakao.markers.push(marker); // 배열에 생성된 마커를 추가합니다
-        //     kakao.maps.event.addListener(marker, 'click', function() {
-        //     if (this.kakao.selectedMarker!='') {
-        //       this.isDetailMode=false;
-        //       this.kakao.selectedMarker='';
-                
-        //     } else {
-        //       this.isDetailMode=true;
-        //       this.kakao.selectedMarker=idx;
-        //     }
-        // });
-        return marker;
+            
+            marker.id=idx;
+            // console.log ('Create Marker')
+            // console.log (marker.id);
+
+            return marker;
         },
         // 지도 위에 표시되고 있는 마커를 모두 제거합니다
         removeMarker() {
@@ -237,16 +238,12 @@ export default {
             this.kakao.infowindow.setContent(content);
             this.kakao.infowindow.open(this.kakao.map, marker);
         },
-    /*
-        if (this.isDetailMode) {
-            this.$store.state.map.property = place;
-        } else {
-            this.$store.commit("SET_PROPERTY", place);
-        }
-        this.isDetailMode = !this.isDetailMode;
-        this.currentIndex = index;
-    */
+
         showDetailCard (marker, place, idx) {
+            console.log (marker);
+            // console.log (place);
+            // console.log(idx);
+
             this.$store.commit("mapStore/SET_PROPERTY", place);
 
             this.isDetailMode=!this.isDetailMode;
@@ -265,6 +262,7 @@ export default {
         setCardDetailMode(place, index) {
             this.$store.commit("mapStore/SET_PROPERTY", place);
 
+            this.currentIndex=index-1;
             this.isDetailMode = !this.isDetailMode;
             this.currentIndex = index;
         },
